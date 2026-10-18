@@ -1662,6 +1662,17 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
 @media(max-width:720px){
   html{--site-header-height:76px;}
 }
+
+/* Subtle green glass treatment after the page starts scrolling. */
+.navbar{
+  transition:background-color .25s ease,border-color .25s ease,backdrop-filter .25s ease;
+}
+.navbar.is-scrolled{
+  background:rgba(26,50,47,.76);
+  border-bottom-color:rgba(212,175,106,.20);
+  -webkit-backdrop-filter:blur(12px) saturate(130%);
+  backdrop-filter:blur(12px) saturate(130%);
+}
 </style>
 </head>
 <body>
@@ -2345,5 +2356,14 @@ setLanguage(initial);
 })();
 </script>
 
+<script>
+(() => {
+  const header = document.querySelector('.navbar');
+  if (!header) return;
+  const updateHeaderGlass = () => header.classList.toggle('is-scrolled', window.scrollY > 16);
+  updateHeaderGlass();
+  window.addEventListener('scroll', updateHeaderGlass, { passive: true });
+})();
+</script>
 </body>
 </html>
