@@ -2358,9 +2358,12 @@ setLanguage(initial);
 
 <script>
 (() => {
-  const header = document.querySelector('.navbar');
-  if (!header) return;
-  const updateHeaderGlass = () => header.classList.toggle('is-scrolled', window.scrollY > 16);
+  const headers = document.querySelectorAll('.navbar');
+  if (!headers.length) return;
+  const updateHeaderGlass = () => {
+    const scrolled = window.scrollY > 16;
+    headers.forEach(header => header.classList.toggle('is-scrolled', scrolled));
+  };
   updateHeaderGlass();
   window.addEventListener('scroll', updateHeaderGlass, { passive: true });
 })();
