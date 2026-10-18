@@ -1472,14 +1472,18 @@
 .collection-card:hover .collection-image,
 .collection-card:focus-within .collection-image,
 .collection-card:hover .collection-hover-image,
-.collection-card:focus-within .collection-hover-image{top:4.5%;left:5.5%;width:89%;height:80.5%;border-radius:16px;transform:none;object-fit:cover;object-position:50% 50%;transition:opacity 400ms ease;}
-.collection-card .collection-info{top:87%;left:5.5%;right:5.5%;bottom:3.5%;padding:0;background:transparent;justify-content:center;}
-.collection-card .collection-card-title{font-size:15px;line-height:1.15;margin:0 0 6px;white-space:normal;overflow:visible;text-overflow:clip;}
-.collection-card .collection-card-line{font-size:8px;line-height:1.2;margin:2px 0 0;white-space:normal;overflow:visible;text-overflow:clip;}
+.collection-card:focus-within .collection-hover-image{top:4.5%;left:5.5%;width:89%;height:72%;border-radius:16px;transform:none;object-fit:cover;object-position:50% 50%;transition:opacity 400ms ease;}
+.collection-card .collection-info{top:79%;left:5.5%;right:5.5%;bottom:3.5%;padding:0;background:transparent;justify-content:center;}
+.collection-card .collection-card-title{font-size:14px;line-height:1.15;font-weight:500;margin:0 0 4px;white-space:normal;overflow:visible;text-overflow:clip;}
+.collection-card .collection-card-line{font-size:12px;line-height:1.2;font-weight:300;margin:1px 0 0;white-space:normal;overflow:visible;text-overflow:clip;}
+.collection-card .cc-label{font-weight:600;color:var(--ink);}
+.collection-card .cc-desc{font-weight:300;}
 @media(max-width:700px){
-.collection-card{flex-basis:min(78vw,292px);width:min(78vw,292px);height:auto;}
-.collection-card .collection-card-title{font-size:11px;margin-bottom:3px;}
-.collection-card .collection-card-line{font-size:6px;margin-top:1px;}
+.collection-card{flex-basis:min(78vw,292px);width:min(78vw,292px);height:440px;aspect-ratio:auto;}
+.collection-card .collection-image,.collection-card .collection-hover-image{height:58%;}
+.collection-card .collection-info{top:68%;bottom:3.5%;}
+.collection-card .collection-card-title{font-size:14px;margin-bottom:4px;}
+.collection-card .collection-card-line{font-size:12px;line-height:1.2;margin-top:1px;}
 .collection-card .collection-image,.collection-card .collection-hover-image{border-radius:12px;}
 }
 
@@ -1503,7 +1507,11 @@
 .language-select option{color:#eee;background:#1c403c;}
 .language-select:focus-visible{outline:2px solid #BC9449;outline-offset:3px;}
 .nav-right .lang{display:flex;}
+html[lang="en"] [data-localized]{direction:ltr;}
 html[lang="fa"] [data-localized]{direction:rtl;font-family:Tahoma,"SF Pro Text",Arial,sans-serif;text-transform:none;letter-spacing:normal;}
+/* Keep copy aligned with its writing direction while preserving centered headings and controls. */
+html[lang="en"] :is(.subhead,.about-body,.cr-subtitle,.cr-note,.cr-step-body,.contact-copy,.process-copy p,.process-story-copy,.collection-card-line){text-align:left;}
+html[lang="fa"] :is(.subhead,.about-body,.cr-subtitle,.cr-note,.cr-step-body,.contact-copy,.process-copy p,.process-story-copy,.collection-card-line){text-align:right;}
 html[lang="fa"] .headline{white-space:normal;}
 html[lang="fa"] .about-body{text-align:right;}
 html[lang="fa"] .process-story-copy{direction:rtl;font-family:Tahoma,Arial,sans-serif;}
@@ -1511,8 +1519,31 @@ html[lang="fa"] .process-story-copy p{line-height:1.4;margin-bottom:8px;}
 html[lang="fa"] .process-story-copy h3{line-height:1.4;}
 html[lang="fa"] .collection-info{direction:rtl;}
 html[lang="fa"] .collection-card-title{font-family:Tahoma,Arial,sans-serif;}
+
+/* Keep artwork descriptions centered in both languages while preserving text direction. */
+html[lang="en"] .process-copy p,html[lang="fa"] .process-copy p,
+html[lang="en"] .process-story-copy,html[lang="fa"] .process-story-copy,
+html[lang="en"] .process-story-copy p,html[lang="fa"] .process-story-copy p,
+html[lang="en"] .process-story-copy h3,html[lang="fa"] .process-story-copy h3{text-align:center;}
+/* Keep long artwork descriptions balanced and readable. */
+.process-copy p,.process-story-copy p{ text-wrap:pretty; widows:2; orphans:2; }
+.process-story{height:493px;grid-template-rows:211px 230px;}
+.process-story-copy{height:230px;padding:9px 10px 6px;font-size:9.5px;line-height:1.25;font-weight:400;overflow-wrap:normal;word-break:normal;}
+.process-story-copy h3{font-size:10px;line-height:1.25;font-weight:600;margin:0 0 7px;}
+.process-story-copy p{font-size:9.5px;line-height:1.25;font-weight:400;margin:0 0 6px;}
+html[lang="fa"] .process-story-copy p{line-height:1.25;margin-bottom:6px;}
+html[lang="fa"] .process-story-copy h3{line-height:1.25;}
+@media(max-width:600px){
+  .process-card-slot{flex-basis:calc(100% - 24px);aspect-ratio:auto;}
+  .process-card-slot .process-story{position:relative;top:auto;left:auto;width:100%;height:auto;padding:12px;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto auto;column-gap:8px;row-gap:10px;transform:none;}
+  .process-card-slot .process-story img{grid-row:1;width:100%;height:auto;aspect-ratio:293 / 211;border-radius:6px;}
+  .process-card-slot .process-story-copy{grid-column:1 / -1;grid-row:2;width:auto;height:auto;min-height:0;padding:10px 12px 12px;font-size:12px;line-height:1.45;font-weight:400;}
+  .process-card-slot .process-story-copy h3{font-size:13px;line-height:1.35;font-weight:600;margin:0 0 8px;}
+  .process-card-slot .process-story-copy p{font-size:12px;line-height:1.45;font-weight:400;margin:0 0 8px;}
+  html[lang="fa"] .process-card-slot .process-story-copy p{line-height:1.55;margin-bottom:8px;}
+}
 .process-cards,.collection-track,.artworks-track{direction:ltr;}
-@media(max-width:720px){.nav-right .lang{display:flex;}.language-select{font-size:13px;}.nav-right{flex-shrink:0;}}
+@media(max-width:720px){.nav-right .lang{display:flex;}.language-select{font-size:13px;}.nav-right{flex-shrink:0;flex-direction:row-reverse;gap:10px;}}
 
 
 /* Collection hover: second photo fills the whole torn-edge card and covers the text. */
@@ -1569,12 +1600,12 @@ html[lang="fa"] .collection-card-title{font-family:Tahoma,Arial,sans-serif;}
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact Us</a></li>
     </ul>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-        <path d="M4 7h16M4 12h16M4 17h16"/>
-      </svg>
-    </button>
     <div class="nav-right">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </button>
       <div class="lang"><select class="language-select" aria-label="Language / زبان"><option value="en" lang="en">English</option><option value="fa" lang="fa">فارسی</option></select></div>
     </div>
   </nav>
@@ -1650,8 +1681,7 @@ html[lang="fa"] .collection-card-title{font-family:Tahoma,Arial,sans-serif;}
     </div>
 
     <div class="cr-actions">
-      <a class="btn" href="mailto:bahareh.art.2020@gmail.com">Email Me</a>
-      <a class="btn" href="https://wa.me/905469997003" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn" href="https://wa.me/989114130893" target="_blank" rel="noopener">Order Now</a>
     </div>
   </div>
 </section>
@@ -1678,7 +1708,7 @@ html[lang="fa"] .collection-card-title{font-family:Tahoma,Arial,sans-serif;}
     <p class="contact-copy">For Commissioning Artworks, Artistic Collaborations, Or Receiving More Information, Please Contact Me Through The Communication Channels Below.</p>
 
     <div class="contact-actions">
-      <a class="contact-btn" href="https://wa.me/905469997003" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="contact-btn" href="https://wa.me/989114130893" target="_blank" rel="noopener">WhatsApp</a>
       <a class="contact-btn" href="mailto:bahareh.art.2020@gmail.com">Email</a>
     </div>
   </div>
@@ -1728,12 +1758,12 @@ html[lang="fa"] .collection-card-title{font-family:Tahoma,Arial,sans-serif;}
       <li><a href="#about">About</a></li>
       <li><a href="#artworks-contact">Contact Us</a></li>
     </ul>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="artworks-navigation" aria-label="Open navigation menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-        <path d="M4 7h16M4 12h16M4 17h16"/>
-      </svg>
-    </button>
     <div class="nav-right">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="artworks-navigation" aria-label="Open navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </button>
       <div class="lang"><select class="language-select" aria-label="Language / زبان"><option value="en" lang="en">English</option><option value="fa" lang="fa">فارسی</option></select></div>
     </div>
   </nav>
@@ -1848,7 +1878,7 @@ html[lang="fa"] .collection-card-title{font-family:Tahoma,Arial,sans-serif;}
       <p class="contact-copy">For Commissioning Artworks, Artistic Collaborations, Or Receiving More Information, Please Contact Me Through The Communication Channels Below.</p>
 
       <div class="contact-actions">
-        <a class="contact-btn" href="https://wa.me/905469997003" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="contact-btn" href="https://wa.me/989114130893" target="_blank" rel="noopener">WhatsApp</a>
         <a class="contact-btn" href="mailto:bahareh.art.2020@gmail.com">Email</a>
       </div>
     </div>
@@ -2175,7 +2205,7 @@ html[lang="fa"] .collection-card-title{font-family:Tahoma,Arial,sans-serif;}
 
 <script>
 (() => {
-const translations = {".nav-links a": ["خانه", "آثار هنری", "سفارش اثر", "درباره من", "ارتباط با من", "خانه", "آثار هنری", "سفارش اثر", "درباره من", "ارتباط با من"], ".headline": ["به دنیای نقاشی دیجیتال من خوش آمدید."], ".subhead": ["هر اثر، تلفیقی سنجیده از هنر دیجیتال و ادراک فضایی است که دیوار را به عنصری فعال در طراحی داخلی تبدیل می‌کند."], ".cta .btn, .btn-commissions": ["مشاهده اثر", "مشاهده اثر"], ".commissions-title": ["سفارش‌های منتخب"], ".c-name": ["آغوش خاک و سکوت سپید", "پژواک‌های هویت", "لحظه‌ای آرام"], ".cr-title": ["درخواست سفارش اثر"], ".cr-subtitle": ["هر اثر بر اساس موضوع، فضا و روایت مورد نظر سفارش‌دهنده طراحی و به صورت نقاشی دیجیتال معاصر اجرا می‌شود."], ".cr-note": ["• برای حفظ کیفیت و تمرکز، هر ماه تعداد محدودی پروژه پذیرفته می‌شود."], ".cr-process-title": ["فرایند همکاری"], ".cr-step-title": ["۱. مشاوره و بررسی پروژه", "۲. توسعه ایده", "۳. اجرای نهایی"], ".cr-step-body": ["بررسی موضوع، فضای مورد نظر و نیازهای پروژه برای شکل‌گیری ایده اولیه.", "ارائه کانسپت اولیه، طراحی ترکیب‌بندی و دریافت بازخورد برای تکمیل ایده اولیه.", "خلق اثر با تکنیک نقاشی دیجیتال معاصر، آماده برای چاپ با کیفیت بالا."], ".cr-actions .btn": ["ایمیل", "واتساپ"], ".about-title": ["درباره من"], ".about-body": ["من بهاره یزدانی، هنرمند نقاشی دیجیتال معاصر هستم. فعالیت هنری خود را از سال ۱۳۹۸ با آموزش و تمرین نقاشی سنتی آغاز کردم و در ادامه، با گذراندن دوره‌های تخصصی و توسعه فعالیت مستقل هنری، تمرکز خود را بر نقاشی دیجیتال معاصر قرار دادم.", "در آثارم، فیگور انسانی و دیگر سوژه‌های طبیعی و معماری را از طریق یک زبان بصری هندسی، فیگوراتیو، دکوراتیو و بیانگر بازتفسیر می‌کنم. فرم‌های هندسی، خطوط شارپ، ترکیب‌بندی‌های دکوراتیو، رنگ‌های ساختارمند و بافت‌های نقاشانه، عناصر اصلی زبان بصری من هستند و برخی از آثارم از ویژگی‌های بصری کوبیسم و آرت دکو تأثیر می‌گیرند.", "تمرکز من بر ایجاد تعادل میان ساختار هندسی و کیفیت نقاشانه است؛ به‌گونه‌ای که آثار، در عین برخورداری از وضوح و ساختار، حس و کیفیت بصری یک اثر نقاشی را حفظ کنند.", "در فرایند خلق هر اثر، به ترکیب‌بندی، رنگ، فرم، بافت و جزئیات توجه ویژه دارم و تلاش می‌کنم هر اثر هویت بصری مستقل و فضای منحصربه‌فرد خود را داشته باشد."], ".about-note": ["• اگر به سفارش یک اثر هنری علاقه‌مند هستید، لطفاً برای شروع گفتگو به صفحه سفارش اثر مراجعه کنید."], ".contact-title": ["ارتباط با من", "ارتباط با من"], ".contact-copy": ["برای سفارش آثار، همکاری‌های هنری یا دریافت اطلاعات بیشتر، از طریق راه‌های ارتباطی زیر با من در تماس باشید.", "برای سفارش آثار، همکاری‌های هنری یا دریافت اطلاعات بیشتر، از طریق راه‌های ارتباطی زیر با من در تماس باشید."], ".contact-btn": ["واتساپ", "ایمیل", "واتساپ", "ایمیل"], ".thank-you-title": ["ممنون از بازدید شما", "ممنون از بازدید شما"], ".artworks-breadcrumb a": ["خانه"], ".artworks-breadcrumb-current": ["آثار هنری"], ".collection-title": ["مجموعه آثار"], ".process-title": ["روند شکل‌گیری اثر"], ".process-copy p": ["در فرایند خلق آثار، رویکرد من متناسب با ایده، سوژه و ساختار بصری هر اثر تغییر می‌کند. در نقاشی دیجیتال، از ترکیبی از طراحی، رنگ‌گذاری، لایه‌گذاری، شکل‌دهی فرم و ایجاد بافت‌های نقاشانه استفاده می‌کنم تا تصویر به‌صورت تدریجی شکل بگیرد.", "در برخی آثار، ساختار تصویر با تأکید بر فضای منفی و رابطه میان فضای خالی و فرم‌های اصلی شکل می‌گیرد؛ در حالی که در آثار دیگر، فرم و فضا از طریق طراحی اولیه، رنگ‌گذاری مرحله‌ای و توسعه تدریجی جزئیات ساخته می‌شوند.", "در طول این فرایند، از قلم‌موها و روش‌های مختلف رنگ‌گذاری متناسب با نیاز هر اثر استفاده می‌کنم. گاهی رنگ‌ها در ابتدا به‌صورت ساده و ساختاریافته قرار می‌گیرند و سپس با اضافه شدن لایه‌های رنگ، نور، سایه و بافت، به‌تدریج توسعه پیدا می‌کنند.", "هدف من، استفاده از امکانات نقاشی دیجیتال برای ایجاد آثاری است که در آن فرم، خط، رنگ، ترکیب‌بندی و بافت در تعامل با یکدیگر قرار می‌گیرند. در این فرایند، امکانات دیجیتال را نه صرفاً به‌عنوان ابزار تکنولوژیک، بلکه به‌عنوان یک رسانه مستقل برای توسعه زبان بصری و کیفیت نقاشانه آثارم به کار می‌گیرم."]};
+const translations = {".nav-links a": ["خانه", "آثار هنری", "سفارش اثر", "درباره من", "ارتباط با من", "خانه", "آثار هنری", "سفارش اثر", "درباره من", "ارتباط با من"], ".headline": ["به دنیای نقاشی دیجیتال من خوش آمدید."], ".subhead": ["هر اثر، تلفیقی سنجیده از هنر دیجیتال و ادراک فضایی است که دیوار را به عنصری فعال در طراحی داخلی تبدیل می‌کند."], ".cta .btn, .btn-commissions": ["مشاهده اثر", "مشاهده اثر"], ".commissions-title": ["سفارش‌های منتخب"], ".c-name": ["آغوش خاک و سکوت سپید", "پژواک‌های هویت", "لحظه‌ای آرام"], ".cr-title": ["درخواست سفارش اثر"], ".cr-subtitle": ["هر اثر بر اساس موضوع، فضا و روایت مورد نظر سفارش‌دهنده طراحی و به صورت نقاشی دیجیتال معاصر اجرا می‌شود."], ".cr-note": ["• برای حفظ کیفیت و تمرکز، هر ماه تعداد محدودی پروژه پذیرفته می‌شود."], ".cr-process-title": ["فرایند همکاری"], ".cr-step-title": ["۱. مشاوره و بررسی پروژه", "۲. توسعه ایده", "۳. اجرای نهایی"], ".cr-step-body": ["بررسی موضوع، فضای مورد نظر و نیازهای پروژه برای شکل‌گیری ایده اولیه.", "ارائه کانسپت اولیه، طراحی ترکیب‌بندی و دریافت بازخورد برای تکمیل ایده اولیه.", "خلق اثر با تکنیک نقاشی دیجیتال معاصر، آماده برای چاپ با کیفیت بالا."], ".cr-actions .btn": ["ثبت سفارش"], ".about-title": ["درباره من"], ".about-body": ["من بهاره یزدانی، هنرمند نقاشی دیجیتال معاصر هستم. فعالیت هنری خود را از سال ۱۳۹۸ با آموزش و تمرین نقاشی سنتی آغاز کردم و در ادامه، با گذراندن دوره‌های تخصصی و توسعه فعالیت مستقل هنری، تمرکز خود را بر نقاشی دیجیتال معاصر قرار دادم.", "در آثارم، فیگور انسانی و دیگر سوژه‌های طبیعی و معماری را از طریق یک زبان بصری هندسی، فیگوراتیو، دکوراتیو و بیانگر بازتفسیر می‌کنم. فرم‌های هندسی، خطوط شارپ، ترکیب‌بندی‌های دکوراتیو، رنگ‌های ساختارمند و بافت‌های نقاشانه، عناصر اصلی زبان بصری من هستند و برخی از آثارم از ویژگی‌های بصری کوبیسم و آرت دکو تأثیر می‌گیرند.", "تمرکز من بر ایجاد تعادل میان ساختار هندسی و کیفیت نقاشانه است؛ به‌گونه‌ای که آثار، در عین برخورداری از وضوح و ساختار، حس و کیفیت بصری یک اثر نقاشی را حفظ کنند.", "در فرایند خلق هر اثر، به ترکیب‌بندی، رنگ، فرم، بافت و جزئیات توجه ویژه دارم و تلاش می‌کنم هر اثر هویت بصری مستقل و فضای منحصربه‌فرد خود را داشته باشد."], ".about-note": ["• اگر به سفارش یک اثر هنری علاقه‌مند هستید، لطفاً برای شروع گفتگو به صفحه سفارش اثر مراجعه کنید."], ".contact-title": ["ارتباط با من", "ارتباط با من"], ".contact-copy": ["برای سفارش آثار، همکاری‌های هنری یا دریافت اطلاعات بیشتر، از طریق راه‌های ارتباطی زیر با من در تماس باشید.", "برای سفارش آثار، همکاری‌های هنری یا دریافت اطلاعات بیشتر، از طریق راه‌های ارتباطی زیر با من در تماس باشید."], ".contact-btn": ["واتساپ", "ایمیل", "واتساپ", "ایمیل"], ".thank-you-title": ["ممنون از بازدید شما", "ممنون از بازدید شما"], ".artworks-breadcrumb a": ["خانه"], ".artworks-breadcrumb-current": ["آثار هنری"], ".collection-title": ["مجموعه آثار"], ".process-title": ["روند شکل‌گیری اثر"], ".process-copy p": ["در فرایند خلق آثار، رویکرد من متناسب با ایده، سوژه و ساختار بصری هر اثر تغییر می‌کند. در نقاشی دیجیتال، از ترکیبی از طراحی، رنگ‌گذاری، لایه‌گذاری، شکل‌دهی فرم و ایجاد بافت‌های نقاشانه استفاده می‌کنم تا تصویر به‌صورت تدریجی شکل بگیرد.", "در برخی آثار، ساختار تصویر با تأکید بر فضای منفی و رابطه میان فضای خالی و فرم‌های اصلی شکل می‌گیرد؛ در حالی که در آثار دیگر، فرم و فضا از طریق طراحی اولیه، رنگ‌گذاری مرحله‌ای و توسعه تدریجی جزئیات ساخته می‌شوند.", "در طول این فرایند، از قلم‌موها و روش‌های مختلف رنگ‌گذاری متناسب با نیاز هر اثر استفاده می‌کنم. گاهی رنگ‌ها در ابتدا به‌صورت ساده و ساختاریافته قرار می‌گیرند و سپس با اضافه شدن لایه‌های رنگ، نور، سایه و بافت، به‌تدریج توسعه پیدا می‌کنند.", "هدف من، استفاده از امکانات نقاشی دیجیتال برای ایجاد آثاری است که در آن فرم، خط، رنگ، ترکیب‌بندی و بافت در تعامل با یکدیگر قرار می‌گیرند. در این فرایند، امکانات دیجیتال را نه صرفاً به‌عنوان ابزار تکنولوژیک، بلکه به‌عنوان یک رسانه مستقل برای توسعه زبان بصری و کیفیت نقاشانه آثارم به کار می‌گیرم."]};
 const persianCards = [{"title": "زیر ماه سرخ", "paragraphs": ["این اثر، منظره‌ای معاصر از خانه‌هایی هندسی در امتداد ساحل است که در آن معماری و طبیعت در یک ترکیب‌بندی ساده و هماهنگ به یکدیگر می‌رسند. فرم‌های زاویه‌دار و ساختارهای هندسی خانه‌ها، در کنار خطوط نرم ساحل و گستره‌ی آرام دریا، تضادی میان نظم معماری و سیالیت طبیعت ایجاد می‌کنند.", "سطوح ساده و رنگ‌های تخت، همراه با بافت‌های ظریف و نقاشانه، به فضای اثر حال‌وهوایی مینیمال و در عین حال ملموس می‌بخشند. تکرار فرم‌های معماری و ریتم خطوط، چشم را در امتداد ساحل حرکت می‌دهد و حس سکون و آرامش را تقویت می‌کند.", "این اثر بیش از آنکه صرفاً تصویری از یک مکان باشد، برداشت شخصی از مفهوم زندگی در هماهنگی با طبیعت، سادگی و آرامش است."]}, {"title": "قدرت آرام", "paragraphs": ["این پرتره معاصر، هویت مردانه، قدرت و وقار آرام را از طریق زبانی بصری هندسی و دکوراتیو بررسی می‌کند. پوشش با الهام از لباس‌های سنتی، الگوهای لایه‌لایه و سیلوئت قدرتمند، شخصیت و حضور متمایزی به فیگور بخشیده‌اند.", "فرم‌های زاویه‌دار و خطوط کشیده در کنار بافت‌های اکسپرسیو قلم‌مو قرار گرفته‌اند و هندسه‌ی ساختاریافته را با کیفیتی ارگانیک و نقاشانه ترکیب می‌کنند. الگوهای لباس به بخش مهمی از ترکیب‌بندی تبدیل شده‌اند و با قاب گرفتن فیگور، رابطه‌ای ریتمیک میان رنگ، فرم و بافت ایجاد می‌کنند.", "پالت رنگی کنترل‌شده و خاکی، حضور ریشه‌دار و استوار فیگور را تقویت می‌کند، در حالی که پرداخت ساده‌شده‌ی چهره، تأکید بیشتری بر سیلوئت، تزئینات و شخصیت او قرار می‌دهد."]}, {"title": "لحظه‌ای آرام", "paragraphs": ["این پرتره‌ی معاصر، لحظه‌ای آرام و تأمل‌برانگیز را به تصویر می‌کشد؛ لحظه‌ای که حول سادگیِ نوشیدن چای شکل گرفته است. حالت آرام فیگور و حضور متفکرانه‌ی او، فضایی صمیمی ایجاد می‌کند و مخاطب را دعوت می‌کند تا برای لحظه‌ای از هیاهوی زندگی روزمره فاصله بگیرد.", "فرم‌های کشیده، ویژگی‌های ساده‌شده‌ی چهره و عناصر هندسی، زبان بصری معاصر و فیگوراتیو اثر را شکل می‌دهند، در حالی که بافت‌های اکسپرسیو قلم‌مو، گرما و عمق نقاشانه‌ای به ترکیب‌بندی می‌بخشند. تضاد میان فرم‌های ساختاریافته و جزئیات نرم و ارگانیک، ریتمی متعادل و هماهنگ ایجاد می‌کند.", "پالت رنگی گرم و خاکی، حس آرامش و راحتی را تقویت کرده و یک لحظه‌ی ساده و روزمره را به مطالعه‌ای درباره‌ی سکون، حضور و تأمل درونی تبدیل می‌کند."]}, {"title": "سکوت طلایی", "paragraphs": ["این پرتره معاصر، قدرت زنانه را از طریق تلفیقی آوانگارد از هنر فیگوراتیو مدرن و فشن‌آرت مفهومی به تصویر می‌کشد. فرم‌های اغراق‌شده و معمارانه، حضوری مسلط و سرشار از اعتمادبه‌نفس به فیگور بخشیده‌اند.", "انحناهای نرم و سیال کلاه مشکی در تضاد با سرشانه‌های تیز و هندسی کت طلایی قرار گرفته‌اند. پنهان شدن چشم‌ها در سایه، هاله‌ای از رازآلودگی و اقتدار آرام به فیگور می‌بخشد، در حالی که گردن کشیده و لب‌های قرمز و روشن، توجه را به حضور قدرتمند او جلب می‌کنند.", "ترکیب طلایی گرم و مشکی عمیق، کنتراستی جسورانه و لوکس ایجاد کرده است. پس‌زمینه خنثی و خاکی نیز تعادل بصری ایجاد می‌کند و اجازه می‌دهد فیگور همچنان نقطه اصلی توجه باقی بماند."]}, {"title": "پژواک‌های هویت", "paragraphs": ["این اثر با تکرار یک چهره در امتداد یکدیگر، به مفهوم هویت، تکرار و تفاوت‌های ظریف میان انسان‌ها می‌پردازد. چهره‌های مشابه در نگاه اول یکسان به نظر می‌رسند، اما تغییرات کوچک در رنگ، فرم و حالت، هر یک را به حضوری مستقل تبدیل می‌کند.", "ساختارهای هندسی، خطوط کشیده و فرم‌های ساده‌شده، ریتمی منظم و در عین حال پویا ایجاد کرده‌اند. تکرار فیگورها مانند پژواکی بصری عمل می‌کند؛ گویی یک هویت واحد در چند شکل مختلف بازتاب یافته است.", "تضاد میان سطوح رنگی و بافت‌های اکسپرسیو قلم‌مو، به ترکیب‌بندی هندسی اثر عمق و کیفیتی نقاشانه می‌بخشد و مرز میان تکرار و فردیت را برجسته می‌کند."]}, {"title": "آغوش خاک و سکوت سپید", "paragraphs": ["این پرتره‌ی تأثیرگذار، آرامش درونی، مکاشفه و پیوند عمیق زن با طبیعت را به تصویر می‌کشد. فیگور با چشمانی بسته، گلدانی سفالین را در آغوش گرفته است؛ گویی پیوندی محافظت‌کننده با ریشه‌ها و حس تعلق خود دارد. گل‌های سفید کاسموس بخشی از چهره‌ی او را پوشانده‌اند و نمادی از خلوص، رشد و افکاری هستند که در سکوت شکوفا می‌شوند.", "این اثر، اکسپرسیونیسم فیگوراتیو مدرن را با خطوط کشیده و ظریف الهام‌گرفته از آرت دکو ترکیب می‌کند. دست‌ها و انگشتان اغراق‌شده، حس ظرافت و آرامش را به فیگور می‌بخشند، در حالی که فرم‌های نرم و ارگانیک گل‌ها در تضاد با خطوط هندسی و راه‌راه لباس قرار گرفته‌اند.", "رنگ‌های خاکیِ تراکوتا و آجری با سفیدی درخشان گل‌ها و ترکیب سرمه‌ای و کرم لباس متعادل شده‌اند. پس‌زمینه‌ی گرم و فرم دایره‌ای نمادین پشت سر فیگور نیز فضایی از امنیت، گرما و ریشه‌دار بودن ایجاد می‌کند."]}, {"title": "صفی از قصه ها", "paragraphs": ["این اثر خیال‌انگیز و پرانرژی، مفهوم تنوع، فردیت و همزیستی را از طریق پنج پرنده با شخصیت‌های متفاوت به تصویر می‌کشد که در کنار یکدیگر روی یک خط قرار گرفته‌اند. هر پرنده ویژگی و شخصیت منحصربه‌فرد خود را دارد؛ از پرنده‌ای با کلاه لبه‌پهن و مرموز گرفته تا پرنده‌ای با تاجی از پرهای بازشده. جزئیات الهام‌گرفته از عناصر انسانی، به پرندگان شخصیتی داستانی می‌بخشند و قطرات رنگ آبی که از خط می‌چکند، آزادی و خودانگیختگی فرایند خلق هنری را یادآور می‌شوند.", "در این ترکیب، ساختارهای هندسی الهام‌گرفته از کوبیسم با زیبایی‌شناسی اوریگامی درهم‌آمیخته‌اند. زوایای تیز، خطوط قاطع و فرم‌های تاخورده و بلوکی، حس حجم و بُعد ایجاد می‌کنند و گل‌های کاغذی هندسی، ساختار منظم ترکیب‌بندی را کامل می‌کنند.", "پس‌زمینه‌ی کرمِ گرم و بافت‌دار، فضایی خنثی برای نمایش پالت زنده‌ی اخرایی، آبی عمیق، سبز، قرمز و زرد فراهم می‌کند. این رنگ‌ها در کنار یکدیگر ریتمی پویا ایجاد کرده و حس شادی، انرژی و حرکت را به مخاطب منتقل می‌کنند."]}, {"title": "سیلوئتِ اقتدار", "paragraphs": ["این پرتره معاصر، اقتدار و خویشتن‌داری مردانه را از طریق تلفیقی آوانگارد از هنر فیگوراتیو مدرن و فشن‌آرت مفهومی به تصویر می‌کشد. فرم‌های معمارانه و زاویه‌دار، حضوری محکم و مسلط به فیگور بخشیده‌اند.", "کلاه مشکی و بزرگ، بخش بالایی چهره و چشم‌ها را به‌طور کامل در سایه قرار داده و فضایی از رازآلودگی، سردی و اقتدار آرام ایجاد می‌کند. دست‌های به سینه، ژستی محکم و خوددار ایجاد کرده‌اند، در حالی که کت راه‌راه طلایی و مشکی با سرشانه‌های پهن و زاویه‌دار، بر سیلوئت قدرتمند فیگور تأکید می‌کند. ریش و سبیل آراسته نیز تعادلی میان زبری و ظرافت ایجاد کرده‌اند.", "ترکیب طلایی گرم و مشکی عمیق در کت، کنتراستی جسورانه و لوکس ایجاد کرده است، در حالی که پس‌زمینه بژ با بافتی ملایم، باعث می‌شود فیگور همچنان در مرکز توجه باقی بماند."]}, {"title": "سکوت مشترک", "paragraphs": ["این پرتره‌ی معاصر، گفت‌وگویی بی‌صدا میان دو زن را به تصویر می‌کشد. فیگورها با چشمانی بسته و چهره‌هایی نزدیک به یکدیگر، در فضایی آرام و تأمل‌برانگیز قرار گرفته‌اند؛ فضایی که هم‌زمان مفهوم دوگانگی و ارتباط را تداعی می‌کند؛ لحظه‌ای از درک متقابل، فارغ از هیاهوی دنیای بیرون.", "در این اثر، اکسپرسیونیسم فیگوراتیو مدرن با ساختارهای هندسی الهام‌گرفته از کوبیسم و خطوط جسورانه و مینیمال ترکیب شده است. فرم‌های زاویه‌دار و معمارانه در تضاد با انحنای نرم چشم‌های بسته قرار گرفته‌اند، در حالی که بافت غنی و ردِ قابل مشاهده قلم‌مو، به سطوح هندسی عمق و کیفیتی ارگانیک می‌بخشد.", "تضاد میان رنگ‌های خاکی و سبز زیتونی در یکی از فیگورها و پالت چشمگیر سیاه‌وسفید در دیگری، نمایانگر دو هویت متفاوت است که در کنار یکدیگر به نوعی هماهنگی می‌رسند. پس‌زمینه‌ی تیره و عمیق نیز فیگورها را از فضای اطراف جدا کرده و تمرکز را بر ارتباط نزدیک و حضور مشترک آن‌ها قرار می‌دهد."]}, {"title": "وقار پنهان", "paragraphs": ["این اثر تجلی‌گاهی از اکسپرسیونیسم فیگوراتیو مدرن است که با الهام از ساختارهای هندسی کوبیسم و خطوط کشیده و ظریف سبک آرت دکو (Art Deco) خلق شده است.", "در این نقاشی دیجیتال، تضاد میان پترن‌های راه‌راه و دایره‌ای روی لباس‌ها، در کنار فرم‌های کشیده و مینیمال فیگورها، ریتمی بصری و هماهنگ ایجاد می‌کند. چهار زن در کنار یکدیگر قرار گرفته‌اند؛ حضوری آرام و در عین حال قدرتمند که مفهوم وقار، همبستگی و حضور مستقل را به تصویر می‌کشد.", "رنگ سبز پس‌زمینه و تنالیته‌های خاکی، یادآور طراوت، طبیعت و حس ریشه‌دار بودن هستند؛ عناصری که در سکوت و حالت باوقار فیگورها بازتاب پیدا می‌کنند."]}, {"title": "رازِ زمرد", "paragraphs": ["این پرتره معاصر، زنی را در نمای نیم‌رخ به تصویر می‌کشد و با الهام از ساختارهای هندسی کوبیسم و خطوط کشیده و ظریف آرت دکو خلق شده است.", "کلاه هندسی سبز زمردی، بخشی از چشمان او را در سایه پنهان کرده و فضایی از رازآلودگی، اعتمادبه‌نفس و قدرت آرام ایجاد می‌کند. لب‌های قرمز و روشن و حرکت ظریف دست، در تضاد با ساختار زاویه‌دار کلاه و یقه قرار گرفته و بر زنانگی و آرامش درونی تأکید می‌کنند.", "تضاد جسورانه میان سبز زمردی، نارنجیِ گرمِ تراکوتا و پس‌زمینه زرد طلایی و بافت‌دار، ریتمی بصری و زنده ایجاد می‌کند. این فیگور از طریق فرم، رنگ و حضور خود، حس خودباوری و قدرتی آرام را منتقل می‌کند."]}, {"title": "پرتره‌ای از میراث", "paragraphs": ["این پرتره معاصر، مفهوم هویت، حضور و زیورآرایی با الهام از فرهنگ‌های بومی را از طریق یک ترکیب‌بندی جسورانه و هندسی بررسی می‌کند. فیگور با حضوری آرام اما قدرتمند به تصویر کشیده شده و در میان لایه‌هایی از الگوها و فرم‌های تزئینی با الهام از نقوش سنتی قرار گرفته است.", "اشکال هندسی، خطوط کشیده و بافت‌های اکسپرسیو قلم‌مو، تعادلی میان ساختار و حرکت ارگانیک ایجاد می‌کنند. الگوهای منظم و رنگ‌های متضاد، بر فردیت فیگور تأکید کرده و در عین حال کیفیتی ریتمیک و دکوراتیو به ترکیب‌بندی می‌بخشند.", "پالت رنگی خاکی و بافت‌های ملموس، حس گرما و پیوند را ایجاد می‌کنند، در حالی که ساده‌سازی ویژگی‌های چهره باعث می‌شود فرم کلی، الگوها و حضور فیگور در مرکز توجه قرار بگیرند"]}];
 const bindings = [];
 function bind(element, value, html = false) {
@@ -2195,8 +2225,8 @@ const styles = ['هنر فیگوراتیو مدرن / فشن‌آرت مفهوم
 document.querySelectorAll('.collection-card').forEach((el,i) => {
  bind(el.querySelector('.collection-card-title'),persianCards[collectionOrder[i]-1].title);
  const lines=el.querySelectorAll('.collection-card-line');
- bind(lines[0],'تکنیک: نقاشی و تصویرسازی دیجیتال، با بافت‌های بیانگر و رد قلم‌مو');
- bind(lines[1],'سبک: '+styles[i]);
+ bind(lines[0],'<span class="cc-label">تکنیک:</span> <span class="cc-desc">نقاشی و تصویرسازی دیجیتال، با بافت‌های بیانگر و رد قلم‌مو</span>',true);
+ bind(lines[1],'<span class="cc-label">سبک:</span> <span class="cc-desc">'+escapeText(styles[i])+'</span>',true);
 });
 const hint=document.querySelector('.collection-drag-hint');
 if(hint) bind(hint,'برای مشاهده آثار بیشتر به چپ و راست بکشید');
@@ -2204,6 +2234,7 @@ function setLanguage(lang) {
  const fa=lang==='fa';
  document.documentElement.lang=fa?'fa':'en';
  bindings.forEach(({element,english,persian,html})=>{
+  element.setAttribute('dir',fa?'rtl':'ltr');
   if(!fa || html) element.innerHTML=fa?persian:english;
   else element.textContent=persian;
  });
