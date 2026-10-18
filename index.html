@@ -475,7 +475,7 @@
       "s1 s2    s3 ";
     column-gap: 24px;
     row-gap: 24px;
-    align-items: start;
+    align-items: stretch;
     margin-bottom: 24px;
     text-align: center;
   }
@@ -510,6 +510,9 @@
 
   .cr-step-1 > .cr-step-body,
   .cr-step-3 > .cr-step-body{ margin: 0 auto; }
+
+  .cr-step{ display:flex; flex-direction:column; }
+  .cr-step > .cr-step-body{ margin: auto auto 0; }
 
   .cr-step-title{
     font-family: 'Libre Baskerville', Georgia, serif;
