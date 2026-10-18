@@ -1010,7 +1010,7 @@
     overscroll-behavior-x:contain;
     scrollbar-width:none;
     cursor:grab;
-    touch-action:pan-y;
+    touch-action:pan-x pan-y pinch-zoom;
     user-select:none;
     -webkit-overflow-scrolling:touch;
   }
@@ -1992,6 +1992,8 @@ html[lang="fa"] .collection-card-title{font-family:Tahoma,Arial,sans-serif;}
     let dragStartScroll = 0;
 
     viewport.addEventListener('pointerdown', (event) => {
+      // Touch and pen use native scrolling, including momentum and scroll snap.
+      if (event.pointerType !== 'mouse' || event.button !== 0) return;
       isDragging = true;
       dragStartX = event.clientX;
       dragStartScroll = viewport.scrollLeft;
@@ -2016,6 +2018,8 @@ html[lang="fa"] .collection-card-title{font-family:Tahoma,Arial,sans-serif;}
 
     viewport.addEventListener('pointerup', stopDrag);
     viewport.addEventListener('pointercancel', stopDrag);
+    viewport.addEventListener('lostpointercapture', stopDrag);
+    viewport.addEventListener('dragstart', (event) => event.preventDefault());
   }
 
   enableDragScroll(document.getElementById('collection-viewport'));
