@@ -1611,25 +1611,36 @@ body *{text-align:center !important;}
   .hero{
     min-height:100svh;
     padding-bottom:34px;
-    background-position:62% center;
+    background-color:#1A322F;
+    background-position:center 76px;
+    background-size:100% auto;
+    background-repeat:no-repeat;
   }
   .hero::before{
-    background:linear-gradient(180deg,rgba(9,27,24,.18),rgba(9,27,24,.60));
+    background:linear-gradient(
+      180deg,
+      rgba(9,27,24,.12) 0,
+      rgba(9,27,24,.08) 10%,
+      transparent calc(76px + 38vw),
+      #1A322F calc(76px + 56.25vw),
+      #1A322F 100%
+    );
   }
   .hero .intro{
-    position:static;
+    position:relative;
     top:auto;
     left:auto;
+    right:auto;
     width:100%;
     max-width:none;
-    margin:0;
-    padding:0 20px;
+    margin:56.25vw auto 0;
+    padding:0 22px;
     transform:none;
-    display:contents;
+    display:block;
   }
   .hero .headline{
     max-width:620px;
-    margin:clamp(48px,9vh,82px) auto 0;
+    margin:0 auto;
     padding:0 20px;
     font-size:clamp(28px,8vw,36px);
     line-height:1.25;
@@ -1642,7 +1653,7 @@ body *{text-align:center !important;}
     font-size:18px;
     line-height:1.5;
   }
-  .hero .cta{margin-top:28px;}
+  .hero .cta{margin-top:24px;}
 }
 </style>
 </head>
