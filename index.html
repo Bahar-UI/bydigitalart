@@ -1567,6 +1567,82 @@ html[lang="fa"] .nav-links a{font-size:18px;font-weight:500;}
 body *{text-align:center !important;}
 
 
+
+/* Submitted interior image as the full hero background, with readable overlay copy. */
+.hero{
+  min-height:100vh;
+  padding-bottom:0;
+  background:url("assets/hero-banner.svg") center center / cover no-repeat;
+}
+.hero::before{
+  background:
+    linear-gradient(90deg,rgba(9,27,24,.06) 28%,rgba(9,27,24,.20) 56%,rgba(9,27,24,.66) 100%),
+    linear-gradient(180deg,rgba(9,27,24,.12),rgba(9,27,24,.20));
+  mix-blend-mode:normal;
+}
+.hero .visual{display:none !important;}
+.hero .intro{
+  position:absolute;
+  z-index:10;
+  top:50%;
+  left:83%;
+  width:min(37vw,500px);
+  max-width:none;
+  margin:0;
+  padding:0;
+  transform:translate(-50%,-50%);
+}
+.hero .headline{
+  white-space:normal;
+  font-size:clamp(34px,3.2vw,48px);
+  line-height:1.2;
+  text-shadow:0 2px 16px rgba(0,0,0,.48);
+}
+.hero .subhead{
+  max-width:none;
+  margin:22px auto 0;
+  font-size:clamp(18px,1.7vw,23px);
+  line-height:1.5;
+  text-shadow:0 2px 12px rgba(0,0,0,.55);
+}
+.hero .cta{margin-top:32px;}
+@media(max-width:720px){
+  .hero{
+    min-height:100svh;
+    padding-bottom:34px;
+    background-position:62% center;
+  }
+  .hero::before{
+    background:linear-gradient(180deg,rgba(9,27,24,.18),rgba(9,27,24,.60));
+  }
+  .hero .intro{
+    position:static;
+    top:auto;
+    left:auto;
+    width:100%;
+    max-width:none;
+    margin:0;
+    padding:0 20px;
+    transform:none;
+    display:contents;
+  }
+  .hero .headline{
+    max-width:620px;
+    margin:clamp(48px,9vh,82px) auto 0;
+    padding:0 20px;
+    font-size:clamp(28px,8vw,36px);
+    line-height:1.25;
+    white-space:normal;
+  }
+  .hero .subhead{
+    max-width:620px;
+    margin:18px auto 0;
+    padding:0 20px;
+    font-size:18px;
+    line-height:1.5;
+  }
+  .hero .cta{margin-top:28px;}
+}
 </style>
 </head>
 <body>
