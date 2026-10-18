@@ -282,8 +282,8 @@
     overflow: hidden;
     background-color: #16302C;
     background-image: url("assets/image-001.png");
-    background-size: cover;
-    background-position: top center;
+    background-size: 100% 100%;
+    background-position: center;
     background-repeat: no-repeat;
     padding: 90px 0 100px;
     text-align: center;
@@ -1565,20 +1565,7 @@ html[lang="fa"] .nav-links a{font-size:18px;font-weight:500;}
 /* Site-wide typography alignment: center every visible text block in both languages. */
 body *{text-align:center !important;}
 
-/* Match the natural, textured tear of the gold panel's top edge at its bottom. */
-.commissions{position:relative;}
-.commissions::after{
-  content:"";
-  position:absolute;
-  z-index:5;
-  left:0;
-  right:0;
-  bottom:-1px;
-  height:22px;
-  background:#1A322F;
-  filter:url(#torn-bottom-edge);
-  pointer-events:none;
-}
+
 </style>
 </head>
 <body>
@@ -1593,10 +1580,6 @@ body *{text-align:center !important;}
       <feFlood flood-color="#ffffff" result="paperWhite"/>
       <feComposite in="paperWhite" in2="boldPaper" operator="in" result="whiteEdge"/>
       <feMerge><feMergeNode in="whiteEdge"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-<filter id="torn-bottom-edge" x="-1%" y="-60%" width="102%" height="220%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency="0.04 0.6" numOctaves="2" seed="11" result="roughness"/>
-      <feDisplacementMap in="SourceGraphic" in2="roughness" scale="7" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
   </defs>
 </svg>
