@@ -475,7 +475,7 @@
       "s1 s2    s3 ";
     column-gap: 24px;
     row-gap: 24px;
-    align-items: stretch;
+    align-items: start;
     margin-bottom: 24px;
     text-align: center;
   }
@@ -501,7 +501,7 @@
   .cr-step-2{
     grid-area: s2;
     justify-self: center;
-    width: 340px;
+    width: 360px;
     max-width: 100%;
   }
   .cr-step-3{ grid-area: s3; min-width: 0; }
@@ -511,8 +511,6 @@
   .cr-step-1 > .cr-step-body,
   .cr-step-3 > .cr-step-body{ margin: 0 auto; }
 
-  .cr-step{ display:flex; flex-direction:column; }
-  .cr-step > .cr-step-body{ margin: auto auto 0; }
 
   .cr-step-title{
     font-family: 'Libre Baskerville', Georgia, serif;
@@ -530,7 +528,7 @@
     font-size: 18px;
     line-height: 1.6;
     color: #EEEEEE;
-    max-width: 320px;
+    max-width: 360px;
   }
 
   .cr-actions{
