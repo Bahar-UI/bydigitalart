@@ -1585,12 +1585,13 @@ body *{text-align:center !important;}
   position:absolute;
   z-index:10;
   top:50%;
-  left:83%;
-  width:min(37vw,500px);
+  left:auto;
+  right:clamp(20px,4vw,64px);
+  width:min(36vw,480px);
   max-width:none;
   margin:0;
   padding:0;
-  transform:translate(-50%,-50%);
+  transform:translateY(-50%);
 }
 .hero .headline{
   white-space:normal;
