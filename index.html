@@ -1649,6 +1649,19 @@ body *{text-align:center !important;}
   }
   .hero .cta{margin-top:28px;}
 }
+
+/* Keep the navigation available while scrolling the page. */
+html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height) + 12px);}
+.navbar{
+  position:fixed;
+  inset:0 0 auto;
+  width:100%;
+  z-index:1000;
+}
+.hero{padding-top:var(--site-header-height);}
+@media(max-width:720px){
+  html{--site-header-height:76px;}
+}
 </style>
 </head>
 <body>
