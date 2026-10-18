@@ -1,12 +1,2219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>By Digital Art</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bahareh Yazdani — Digital Painting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Island+Moments&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold: #BC9449;
+    --gold-light: #D4AF6A;
+    --deep-green: #1A322F;
+    --teal-green: #1E4642;
+    --dark-green: #16302C;
+    --ink: #EEEEEE;
+    --ink-dim: rgba(238,238,238,0.82);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; overscroll-behavior-x:none; }
+
+  body{
+    background: var(--deep-green);
+    color: var(--ink);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior-x:none;
+  }
+
+  /* ================= HERO ================= */
+  .hero{
+    position: relative;
+    overflow: hidden;
+    padding-bottom: clamp(20px, 4vh, 60px);
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 8%, rgba(255,255,255,0.035), transparent 60%),
+      linear-gradient(180deg, #1F3B37 0%, var(--deep-green) 38%, var(--deep-green) 100%);
+  }
+
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 3px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 3px);
+    pointer-events:none;
+    mix-blend-mode: overlay;
+  }
+
+  /* ---------- Navbar ---------- */
+  .navbar{
+    position: relative;
+    z-index: 20;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height: 92px;
+    padding: 0 clamp(20px, 4vw, 64px);
+    background: var(--dark-green);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .logo img{ height: 36px; width:auto; display:block; }
+
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap: clamp(18px, 2.6vw, 40px);
+    list-style:none;
+  }
+
+  .nav-links a{
+    color: var(--ink);
+    text-decoration:none;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+    padding: 10px 18px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+
+  /* All links, including Home, are plain at rest and get the
+     rectangle only on hover/focus */
+  .nav-links a:hover,
+  .nav-links a:focus-visible{
+    border-color: rgba(255,255,255,0.55);
+  }
+
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap: 26px;
+  }
+
+  .nav-right svg{ width:20px; height:20px; }
+
+  .lang{
+    display:flex;
+    align-items:center;
+    gap: 8px;
+    font-size: 16px;
+  }
+
+  .lang svg{ width:14px; height:14px; }
+
+  /* ---------- Text block ---------- */
+  .intro{
+    position:relative;
+    z-index:10;
+    max-width: min(96vw, 1040px);
+    margin: 0 auto;
+    padding: clamp(40px, 7vh, 88px) 24px 0;
+    text-align:center;
+  }
+
+  .headline{
+    font-family:'Libre Baskerville', Georgia, serif;
+    font-weight:400;
+    font-size: 48px;
+    line-height: normal;
+    letter-spacing: 0%;
+    color: var(--ink);
+    white-space: nowrap;
+    opacity:0;
+    transform: translateY(20px);
+    animation: rise 0.9s cubic-bezier(.22,.8,.32,1) 0.1s forwards;
+  }
+
+  .subhead{
+    margin: 18px auto 0;
+    max-width: 900px;
+    font-size: 24px;
+    line-height: normal;
+    letter-spacing: 0%;
+    color: var(--ink);
+    font-style: normal;
+    opacity:0;
+    transform: translateY(16px);
+    animation: rise 0.9s cubic-bezier(.22,.8,.32,1) 0.32s forwards;
+  }
+
+  .cta{
+    margin-top: 70px;
+    opacity:0;
+    transform: translateY(12px);
+    animation: rise 0.9s cubic-bezier(.22,.8,.32,1) 0.54s forwards;
+  }
+
+  .btn{
+    display:inline-block;
+    background: var(--gold);
+    color: #1A1206;
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1; /* fixes the button at a known 49px tall: 19px text + 15px*2 padding */
+    letter-spacing: 0.01em;
+    text-decoration:none;
+    padding: 15px 38px;
+    border-radius: 16px 32px 32px 0px;
+    border: 2px solid #000000;
+    box-shadow: 0 10px 24px -8px rgba(0,0,0,0.55);
+    transition: box-shadow 0.4s ease, transform 0.3s ease, background 0.3s ease;
+  }
+
+  .btn:hover{
+    background: var(--gold-light);
+    box-shadow: 0 0 30px 6px rgba(188,148,73,0.5), 0 10px 24px -8px rgba(0,0,0,0.55);
+    transform: translateY(-2px);
+  }
+
+  .btn:active{
+    background: #A6822F;
+    box-shadow: 0 2px 6px -2px rgba(0,0,0,0.6) inset;
+    transform: translateY(1px);
+  }
+
+  .btn:focus-visible{ outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  @keyframes rise{ to{ opacity:1; transform: translateY(0); } }
+
+  /* ---------- Artwork row ----------
+     Exact 77px outer margins and 35px gaps. The frames scale with the
+     viewport while retaining the reference proportions: 405x536 for
+     the side images and 405x384 for the middle image. */
+  .visual{
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 35px;
+    width: 100%;
+    /* Row top should sit 17px above the button's top. 49px (button
+       height) + 17px = 66px was the calculated pull, but that still
+       measured as even with/below the button in testing, so this adds
+       extra headroom on top of the calculated value. */
+    margin: -100px auto 0;
+    padding: 0 77px; /* fixed 77px margin, always — not clipped, not overridden */
+  }
+
+  .frame{
+    flex: 0 0 auto;
+    filter: drop-shadow(0 25px 45px rgba(0,0,0,0.5));
+    opacity:0;
+    animation: rise 1s cubic-bezier(.22,.8,.32,1) forwards;
+  }
+
+  .frame img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+  }
+
+  .frame.man,
+  .frame.woman{
+    /* Width = whatever's left after the fixed 77px padding (handled by
+       .visual above) and the two 35px gaps (70px total), split three
+       ways. This is arithmetic, not a scaling formula — it's the exact
+       width required for 77px margins and 35px gaps to hold on any
+       screen, instead of a fixed number that only fits one screen. */
+    width: calc((100% - 70px) / 3);
+    height: auto;
+    aspect-ratio: 405 / 536;
+  }
+
+  .frame.man{ animation-delay: 0.5s; }
+  .frame.woman{ animation-delay: 0.7s; }
+
+  .frame.birds{
+    width: calc((100% - 70px) / 3);
+    height: auto;
+    aspect-ratio: 406 / 386;
+    animation-delay: 0.85s;
+  }
+
+  .frame.birds img:not(.hero-middle-image){
+    display: none;
+  }
+
+  .frame.birds .hero-middle-image{
+    object-fit: contain;
+  }
+
+  @media (max-width: 720px){
+    .navbar{ height:76px; }
+    .nav-links{ display:none; }
+    .headline{ font-size: 32px; }
+    .subhead{ font-size: 18px; }
+    .subhead br{ display:none; }
+    .visual{
+      flex-wrap: wrap;
+      align-items:center;
+      padding: 0 24px;
+      gap: 18px;
+    }
+    .frame.man, .frame.woman, .frame.birds{
+      width: 44vw;
+    }
+    .frame.birds{ width: 60vw; order:3; margin-top: -20px; }
+  }
+
+  @media (max-width: 460px){
+    .headline{ font-size: 24px; white-space: normal; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .headline, .subhead, .cta, .frame{
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+  /* ================= SELECTED COMMISSIONS ================= */
+  .commissions{
+    height: 899px;
+    overflow: hidden;
+    background-color: #16302C;
+    background-image: url("assets/image-001.png");
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    padding: 90px 0 100px;
+    text-align: center;
+  }
+
+  .commissions-title{
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: #000000;
+    margin: 0 0 40px;
+  }
+
+  .commissions-row{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 35px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 77px;
+    flex-wrap: wrap;
+    min-height: clamp(280px, 34vw, 520px);
+  }
+
+  .commission-card{
+    --card-h: clamp(220px, 27vw, 405px);
+    --card-h-tall: clamp(280px, 34vw, 520px);
+    position: relative;
+    display: block;
+    width: calc((100% - 70px) / 3);
+    max-width: 405px;
+    min-width: 220px;
+    height: var(--card-h);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px -12px rgba(0,0,0,0.35);
+    text-decoration: none;
+    transition: height 0.4s ease;
+  }
+
+  /* Whichever card is hovered/focused grows taller; the other two keep their own resting height */
+  .commission-card:hover,
+  .commission-card:focus-visible{
+    height: var(--card-h-tall);
+  }
+
+  .commission-card img{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  .c-before{ opacity: 1; z-index: 2; }
+  .c-after{ opacity: 0; z-index: 1; }
+
+  .commission-card:hover .c-before,
+  .commission-card:focus-visible .c-before{ opacity: 0; }
+  .commission-card:hover .c-after,
+  .commission-card:focus-visible .c-after{ opacity: 1; }
+
+  .c-arrow{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.43);
+    color: #EEEEEE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 3;
+  }
+
+  .commission-card:hover .c-arrow,
+  .commission-card:focus-visible .c-arrow{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .c-overlay{
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 22px 18px 16px;
+    background: rgba(0,0,0,0.43);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 3;
+    text-align: left;
+  }
+
+  .commission-card:hover .c-overlay,
+  .commission-card:focus-visible .c-overlay{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .c-name{
+    display: block;
+    color: #EEEEEE;
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .btn-commissions{
+    display: inline-block;
+    margin-top: 40px;
+    background: #1A322F;
+    color: #EEEEEE;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 10px 24px -8px rgba(0,0,0,0.45);
+  }
+
+  .btn-commissions:hover{
+    background: #234942;
+    box-shadow: 0 0 24px 4px rgba(26,50,47,0.5), 0 10px 24px -8px rgba(0,0,0,0.45);
+  }
+
+  .btn-commissions:active{
+    background: #0F1F1C;
+    box-shadow: 0 2px 6px -2px rgba(0,0,0,0.6) inset;
+    transform: translateY(1px);
+  }
+
+  @media (max-width: 720px){
+    .commissions{ height: auto; overflow: visible; padding: 60px 0 70px; }
+    .commissions-title{ font-size: 32px; margin-bottom: 36px; }
+    .commissions-row{ flex-direction: column; align-items: center; padding: 0 24px; gap: 24px; min-height: 0; }
+    .commission-card{ width: 100%; max-width: 340px; }
+  }
+
+  /* ================= COMMISSION REQUEST ================= */
+  .commission-request{
+    background: #1A322F;
+    padding: 100px 0 110px;
+    text-align: center;
+  }
+
+  .cr-container{
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 77px;
+    box-sizing: border-box;
+  }
+
+  .cr-title{
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: var(--ink);
+    margin: 0 0 32px;
+  }
+
+  .cr-subtitle{
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.45;
+    color: var(--ink);
+    max-width: 900px;
+    margin: 0 auto 22px;
+  }
+
+  .cr-note{
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: var(--ink-dim);
+    margin: 0 0 80px;
+  }
+
+  .cr-collab{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px minmax(0, 1fr);
+    grid-template-areas:
+      ".  title .  "
+      "s1 s2    s3 ";
+    column-gap: 24px;
+    row-gap: 24px;
+    align-items: start;
+    margin-bottom: 76px;
+    text-align: center;
+  }
+
+  .cr-process-title{
+    grid-area: title;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--ink);
+    justify-self: center;
+    width: 340px;
+    max-width: 100%;
+    text-align: left;
+    transform: translateX(54px);
+    margin: 0;
+  }
+
+  .cr-step{
+    padding: 0;
+    text-align: center;
+  }
+
+  .cr-step-1{ grid-area: s1; min-width: 0; }
+  .cr-step-2{
+    grid-area: s2;
+    justify-self: center;
+    width: 340px;
+    max-width: 100%;
+    transform: translateX(54px);
+  }
+  .cr-step-3{ grid-area: s3; min-width: 0; }
+
+  .cr-step-2 > .cr-step-title{ text-align: left; }
+  .cr-step-2 > .cr-step-body{ text-align: center; margin: 0 auto; }
+
+  .cr-step-1 > .cr-step-body,
+  .cr-step-3 > .cr-step-body{ margin: 0 auto; }
+
+  .cr-step-title{
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.3;
+    color: #BC9449;
+    white-space: nowrap;
+    margin: 0 0 22px;
+  }
+
+  .cr-step-body{
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #EEEEEE;
+    max-width: 320px;
+  }
+
+  .cr-actions{
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  /* Tablet range: allow wrapping so nothing overflows/clips */
+  @media (max-width: 1200px) and (min-width: 721px){
+    .cr-collab{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cr-process-title, .cr-step-2{ transform: none; }
+    .cr-step-title{ white-space: normal; font-size: 21px; }
+  }
+
+  @media (max-width: 720px){
+    .commission-request{ padding: 60px 20px 70px; }
+    .cr-title{ font-size: 32px; margin-bottom: 24px; }
+    .cr-subtitle{ font-size: 19px; margin-bottom: 18px; }
+    .cr-note{ font-size: 14px; margin-bottom: 50px; }
+    .cr-container{ padding: 0 20px; }
+    .cr-process-title, .cr-step-2{ transform: none; }
+    .cr-collab{
+      grid-template-columns: 1fr;
+      grid-template-areas: "title" "s1" "s2" "s3";
+      justify-items: center;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+    .cr-process-title{ font-size: 20px; text-align: center; }
+    .cr-step{ width: 100%; max-width: 340px; padding: 0; }
+    .cr-step-1, .cr-step-3{ text-align: center; }
+    .cr-step-1 > .cr-step-body, .cr-step-3 > .cr-step-body{ margin: 0 auto; }
+    .cr-step-title{ font-size: 20px; white-space: normal; }
+    .cr-step-2 > .cr-step-title{ text-align: center; }
+    .cr-step-2 > .cr-step-body{ text-align: center; margin: 0 auto; }
+    .cr-step-body{ font-size: 17px; }
+  }
+
+  /* ================= ABOUT ME ================= */
+  .about{
+    background: var(--deep-green);
+    padding: 90px 77px 100px;
+    box-sizing: border-box;
+  }
+
+  .about-card{
+    max-width: 1440px;
+    margin: 0 auto;
+    background-image: url("assets/image-002.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 70px 80px 50px;
+    box-sizing: border-box;
+  }
+
+  .about-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+  }
+
+  .about-text{
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .about-title{
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: var(--ink);
+    text-align: center;
+    margin: 0 0 30px;
+  }
+
+  .about-body{
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--ink);
+    text-align: center;
+    margin: 0 0 18px;
+  }
+
+  .about-body:last-of-type{
+    margin-bottom: 0;
+  }
+
+  .about-photo{
+    flex: 0 0 auto;
+    width: 280px;
+    height: auto;
+    display: block;
+  }
+
+  .about-note{
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: var(--ink-dim);
+    text-align: center;
+    margin: 34px 0 0;
+  }
+
+  @media (max-width: 720px){
+    .about{ padding: 60px 20px 70px; }
+    .about-card{ padding: 44px 24px 34px; }
+    .about-content{ flex-direction: column; gap: 28px; }
+    .about-photo{ width: 180px; order: -1; }
+    .about-title{ font-size: 30px; text-align: center; margin-bottom: 20px; }
+    .about-body{ font-size: 18px; margin-bottom: 14px; }
+    .about-note{ font-size: 13px; margin-top: 24px; }
+  }
+
+  /* ================= CONTACT US ================= */
+  .contact{
+    position: relative;
+    overflow: hidden;
+    background: var(--deep-green);
+    padding: 90px 110px 120px;
+    text-align: center;
+  }
+
+  .contact-inner{
+    width: min(100%, 1160px);
+    margin: 0 auto;
+  }
+
+  .contact-title{
+    margin: 0;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 40px;
+    line-height: 1.15;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .contact-copy{
+    max-width: 1120px;
+    margin: 42px auto 0;
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 36px;
+    line-height: 1.3;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .contact-actions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    margin-top: 42px;
+  }
+
+  .contact-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: max-content;
+    padding: 8px 18px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 16px;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.13) 0%, rgba(188,148,73,0.10) 44%, rgba(10,35,32,0.18) 100%);
+    color: var(--gold);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    -webkit-backdrop-filter: blur(4px) saturate(1.45);
+    backdrop-filter: blur(4px) saturate(1.45);
+    box-shadow:
+      inset 1px 1px 0 rgba(255,255,255,0.32),
+      inset -1px -1px 0 rgba(188,148,73,0.16),
+      0 7px 18px rgba(0,0,0,0.18);
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .contact-btn:hover,
+  .contact-btn:focus-visible{
+    color: var(--gold-light);
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.20) 0%, rgba(188,148,73,0.16) 46%, rgba(10,35,32,0.12) 100%);
+    border-color: rgba(188,148,73,0.58);
+    box-shadow:
+      inset 1px 1px 0 rgba(255,255,255,0.42),
+      inset -1px -1px 0 rgba(188,148,73,0.22),
+      0 9px 22px rgba(0,0,0,0.22);
+    transform: translateY(-2px);
+  }
+
+  .contact-btn:focus-visible{
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+
+  .angles-up{
+    position: absolute;
+    top: 94px;
+    right: clamp(28px, 5vw, 82px);
+    width: 44px;
+    height: 68px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .angles-up svg{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .angles-up-white{
+    opacity: 1;
+    transform: translateY(15px) scale(0.72);
+    transform-origin: center;
+    animation: arrowsWhiteLoop 600ms ease-out 1ms infinite alternate;
+  }
+
+  .angles-up-color{
+    opacity: 0;
+    transform: translateY(9px) scale(0.72);
+    transform-origin: center;
+    animation: arrowsColorLoop 600ms ease-out 1ms infinite alternate;
+  }
+
+  @keyframes arrowsWhiteLoop{
+    from{ opacity: 1; transform: translateY(15px) scale(0.72); }
+    to{ opacity: 0; transform: translateY(-3px) scale(1); }
+  }
+
+  @keyframes arrowsColorLoop{
+    from{ opacity: 0; transform: translateY(9px) scale(0.72); }
+    to{ opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @media (max-width: 720px){
+    .contact{ padding: 66px 24px 84px; }
+    .contact-title{ font-size: 30px; }
+    .contact-copy{ margin-top: 30px; font-size: 23px; line-height: 1.38; }
+    .contact-actions{ margin-top: 34px; gap: 14px; }
+    .contact-btn{ padding: 8px 18px; font-size: 24px; }
+    .angles-up{ top: 66px; right: 20px; width: 30px; height: 50px; }
+  }
+
+  /* ================= THANK YOU ================= */
+  .thank-you{
+    background: var(--deep-green);
+    padding: 0 77px 34px;
+  }
+
+  .thank-you-card{
+    width: 100%;
+    max-width: 1442px;
+    min-height: 372px;
+    margin: 0 auto;
+    padding: 38px 30px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url("assets/image-003.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .thank-you-portrait-wrap{
+    position: relative;
+    width: 207px;
+    height: 207px;
+    flex: 0 0 auto;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .thank-you-portrait-wrap::after{
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: 8px;
+    border-radius: 50%;
+    background: rgba(19,35,31,0.56);
+    opacity: 0;
+    transition: opacity 500ms ease;
+    pointer-events: none;
+  }
+
+  .thank-you-portrait{
+    display: block;
+    width: 207px;
+    height: 207px;
+    object-fit: contain;
+    transition: filter 500ms ease;
+  }
+
+  .thank-you-signature{
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    color: #FFFFFF;
+    font-family: 'Island Moments', cursive;
+    font-size: 82px;
+    line-height: 1;
+    font-weight: 400;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translate(-50%, 5%) rotate(-360deg) scale(0.14);
+    transform-origin: center;
+    transition: opacity 350ms ease, transform 800ms cubic-bezier(.22,.8,.32,1);
+    pointer-events: none;
+  }
+
+  .thank-you-portrait-wrap:hover::after,
+  .thank-you-portrait-wrap:focus-visible::after{
+    opacity: 1;
+  }
+
+  .thank-you-portrait-wrap:hover .thank-you-portrait,
+  .thank-you-portrait-wrap:focus-visible .thank-you-portrait{
+    filter: brightness(0.82);
+  }
+
+  .thank-you-portrait-wrap:hover .thank-you-signature,
+  .thank-you-portrait-wrap:focus-visible .thank-you-signature{
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+
+  .thank-you-portrait-wrap:focus-visible{
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.75);
+  }
+
+  .thank-you-title{
+    margin: 22px 0 0;
+    color: #1A1206;
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 36px;
+    line-height: 1.2;
+    font-weight: 400;
+  }
+
+  @media (max-width: 720px){
+    .thank-you{ padding: 0 10px 20px; }
+    .thank-you-card{ min-height: 280px; padding: 32px 20px 24px; }
+    .thank-you-portrait-wrap,
+    .thank-you-portrait{ width: 140px; height: 140px; }
+    .thank-you-signature{ font-size: 56px; }
+    .thank-you-title{ margin-top: 18px; font-size: 24px; }
+  }
+
+
+
+  /* ================= SINGLE-FILE ART WORKS VIEW ================= */
+  [hidden]{ display:none !important; }
+
+  .artworks-view{
+    min-height:100vh;
+    overflow:hidden;
+    background:var(--deep-green);
+  }
+
+  .artworks-view .navbar a[aria-current="page"]{
+    color:var(--gold-light);
+  }
+
+  .artworks-main{
+    min-height:calc(100vh - 76px);
+    padding-top:1px;
+  }
+
+  .artworks-breadcrumb{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:24px 77px 0;
+    font-family:Inter, Arial, sans-serif;
+    font-size:14px;
+    font-weight:400;
+    line-height:120%;
+  }
+
+  .artworks-breadcrumb a{
+    color:rgba(188,148,73,.47);
+    text-decoration:none;
+    transition:color .2s ease;
+  }
+
+  .artworks-breadcrumb a:hover,
+  .artworks-breadcrumb a:focus-visible{
+    color:#BC9449;
+  }
+
+  .artworks-breadcrumb-arrow{
+    color:#10F1D5;
+    font-size:18px;
+    line-height:1;
+  }
+
+  .artworks-breadcrumb-current{ color:#BC9449; }
+
+  .artworks-marquee{
+    width:100%;
+    margin-top:35px;
+    padding:0;
+    overflow:hidden;
+    contain:paint;
+  }
+
+  .artworks-track{
+    display:flex;
+    width:max-content;
+    gap:28px;
+    will-change:transform;
+    animation:artworks-glide-right 100s linear infinite;
+  }
+
+  .artworks-group{
+    display:flex;
+    flex:none;
+    gap:28px;
+  }
+
+  .artworks-card{
+    flex:0 0 auto;
+    width:147px;
+    height:147px;
+    margin:0;
+    overflow:hidden;
+    border-radius:50%;
+    background:#102824;
+  }
+
+  .artworks-card img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform 500ms ease;
+  }
+
+  .artworks-card:hover img{ transform:scale(1.035); }
+
+  .collection-section{
+    margin-top:82px;
+    padding-bottom:100px;
+  }
+
+  .collection-title{
+    margin:0 77px;
+    color:#EEEEEE;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Arial,sans-serif;
+    font-size:40px;
+    font-weight:700;
+    line-height:1.2;
+    text-align:center;
+  }
+
+  .collection-viewport{
+    width:min(calc(100vw - 77px),1532px);
+    margin:35px 0 0 77px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    overscroll-behavior-x:contain;
+    scrollbar-width:none;
+    cursor:grab;
+    touch-action:pan-y;
+    user-select:none;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .collection-viewport::-webkit-scrollbar{ display:none; }
+  .collection-viewport.is-dragging{ cursor:grabbing; }
+
+  .collection-track{
+    display:flex;
+    width:max-content;
+    gap:24px;
+    padding-right:77px;
+  }
+
+  .process-section{
+    margin-top:112px;
+    padding-bottom:100px;
+    text-align:center;
+  }
+
+  .process-title{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Arial,sans-serif;
+    font-size:40px;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:36px;
+    padding:0 77px;
+  }
+
+  .process-copy{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 77px;
+  }
+
+  .process-copy p{
+    font-family:'Libre Baskerville', Georgia, serif;
+    font-weight:400;
+    font-size:20px;
+    line-height:1.7;
+    color:var(--ink-dim);
+    margin-top:22px;
+  }
+
+  .process-copy p:first-child{ margin-top:0; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  @media (max-width:900px){
+    .process-section{ padding-right:0; padding-left:0; }
+    .process-title{ padding:0 32px; }
+    .process-copy{ padding:0 32px; }
+  }
+
+  @media (max-width:700px){
+    .process-section{ margin-top:70px; }
+    .process-title{ font-size:30px; margin-bottom:24px; padding:0 20px; }
+    .process-copy{ padding:0 20px; }
+    .process-copy p{ font-size:17px; }
+  }
+
+  .collection-card{
+    position:relative;
+    flex:0 0 417px;
+    width:417px;
+    height:473px;
+    overflow:hidden;
+  }
+
+    .collection-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:url('assets/image-004.svg');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    filter: drop-shadow(0 18px 32px rgba(0,0,0,0.45));
+    pointer-events:none;
+  }
+
+
+  .collection-image,
+  .collection-hover-image{
+    position:absolute;
+    top:17px;
+    left:50%;
+    display:block;
+    width:376px;
+    height:387px;
+    border-radius:22px;
+    object-fit:cover;
+    object-position:50% 12%;
+    transform:translateX(-50%);
+    transition:width 350ms ease, height 350ms ease, top 350ms ease, border-radius 350ms ease, opacity 400ms ease;
+  }
+
+  .collection-image{ opacity:1; }
+  .collection-hover-image{ opacity:0; pointer-events:none; }
+
+  .collection-card:hover .collection-image,
+  .collection-card:focus-within .collection-image{
+    opacity:0;
+  }
+
+  .collection-card:hover .collection-hover-image,
+  .collection-card:focus-within .collection-hover-image{
+    opacity:1;
+  }
+
+  .collection-card:hover .collection-image,
+  .collection-card:focus-within .collection-image,
+  .collection-card:hover .collection-hover-image,
+  .collection-card:focus-within .collection-hover-image{
+    top:6px;
+    width:404px;
+    height:403px;
+    border-radius:28px;
+  }
+
+  .collection-info{
+    position:absolute;
+    z-index:2;
+    top:410px;
+    left:20px;
+    right:20px;
+    bottom:14px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:2px 12px;
+    text-align:center;
+    pointer-events:none;
+    background:#1a322f;
+  }
+
+  .collection-card-title{
+    font-family:'Libre Baskerville', Georgia, serif;
+    font-weight:700;
+    font-size:8px;
+    color:var(--ink);
+    line-height:1.2;
+    margin-bottom:1px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+
+  .collection-card-line{
+    font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',Arial,sans-serif;
+    font-size:6.5px;
+    line-height:1.2;
+    color: var(--ink-dim);
+    margin-top:1px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+
+  .cc-label{
+    font-weight:500;
+    color: var(--ink);
+  }
+
+  .cc-desc{
+    font-weight:100;
+  }
+
+  @keyframes artworks-glide-right{
+    from{ transform:translateX(calc(-50% - 14px)); }
+    to{ transform:translateX(0); }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .artworks-track{ animation-duration:240s; }
+  }
+
+  @media (max-width:900px){
+    .artworks-breadcrumb{ margin-left:32px; margin-right:32px; }
+    .collection-title{ margin-right:32px; margin-left:32px; }
+    .collection-viewport{ width:calc(100vw - 32px); margin-left:32px; }
+    .collection-track{ padding-right:32px; }
+  }
+
+  @media (max-width:700px){
+    .artworks-main{ min-height:calc(100vh - 76px); }
+    .artworks-breadcrumb{ margin:20px 20px 0; }
+    .artworks-marquee{ margin-top:35px; }
+    .artworks-card{ width:147px; height:147px; border-radius:50%; }
+    .artworks-track,.artworks-group{ gap:18px; }
+    .collection-title{ margin-right:20px; margin-left:20px; }
+    .collection-viewport{ width:calc(100vw - 20px); margin-left:20px; }
+    .collection-track{ padding-right:20px; }
+    @keyframes artworks-glide-right{
+      from{ transform:translateX(calc(-50% - 9px)); }
+      to{ transform:translateX(0); }
+    }
+  }
+
+  /* ================= RESPONSIVE REFINEMENTS ================= */
+  .menu-toggle{
+    display:none;
+    align-items:center;
+    justify-content:center;
+    width:44px;
+    height:44px;
+    color:var(--ink);
+    background:transparent;
+    border:1px solid rgba(255,255,255,.45);
+    border-radius:8px;
+    cursor:pointer;
+  }
+  .menu-toggle svg{ width:24px; height:24px; }
+
+  @media (max-width: 720px){
+    body{ overflow-x:hidden; }
+    .navbar{
+      position:relative;
+      height:72px;
+      padding:0 18px;
+    }
+    .logo img{ height:31px; }
+    .menu-toggle{ display:inline-flex; }
+    .nav-right{ gap:10px; }
+    .nav-right > svg, .nav-right .lang{ display:none; }
+    .nav-links{
+      display:none;
+      position:absolute;
+      z-index:30;
+      top:calc(100% + 1px);
+      left:0;
+      right:0;
+      flex-direction:column;
+      align-items:stretch;
+      gap:2px;
+      padding:12px 18px 18px;
+      background:var(--dark-green);
+      border-bottom:1px solid rgba(255,255,255,.12);
+      box-shadow:0 16px 28px rgba(0,0,0,.28);
+    }
+    .navbar.menu-open .nav-links{ display:flex; }
+    .nav-links li, .nav-links a{ width:100%; }
+    .nav-links a{
+      display:block;
+      padding:14px 12px;
+      font-size:16px;
+      border-radius:6px;
+    }
+    .intro{
+      width:100%;
+      max-width:680px;
+      padding:clamp(36px, 10vw, 56px) 20px 0;
+    }
+    .headline{
+      font-size:clamp(29px, 8vw, 40px);
+      line-height:1.2;
+      white-space:normal;
+      text-wrap:balance;
+    }
+    .subhead{
+      margin-top:14px;
+      font-size:clamp(16px, 4.8vw, 19px);
+      line-height:1.55;
+    }
+    .cta{ margin-top:34px; }
+    .btn{
+      width:min(100%, 320px);
+      padding:16px 22px;
+      font-size:17px;
+    }
+    .visual{
+      width:100%;
+      margin:-42px auto 0;
+      padding:0 16px;
+      gap:12px;
+    }
+    .frame.man, .frame.woman{ width:calc(50% - 6px); }
+    .frame.birds{ width:min(100%, 360px); margin-top:0; }
+  }
+
+  @media (max-width: 380px){
+    .navbar{ padding:0 14px; }
+    .headline{ font-size:28px; }
+    .visual{ padding:0 12px; gap:10px; }
+    .frame.man, .frame.woman{ width:calc(50% - 5px); }
+  }
+
+  /* Collection cards: compact, touch-friendly and visibly swipeable on phones */
+  .collection-drag-hint{ display:none; }
+  @media (max-width:700px){
+    .collection-section{ margin-top:64px; padding-bottom:70px; }
+    .collection-title{ font-size:30px; }
+    .collection-drag-hint{
+      display:flex; align-items:center; justify-content:center; gap:10px;
+      margin:12px 20px 0; color:rgba(238,238,238,.86);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Arial,sans-serif;
+      font-size:14px; letter-spacing:.03em;
+    }
+    .collection-drag-arrow{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:28px; height:28px; border:1px solid rgba(188,148,73,.8);
+      border-radius:50%; color:var(--gold-light); font-size:18px;
+      animation:collection-swipe 1.4s ease-in-out infinite;
+    }
+    .collection-viewport{ margin-top:18px; scroll-snap-type:x mandatory; }
+    .collection-track{ gap:16px; }
+    .collection-card{
+      flex-basis:min(78vw, 292px); width:min(78vw, 292px); height:440px;
+      scroll-snap-align:start; scroll-snap-stop:always;
+    }
+    .collection-image,.collection-hover-image{
+      top:14px; width:calc(100% - 30px); height:255px; border-radius:18px;
+    }
+    .collection-card:hover .collection-image,
+    .collection-card:focus-within .collection-image,
+    .collection-card:hover .collection-hover-image,
+    .collection-card:focus-within .collection-hover-image{
+      top:14px; width:calc(100% - 30px); height:255px; border-radius:18px;
+    }
+    .collection-info{ top:276px; left:14px; right:14px; bottom:12px; padding:10px 10px; }
+    .collection-card-title{ font-size:12px; margin-bottom:4px; }
+    .collection-card-title,.collection-card-line{ white-space:normal; overflow:visible; text-overflow:clip; }
+    .collection-card-line{ font-size:10px; line-height:1.3; }
+  }
+  @keyframes collection-swipe{ 0%,100%{transform:translateX(0)} 50%{transform:translateX(7px)} }
+  @media (prefers-reduced-motion:reduce){ .collection-drag-arrow{ animation:none; } }
+
+  
+  
+
+  
+  
+
+  /* Phone ordering and Commission Request overflow safeguards */
+  @media (max-width: 720px){
+    .hero{
+      display:flex;
+      flex-direction:column;
+      padding-bottom:42px;
+    }
+    .intro{ display:contents; }
+    .navbar{ order:0; }
+    .headline{
+      order:1;
+      width:100%;
+      max-width:680px;
+      margin:clamp(36px, 10vw, 56px) auto 0;
+      padding:0 20px;
+      text-align:center;
+    }
+    .subhead{
+      order:2;
+      width:100%;
+      max-width:680px;
+      padding:0 20px;
+      text-align:center;
+    }
+    .visual{
+      order:3;
+      margin:28px auto 0;
+    }
+    .cta{
+      order:4;
+      width:100%;
+      margin:30px auto 0;
+      padding:0 20px;
+      text-align:center;
+    }
+
+    .commission-request{
+      width:100%;
+      overflow:hidden;
+      padding:56px 16px 64px;
+    }
+    .cr-container{ width:100%; max-width:100%; padding:0; }
+    .cr-title{ font-size:clamp(28px, 8vw, 32px); line-height:1.2; }
+    .cr-subtitle{ font-size:clamp(17px, 5vw, 19px); line-height:1.5; }
+    .cr-note, .cr-process-title, .cr-step-title, .cr-step-body{
+      max-width:100%;
+      overflow-wrap:anywhere;
+      word-break:normal;
+    }
+    .cr-collab{ width:100%; min-width:0; }
+    .cr-process-title, .cr-step-2{
+      width:100%;
+      min-width:0;
+      max-width:340px;
+    }
+    .cr-step{ min-width:0; }
+    .cr-step-title{ white-space:normal; }
+    .cr-actions{ width:100%; gap:14px; }
+    .cr-actions .btn{ max-width:100%; white-space:normal; }
+  }
+
+
+/* Artwork process cards: text areas reserved for forthcoming copy. */
+.process-cards {--card-gap:20px;width:calc(100% - 48px);max-width:1440px;margin:48px auto 0;display:flex;gap:var(--card-gap);overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;cursor:grab;touch-action:pan-x pan-y;user-select:none;}
+.process-cards::-webkit-scrollbar{display:none;}
+.process-cards.is-dragging{cursor:grabbing;}
+.process-cards:focus-visible{outline:2px solid #BC9449;outline-offset:6px;}
+.process-story {position:relative;isolation:isolate;box-sizing:border-box;flex:0 0 calc((100% - 2 * var(--card-gap)) / 2.25);min-width:0;padding:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-content:start;}
+.process-story::before {content:"";position:absolute;inset:0;z-index:-1;background:url("assets/image-005.png") center / 100% 100% no-repeat;}
+.process-story img {display:block;width:100%;height:auto;aspect-ratio:293 / 211;object-fit:contain;border-radius:10px;pointer-events:none;}
+.process-story-copy {min-width:0;align-self:center;text-align:center;color:var(--ink);}
+@media(max-width:600px){.process-cards{--card-gap:8px;width:calc(100% - 24px);margin-top:32px;}.process-story{padding:7px 5px;gap:4px;}.process-story img{border-radius:4px;}}
+
+
+.process-cards{align-items:flex-start;}
+.process-story{align-items:start;}
+.process-story-copy{align-self:start;padding:4px 3px 10px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:clamp(11px,1vw,14px);line-height:1.45;font-weight:300;overflow-wrap:break-word;}
+.process-story-copy h3{font-size:1.08em;line-height:1.3;font-weight:500;margin:0 0 12px;}
+.process-story-copy p{margin:0 0 12px;}
+.process-story-copy p:last-child{margin-bottom:0;}
+@media(max-width:600px){.process-story-copy{grid-column:1 / -1;padding:6px 4px 10px;font-size:11px;line-height:1.5;}.process-story-copy h3{margin-bottom:10px;}}
+
+
+/* Exact artwork process card dimensions, shared by desktop and mobile. */
+.process-cards{width:calc(100% - 24px);max-width:1440px;--card-gap:20px;}
+.process-story{flex:0 0 628px;width:628px;height:474px;box-sizing:border-box;padding:20px 15px 18px;grid-template-columns:293px 293px;grid-template-rows:211px 211px;column-gap:12px;row-gap:14px;}
+.process-story img{width:293px;height:211px;aspect-ratio:auto;border-radius:16px;object-fit:contain;}
+.process-story-copy{grid-column:2;grid-row:2;align-self:start;box-sizing:border-box;width:293px;height:211px;padding:8px 7px 0;font-family:"SF Pro Text","SF Pro Display",-apple-system,BlinkMacSystemFont,sans-serif;font-size:9px;line-height:1.2;font-weight:100;}
+.process-story-copy h3{font-family:inherit;font-size:9px;line-height:1.2;font-weight:500;margin:0 0 10px;}
+.process-story-copy p{font-family:inherit;font-size:9px;line-height:1.2;font-weight:100;margin:0 0 10px;}
+.process-story-copy p:last-child{margin-bottom:0;}
+
+
+/* Stronger process titles and consistent spacing between cards. */
+.process-cards{--card-gap:16px;gap:16px;}
+.process-story-copy h3{font-weight:700;}
+
+/* Collection reference layout: identical proportions on every screen. */
+.navbar .nav-links{gap:16px;}
+.collection-card{flex:0 0 417px;width:417px;height:auto;aspect-ratio:1108 / 1260;isolation:isolate;overflow:visible;}
+.collection-card::before{inset:0;background-image:url("assets/image-005.png");background-size:100% 100%;filter:none;}
+.collection-card .collection-image,
+.collection-card .collection-hover-image,
+.collection-card:hover .collection-image,
+.collection-card:focus-within .collection-image,
+.collection-card:hover .collection-hover-image,
+.collection-card:focus-within .collection-hover-image{top:4.5%;left:5.5%;width:89%;height:80.5%;border-radius:16px;transform:none;object-fit:cover;object-position:50% 50%;transition:opacity 400ms ease;}
+.collection-card .collection-info{top:87%;left:5.5%;right:5.5%;bottom:3.5%;padding:0;background:transparent;justify-content:center;}
+.collection-card .collection-card-title{font-size:15px;line-height:1.15;margin:0 0 6px;white-space:normal;overflow:visible;text-overflow:clip;}
+.collection-card .collection-card-line{font-size:8px;line-height:1.2;margin:2px 0 0;white-space:normal;overflow:visible;text-overflow:clip;}
+@media(max-width:700px){
+.collection-card{flex-basis:min(78vw,292px);width:min(78vw,292px);height:auto;}
+.collection-card .collection-card-title{font-size:11px;margin-bottom:3px;}
+.collection-card .collection-card-line{font-size:6px;margin-top:1px;}
+.collection-card .collection-image,.collection-card .collection-hover-image{border-radius:12px;}
+}
+
+
+/* Keep the faces of the two elongated portraits in view. */
+.artworks-group .artworks-card:nth-child(2) img,
+.artworks-group .artworks-card:nth-child(5) img,
+.collection-track .collection-card:nth-child(2) .collection-image,
+.collection-track .collection-card:nth-child(5) .collection-image{object-position:50% 0%;}
+
+
+.process-card-slot{display:contents;}
+@media(max-width:600px){
+.process-cards{--mobile-card-scale:1;}
+.process-card-slot{display:block;position:relative;flex:0 0 calc((100% - 16px) / 1.5);min-width:0;aspect-ratio:628 / 474;}
+.process-card-slot .process-story{position:absolute;top:0;left:0;transform:scale(var(--mobile-card-scale));transform-origin:top left;}
+}
+
+
+.language-select{font:inherit;color:inherit;background:transparent;border:0;cursor:pointer;padding:6px 2px;max-width:105px;}
+.language-select option{color:#eee;background:#1c403c;}
+.language-select:focus-visible{outline:2px solid #BC9449;outline-offset:3px;}
+.nav-right .lang{display:flex;}
+html[lang="fa"] [data-localized]{direction:rtl;font-family:Tahoma,"SF Pro Text",Arial,sans-serif;text-transform:none;letter-spacing:normal;}
+html[lang="fa"] .headline{white-space:normal;}
+html[lang="fa"] .about-body{text-align:right;}
+html[lang="fa"] .process-story-copy{direction:rtl;font-family:Tahoma,Arial,sans-serif;}
+html[lang="fa"] .process-story-copy p{line-height:1.4;margin-bottom:8px;}
+html[lang="fa"] .process-story-copy h3{line-height:1.4;}
+html[lang="fa"] .collection-info{direction:rtl;}
+html[lang="fa"] .collection-card-title{font-family:Tahoma,Arial,sans-serif;}
+.process-cards,.collection-track,.artworks-track{direction:ltr;}
+@media(max-width:720px){.nav-right .lang{display:flex;}.language-select{font-size:13px;}.nav-right{flex-shrink:0;}}
+
+
+/* Collection hover: second photo fills the whole torn-edge card and covers the text. */
+.collection-card .collection-hover-image,
+.collection-card:hover .collection-hover-image,
+.collection-card:focus-within .collection-hover-image{height:92%;z-index:3;}
+.collection-card .collection-info{transition:opacity 300ms ease;}
+.collection-card:hover .collection-info,
+.collection-card:focus-within .collection-info{opacity:0;}
+</style>
+<style>
+/* Hero reference: preserve the supplied torn edges and their transparent glow. */
+.hero .frame { filter:none; aspect-ratio:auto; }
+.hero .frame img { height:auto; object-fit:contain; filter:url(#hero-paper-edge); }
+@media (min-width:721px) {
+  .hero .cta { margin-top:34px; }
+  .hero .visual { gap:0; padding:0 3.3%; margin-top:calc(-53px - 0.6vw); }
+  .hero .frame.man, .hero .frame.woman, .hero .frame.birds { width:33.333333%; }
+}
+@media (max-width:720px) {
+  .hero .cta { order:3; margin-top:28px; }
+  .hero .visual { order:4; margin-top:12px; }
+}
+</style>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>By Digital Art is coming soon.</p>
+<!-- Strengthen opaque paper edges without outlining the transparent cyan glow. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;pointer-events:none">
+  <defs>
+    <filter id="hero-paper-edge" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+      <feComponentTransfer in="SourceAlpha" result="paperMask">
+        <feFuncA type="discrete" tableValues="0 0 0 0 0 0 0 0 0 1"/>
+      </feComponentTransfer>
+      <feMorphology in="paperMask" operator="dilate" radius="1.15" result="boldPaper"/>
+      <feFlood flood-color="#ffffff" result="paperWhite"/>
+      <feComposite in="paperWhite" in2="boldPaper" operator="in" result="whiteEdge"/>
+      <feMerge><feMergeNode in="whiteEdge"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+</svg>
+
+<div id="home-page" class="page-view">
+
+<section class="hero" id="top">
+
+  <nav class="navbar">
+    <a class="logo" href="#top" aria-label="Bahareh Yazdani home">
+      <img src="assets/image-006.png" alt="BY monogram logo">
+    </a>
+    <ul class="nav-links" id="primary-navigation">
+      <li><a href="#top">Home</a></li>
+      <li><a href="#artworks">Art Works</a></li>
+      <li><a href="#commissions">Commission</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16"/>
+      </svg>
+    </button>
+    <div class="nav-right">
+      <div class="lang"><select class="language-select" aria-label="Language / زبان"><option value="en" lang="en">English</option><option value="fa" lang="fa">فارسی</option></select></div>
+    </div>
+  </nav>
+
+  <div class="intro">
+    <h1 class="headline">Welcome To My World Of Digital Painting</h1>
+    <p class="subhead">Each work is a considered fusion of digital art and spatial perception,<br>transforming the wall into an active element of interior design.</p>
+    <div class="cta">
+      <a class="btn" href="#artworks">View Works</a>
+    </div>
+  </div>
+
+  <div class="visual" aria-hidden="true">
+    <figure class="frame man">
+      <img src="assets/image-007.png" alt="">
+    </figure>
+    <figure class="frame birds">
+      <img class="hero-middle-image" src="assets/image-008.png" alt="">
+    </figure>
+    <figure class="frame woman">
+      <img src="assets/image-009.png" alt="">
+    </figure>
+  </div>
+
+</section>
+
+<section class="commissions" id="commissions">
+  <h2 class="commissions-title">Selected Commissions</h2>
+  <div class="commissions-row">
+    <a class="commission-card" href="#artworks" aria-label="View artworks: Embrace Of Earth And White Silence">
+      <img class="c-before" src="assets/image-010.png" alt="">
+      <img class="c-after" src="assets/image-011.png" alt="">
+      <span class="c-arrow" aria-hidden="true">&#8599;</span>
+      <span class="c-overlay"><span class="c-name">Embrace Of Earth And White Silence</span></span>
+    </a>
+    <a class="commission-card" href="#artworks" aria-label="View artworks: Echoes Of Identity">
+      <img class="c-before" src="assets/image-012.png" alt="">
+      <img class="c-after" src="assets/image-013.png" alt="">
+      <span class="c-arrow" aria-hidden="true">&#8599;</span>
+      <span class="c-overlay"><span class="c-name">Echoes Of Identity</span></span>
+    </a>
+    <a class="commission-card" href="#artworks" aria-label="View artworks: A Quiet Moment">
+      <img class="c-before" src="assets/image-014.png" alt="">
+      <img class="c-after" src="assets/image-015.png" alt="">
+      <span class="c-arrow" aria-hidden="true">&#8599;</span>
+      <span class="c-overlay"><span class="c-name">A Quiet Moment</span></span>
+    </a>
+  </div>
+  <a class="btn btn-commissions" href="#artworks">View Works</a>
+</section>
+
+<section class="commission-request" id="commission-request">
+  <div class="cr-container">
+    <h2 class="cr-title">Commission Request</h2>
+    <p class="cr-subtitle">Each Artwork Is Designed Based On The Client's Desired Concept, Space, And Narrative, And Is Executed As A Contemporary Digital Painting.</p>
+    <p class="cr-note">&#8226;&nbsp; To Ensure Quality And Focus, A Limited Number Of Projects Are Accepted Each Month.</p>
+
+    <div class="cr-collab">
+      <h3 class="cr-process-title">Collaboration Process</h3>
+
+      <div class="cr-step cr-step-1">
+        <h4 class="cr-step-title">1. Project Consultation And Review</h4>
+        <p class="cr-step-body">Reviewing The Concept, Intended Space, And Project Requirements To Form The Initial Idea.</p>
+      </div>
+      <div class="cr-step cr-step-2">
+        <h4 class="cr-step-title">2. Concept Development</h4>
+        <p class="cr-step-body">Presenting The Initial Concept, Designing The Composition, And Receiving Feedback To Refine The Artwork.</p>
+      </div>
+      <div class="cr-step cr-step-3">
+        <h4 class="cr-step-title">3. Final Execution</h4>
+        <p class="cr-step-body">Creating The Artwork Using Contemporary Digital Painting Techniques, Ready For Presentation Or High-Quality Printing.</p>
+      </div>
+    </div>
+
+    <div class="cr-actions">
+      <a class="btn" href="mailto:bahareh.art.2020@gmail.com">Email Me</a>
+      <a class="btn" href="https://wa.me/905469997003" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-card">
+    <div class="about-content">
+      <div class="about-text">
+        <h2 class="about-title">About Me</h2>
+        <p class="about-body">I Am Bahareh Yazdani, A Contemporary Digital Artist. I Began My Artistic Practice In 2019 Through The Study And Practice Of Traditional Painting. Over Time, Through Specialized Art Education And The Development Of My Independent Practice, I Shifted My Focus Toward Contemporary Digital Painting.</p>
+        <p class="about-body">In My Work, I Reinterpret The Human Figure As Well As Natural And Architectural Subjects Through A Geometric, Figurative, Decorative, And Expressive Visual Language. Geometric Forms, Sharp Linework, Decorative Compositions, Structured Color, And Painterly Textures Are Central Elements Of My Visual Language, While Some Of My Works Draw Visual Influences From Cubism And Art Deco.</p>
+        <p class="about-body">My Practice Explores The Balance Between Geometric Structure And Painterly Qualities, Allowing My Works To Maintain Both Visual Clarity And The Tactile Character Of Painting.</p>
+        <p class="about-body">I Pay Particular Attention To Composition, Color, Form, Texture, And Detail Throughout The Creative Process, Aiming To Give Each Work Its Own Distinct Visual Identity And Atmosphere.</p>
+      </div>
+      <img class="about-photo" src="assets/image-016.png" alt="Portrait of Bahareh Yazdani">
+    </div>
+    <p class="about-note">&#8226;&nbsp; If You Are Interested In Commissioning A Work, Please Visit The Commission Page To Begin The Conversation.</p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <h2 class="contact-title">Contact Us</h2>
+    <p class="contact-copy">For Commissioning Artworks, Artistic Collaborations, Or Receiving More Information, Please Contact Me Through The Communication Channels Below.</p>
+
+    <div class="contact-actions">
+      <a class="contact-btn" href="https://wa.me/905469997003" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="contact-btn" href="mailto:bahareh.art.2020@gmail.com">Email</a>
+    </div>
+  </div>
+
+  <a class="angles-up" href="#top" aria-label="Back to top">
+    <svg class="angles-up-white" viewBox="0 0 44 68" fill="none" aria-hidden="true">
+      <path d="M7 35L22 20L37 35" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 52L22 37L37 52" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <svg class="angles-up-color" viewBox="0 0 44 68" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="contact-arrow-gradient" x1="5" y1="0" x2="39" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#FF8A00"/>
+          <stop offset="0.52" stop-color="#BC9449"/>
+          <stop offset="1" stop-color="#087A69"/>
+        </linearGradient>
+      </defs>
+      <path d="M7 18L22 3L37 18" stroke="url(#contact-arrow-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 34L22 19L37 34" stroke="url(#contact-arrow-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 50L22 35L37 50" stroke="url(#contact-arrow-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 66L22 51L37 66" stroke="url(#contact-arrow-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</section>
+
+<section class="thank-you" aria-label="Thank you">
+  <div class="thank-you-card">
+    <div class="thank-you-portrait-wrap" tabindex="0" aria-label="Bahar">
+    <img class="thank-you-portrait" src="assets/image-017.png" alt="Portrait of Bahareh Yazdani">
+      <span class="thank-you-signature" aria-hidden="true">Bahar</span>
+    </div>
+    <p class="thank-you-title">Thank You For Viewing</p>
+  </div>
+</section>
+
+</div>
+
+<div id="artworks-page" class="page-view artworks-view" hidden>
+  <nav class="navbar">
+    <a class="logo" href="#top" aria-label="Bahareh Yazdani home">
+      <img src="assets/image-006.png" alt="BY monogram logo">
+    </a>
+    <ul class="nav-links" id="artworks-navigation">
+      <li><a href="#top">Home</a></li>
+      <li><a href="#artworks" aria-current="page">Art Works</a></li>
+      <li><a href="#commissions">Commission</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#artworks-contact">Contact Us</a></li>
+    </ul>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="artworks-navigation" aria-label="Open navigation menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16"/>
+      </svg>
+    </button>
+    <div class="nav-right">
+      <div class="lang"><select class="language-select" aria-label="Language / زبان"><option value="en" lang="en">English</option><option value="fa" lang="fa">فارسی</option></select></div>
+    </div>
+  </nav>
+  <main class="artworks-main" id="artworks">
+    <nav class="artworks-breadcrumb" aria-label="Breadcrumb">
+      <a href="#top">Home</a>
+      <span class="artworks-breadcrumb-arrow" aria-hidden="true">›</span>
+      <span class="artworks-breadcrumb-current" aria-current="page">Art Works</span>
+    </nav>
+
+    <section class="artworks-marquee" aria-label="Artwork gallery">
+      <div class="artworks-track" id="artworks-track"></div>
+    </section>
+
+    <section class="collection-section" aria-labelledby="collection-title">
+      <h2 class="collection-title" id="collection-title">Collection</h2>
+      <p class="collection-drag-hint" aria-hidden="true"><span>Swipe to explore</span><span class="collection-drag-arrow">→</span></p>
+      <div class="collection-viewport" id="collection-viewport" aria-label="Drag horizontally to browse all artworks">
+        <div class="collection-track" id="collection-track"></div>
+      </div>
+    </section>
+
+    <section class="process-section" aria-labelledby="process-title">
+      <h2 class="process-title" id="process-title">Artwork Process</h2>
+      <div class="process-copy">
+        <p>My Approach To Creating Each Work Varies According To Its Concept, Subject, And Visual Structure. In My Digital Painting Practice, I Combine Drawing, Color Application, Layering, Form Development, And Painterly Texturing To Gradually Build Each Image.</p>
+        <p>In Some Works, The Composition Is Developed Through An Emphasis On Negative Space And The Relationship Between Empty Areas And The Primary Forms. In Others, Form And Space Are Constructed Through Preliminary Drawing, Successive Color Applications, And The Gradual Development Of Visual Details.</p>
+        <p>Throughout The Process, I Use Different Brushes And Approaches To Color Application According To The Needs Of Each Work. In Some Pieces, Colors Are Initially Placed In A Simplified And Structured Manner And Are Then Gradually Developed Through Additional Layers Of Color, Light, Shadow, And Texture.</p>
+        <p>My Aim Is To Use The Possibilities Of Digital Painting To Create Works In Which Form, Line, Color, Composition, And Texture Interact With One Another. I Approach Digital Technology Not Simply As A Technical Tool, But As An Independent Medium Through Which I Can Develop My Visual Language And Preserve The Painterly Qualities Of My Work.</p>
+      </div>
+
+<div class="process-cards" id="process-cards" role="region" aria-label="Artwork process cards. Swipe or use left and right arrow keys to browse." tabindex="0">
+<div class="process-card-slot"><article class="process-story" data-artwork-group="1" aria-label="Artwork 1 creation process">
+<img src="assets/image-018.png" alt="Preliminary sketch, artwork 1" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-019.png" alt="Painting in progress, artwork 1" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-020.png" alt="Finished artwork, artwork 1" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-story-copy" data-copy-for="1"><h3>Under the Crimson Moon</h3><p>This contemporary coastal scene brings together geometric houses and the natural landscape in a simple and harmonious composition. The angular architectural forms contrast with the softer lines of the shore and the calm expanse of the sea, creating a dialogue between structured architecture and the fluidity of nature.</p><p>Simplified surfaces and solid colors, combined with subtle painterly textures, give the work a minimalist yet tactile quality. The repetition of architectural forms and rhythmic lines guides the eye along the shoreline, reinforcing a sense of stillness and calm.</p><p>Rather than depicting a specific place, the work offers a personal interpretation of living in harmony with nature, simplicity, and tranquility.</p></div>
+</article></div>
+<div class="process-card-slot"><article class="process-story" data-artwork-group="2" aria-label="Artwork 2 creation process">
+<img src="assets/image-021.png" alt="Preliminary sketch, artwork 2" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-022.png" alt="Painting in progress, artwork 2" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-023.png" alt="Finished artwork, artwork 2" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-story-copy" data-copy-for="2"><h3>Quiet Strength</h3><p>This contemporary portrait explores masculine identity, strength, and quiet dignity through a geometric and decorative visual language. The figure’s traditional-inspired attire, layered patterns, and strong silhouette create a distinctive sense of character and presence.</p><p>Angular forms and elongated lines interact with expressive brush textures, combining structured geometry with an organic painterly quality. The patterns of the clothing become an essential part of the composition, framing the figure and creating a rhythmic relationship between color, form, and texture.</p><p>The restrained yet earthy palette reinforces the figure’s grounded presence, while the simplified facial treatment places greater emphasis on silhouette, ornament, and character.</p></div>
+</article></div>
+<div class="process-card-slot"><article class="process-story" data-artwork-group="3" aria-label="Artwork 3 creation process">
+<img src="assets/image-024.png" alt="Preliminary sketch, artwork 3" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-025.png" alt="Painting in progress, artwork 3" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-026.png" alt="Finished artwork, artwork 3" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-story-copy" data-copy-for="3"><h3>A Quiet Moment</h3><p>This contemporary portrait captures a quiet moment of reflection, centered around the simple ritual of holding a cup of tea. The figure’s calm posture and thoughtful presence create an intimate atmosphere, inviting the viewer to pause and step away from the noise of everyday life.</p><p>The elongated forms, simplified features, and geometric elements reflect a contemporary figurative language, while expressive brush textures add warmth and painterly depth to the composition. The contrast between structured forms and softer organic details creates a balanced visual rhythm.</p><p>The warm, earthy palette reinforces the sense of comfort and tranquility, turning an ordinary moment into a quiet study of stillness, presence, and inner reflection.</p></div>
+</article></div>
+<div class="process-card-slot"><article class="process-story" data-artwork-group="4" aria-label="Artwork 4 creation process">
+<img src="assets/image-027.png" alt="Preliminary sketch, artwork 4" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-028.png" alt="Painting in progress, artwork 4" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-029.png" alt="Finished artwork, artwork 4" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-story-copy" data-copy-for="4"><h3>golden silence</h3><p>This contemporary portrait explores feminine power through an avant-garde fusion of modern figurative art and conceptual fashion art. The exaggerated, architectural forms give the figure a commanding and self-assured presence.</p><p>The soft, flowing curves of the black hat contrast with the sharp, geometric shoulders of the golden coat. With the eyes concealed in shadow, the figure takes on an air of mystery and quiet authority, while the elongated neck and vivid red lips draw attention to her confident presence.</p><p>The warm gold and deep black create a bold, luxurious contrast, balanced by a neutral, earthy background that allows the figure to remain the central focus.</p></div>
+</article></div>
+<div class="process-card-slot"><article class="process-story" data-artwork-group="5" aria-label="Artwork 5 creation process">
+<img src="assets/image-030.png" alt="Preliminary sketch, artwork 5" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-031.png" alt="Painting in progress, artwork 5" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-032.png" alt="Finished artwork, artwork 5" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-story-copy" data-copy-for="5"><h3>Echoes of Identity</h3><p>This work explores identity, repetition, and subtle individuality through the repeated arrangement of a single face. At first glance, the figures appear identical, yet small variations in color, form, and expression give each one an independent presence.</p><p>Geometric structures, elongated lines, and simplified forms create a rhythmic yet dynamic composition. The repetition functions as a visual echo, suggesting a single identity reflected through multiple forms.</p><p>The contrast between solid color surfaces and expressive brush textures adds depth and painterly quality to the geometric composition, highlighting the tension between repetition and individuality.</p></div>
+</article></div>
+<div class="process-card-slot"><article class="process-story" data-artwork-group="6" aria-label="Artwork 6 creation process">
+<img src="assets/image-033.png" alt="Preliminary sketch, artwork 6" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-034.png" alt="Painting in progress, artwork 6" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-035.png" alt="Finished artwork, artwork 6" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-story-copy" data-copy-for="6"><h3>Embrace of Earth and White Silence</h3><p>This evocative portrait explores inner peace, introspection, and a woman’s deep connection with nature. With her eyes closed, the figure embraces a terracotta pot, suggesting a protective connection to her roots and sense of belonging. White cosmos flowers partially conceal her face, symbolizing purity, growth, and thoughts quietly coming into bloom.</p><p>The work combines modern figurative expressionism with elongated, delicate lines inspired by Art Deco. The exaggerated hands and fingers create a sense of elegance and calm, while the soft, organic forms of the flowers contrast with the structured, geometric stripes of the clothing.</p><p>The earthy terracotta and brick tones are balanced by the luminous white flowers and the deep navy and cream of the clothing. A warm background and symbolic circular form behind the figure create a sense of protection, warmth, and rootedness.</p></div>
+</article></div>
+<div class="process-card-slot"><article class="process-story" data-artwork-group="7" aria-label="Artwork 7 creation process">
+<img src="assets/image-036.png" alt="Preliminary sketch, artwork 7" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-037.png" alt="Painting in progress, artwork 7" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-038.png" alt="Finished artwork, artwork 7" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-story-copy" data-copy-for="7"><h3>A Line of Stories</h3><p>This playful and imaginative work explores diversity, individuality, and coexistence through five distinct birds gathered along a single line. Each bird has its own character, from a mysterious figure wearing a wide-brimmed hat to one crowned with an expressive fan of feathers. Human-inspired details give the birds a sense of personality and narrative, while drops of blue paint falling from the line celebrate the freedom and spontaneity of the artistic process.</p><p>The composition combines Cubist-inspired geometric structures with the aesthetics of origami. Sharp angles, bold lines, and folded, block-like forms create a sense of volume and dimension, while the geometric paper flowers complete the structured composition.</p><p>A warm, textured cream background provides a neutral setting for the vivid palette of ochre, deep blue, green, red, and yellow. Together, these colors create a lively rhythm and convey a sense of joy, energy, and movement.</p></div>
+</article></div>
+<div class="process-card-slot"><article class="process-story" data-artwork-group="8" aria-label="Artwork 8 creation process">
+<img src="assets/image-039.png" alt="Preliminary sketch, artwork 8" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-040.png" alt="Painting in progress, artwork 8" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-041.png" alt="Finished artwork, artwork 8" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-story-copy" data-copy-for="8"><h3>The Silhouette of Authority</h3><p>This contemporary portrait explores masculine authority and restraint through an avant-garde fusion of modern figurative art and conceptual fashion art. The architectural, angular forms give the figure a strong and commanding presence.</p><p>The oversized black hat casts the upper face and eyes entirely in shadow, creating an atmosphere of mystery, coolness, and quiet authority. His crossed arms convey a firm and self-contained posture, while the gold-and-black striped coat, with its broad angular shoulders, emphasizes his powerful silhouette. The carefully groomed beard and mustache add a balance between ruggedness and refinement.</p><p>The warm gold and deep black of the coat create a bold and luxurious contrast, while the softly textured beige background keeps the figure at the center of attention.</p></div>
+</article></div>
+<div class="process-card-slot"><article class="process-story" data-artwork-group="9" aria-label="Artwork 9 creation process">
+<img src="assets/image-042.png" alt="Preliminary sketch, artwork 9" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-043.png" alt="Painting in progress, artwork 9" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-044.png" alt="Finished artwork, artwork 9" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-story-copy" data-copy-for="9"><h3>Shared Silence</h3><p>This contemporary portrait explores a silent dialogue between two women. With their eyes closed and faces brought close together, the figures exist in a quiet, contemplative space, suggesting both duality and connection—a moment of mutual understanding beyond the noise of the outside world.</p><p>Modern figurative expressionism merges with Cubist-inspired geometric structures and bold, minimalist lines. Angular, architectural forms contrast with the soft curves of the closed eyes, while rich, visible brushwork brings depth and an organic quality to the geometric surfaces.</p><p>The contrast between earthy olive-green tones in one figure and the striking black-and-white palette of the other represents two distinct identities coming together in harmony. A deep, dark background further isolates the figures and places the focus on their intimate connection and shared presence.</p></div>
+</article></div>
+<div class="process-card-slot"><article class="process-story" data-artwork-group="10" aria-label="Artwork 10 creation process">
+<img src="assets/image-045.png" alt="Preliminary sketch, artwork 10" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-046.png" alt="Painting in progress, artwork 10" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-047.png" alt="Finished artwork, artwork 10" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-story-copy" data-copy-for="10"><h3>Hidden Dignity</h3><p>This work is an expression of modern figurative expressionism, inspired by the geometric structures of Cubism and the elongated, delicate lines of Art Deco.</p><p>In this digital painting, the contrast between the striped and circular patterns on the clothing and the elongated, minimalist forms of the figures creates a balanced and harmonious visual rhythm. Four women are depicted seated together, conveying a quiet yet powerful presence that reflects dignity, solidarity, and individual strength.</p><p>The green background and earthy tones evoke freshness, nature, and a sense of being deeply rooted—qualities that are reflected in the calm and dignified presence of the figures.</p></div>
+</article></div>
+<div class="process-card-slot"><article class="process-story" data-artwork-group="11" aria-label="Artwork 11 creation process">
+<img src="assets/image-048.png" alt="Preliminary sketch, artwork 11" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-049.png" alt="Painting in progress, artwork 11" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-050.png" alt="Finished artwork, artwork 11" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-story-copy" data-copy-for="11"><h3>The Emerald Secret</h3><p>This contemporary portrait depicts a woman in profile, inspired by the geometric structures of Cubism and the elegant, elongated lines of Art Deco.</p><p>Her emerald-green geometric hat partially conceals her eyes, creating an atmosphere of mystery, confidence, and quiet strength. The vivid red lips and delicate hand gesture contrast with the angular hat and collar, emphasizing femininity and inner calm.</p><p>The bold contrast between emerald green, warm terracotta, and a textured golden-yellow background creates a vibrant visual rhythm. Through form, color, and presence, the figure conveys a sense of self-possession and quiet power.</p></div>
+</article></div>
+<div class="process-card-slot"><article class="process-story" data-artwork-group="12" aria-label="Artwork 12 creation process">
+<img src="assets/image-021.png" alt="Preliminary sketch, artwork 12" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-051.png" alt="Painting in progress, artwork 12" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-052.png" alt="Finished artwork, artwork 12" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-story-copy" data-copy-for="12"><h3>Portrait of Heritage</h3><p>This contemporary portrait explores identity, presence, and cultural-inspired adornment through a bold geometric composition. The figure is presented with a calm yet powerful presence, surrounded by layered patterns and decorative forms inspired by traditional visual motifs.</p><p>Geometric shapes, elongated lines, and expressive brush textures create a balance between structure and organic movement. The carefully arranged patterns and contrasting tones emphasize the figure’s individuality while giving the composition a rhythmic, decorative quality.</p><p>The earthy palette and tactile textures create a sense of warmth and connection, while the simplified facial features allow the overall form, patterns, and presence of the figure to take center stage.</p></div>
+</article></div>
+</div>
+    </section>
+  </main>
+
+  <section class="contact" id="artworks-contact">
+    <div class="contact-inner">
+      <h2 class="contact-title">Contact Us</h2>
+      <p class="contact-copy">For Commissioning Artworks, Artistic Collaborations, Or Receiving More Information, Please Contact Me Through The Communication Channels Below.</p>
+
+      <div class="contact-actions">
+        <a class="contact-btn" href="https://wa.me/905469997003" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="contact-btn" href="mailto:bahareh.art.2020@gmail.com">Email</a>
+      </div>
+    </div>
+
+    <a class="angles-up" href="#artworks" aria-label="Back to top of artworks">
+      <svg class="angles-up-white" viewBox="0 0 44 68" fill="none" aria-hidden="true">
+        <path d="M7 35L22 20L37 35" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7 52L22 37L37 52" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <svg class="angles-up-color" viewBox="0 0 44 68" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="artworks-contact-arrow-gradient" x1="5" y1="0" x2="39" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#FF8A00"/>
+            <stop offset="0.52" stop-color="#BC9449"/>
+            <stop offset="1" stop-color="#087A69"/>
+          </linearGradient>
+        </defs>
+        <path d="M7 18L22 3L37 18" stroke="url(#artworks-contact-arrow-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7 34L22 19L37 34" stroke="url(#artworks-contact-arrow-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7 50L22 35L37 50" stroke="url(#artworks-contact-arrow-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7 66L22 51L37 66" stroke="url(#artworks-contact-arrow-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </section>
+
+  <section class="thank-you" aria-label="Thank you">
+    <div class="thank-you-card">
+      <div class="thank-you-portrait-wrap" tabindex="0" aria-label="Bahar">
+      <img class="thank-you-portrait" src="assets/image-017.png" alt="Portrait of Bahareh Yazdani">
+        <span class="thank-you-signature" aria-hidden="true">Bahar</span>
+      </div>
+      <p class="thank-you-title">Thank You For Viewing</p>
+    </div>
+  </section>
+</div>
+
+<script>
+  const embeddedArtworks = ["assets/image-053.png","assets/image-054.png","assets/image-055.png","assets/image-056.png","assets/image-057.png","assets/image-058.png","assets/image-059.png","assets/image-060.png","assets/image-061.png","assets/image-062.png","assets/image-063.png","assets/image-064.png"];
+
+  const collectionHoverPhotos = ["assets/image-065.png","assets/image-066.png","assets/image-067.png","assets/image-068.png","assets/image-069.png","assets/image-070.png","assets/image-071.png","assets/image-072.png","assets/image-073.png","assets/image-074.png","assets/image-075.png","assets/image-076.png"];
+
+  const collectionDetails = [
+    { title: "The Silhouette Of Authority", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Modern Figurative Art / Conceptual Fashion Art" },
+    { title: "Portrait Of Heritage", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Cultural-Inspired Art" },
+    { title: "Shared Silence", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Art Deco" },
+    { title: "A Quiet Moment", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration" },
+    { title: "Quiet Strength", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Cultural-Inspired Art" },
+    { title: "Golden Silence", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Modern Figurative Art / Conceptual Fashion Art" },
+    { title: "Echoes Of Identity", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Conceptual Art" },
+    { title: "A Line Of Stories", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Illustration / Cubist-Inspired" },
+    { title: "Embrace Of Earth And White Silence", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Art Deco" },
+    { title: "The Emerald Secret", technique: "Digital Painting And Illustration, With Thick, Painterly Brush Textures", style: "Contemporary Geometric Figurative Illustration / Art Deco" },
+    { title: "Hidden Dignity", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Art Deco" },
+    { title: "A Quiet Moment", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Illustration / Architectural Landscape" }
+  ];
+
+  function createArtworkGroup(hiddenCopy) {
+    const group = document.createElement('div');
+    group.className = 'artworks-group';
+    if (hiddenCopy) group.setAttribute('aria-hidden', 'true');
+
+    embeddedArtworks.forEach((source, index) => {
+      const figure = document.createElement('figure');
+      figure.className = 'artworks-card';
+      const image = document.createElement('img');
+      image.src = source;
+      image.alt = hiddenCopy ? '' : 'Bahareh Yazdani artwork ' + (index + 1);
+      image.loading = index < 6 ? 'eager' : 'lazy';
+      figure.appendChild(image);
+      group.appendChild(figure);
+    });
+    return group;
+  }
+
+  const artworksTrack = document.getElementById('artworks-track');
+  artworksTrack.appendChild(createArtworkGroup(false));
+  artworksTrack.appendChild(createArtworkGroup(true));
+
+  const collectionTrack = document.getElementById('collection-track');
+  embeddedArtworks.forEach((source, index) => {
+    const details = collectionDetails[index] || {};
+    const card = document.createElement('article');
+    card.className = 'collection-card';
+    card.tabIndex = 0;
+
+    const image = document.createElement('img');
+    image.className = 'collection-image';
+    image.src = source;
+    image.alt = 'Bahareh Yazdani artwork ' + (index + 1);
+    image.loading = index < 4 ? 'eager' : 'lazy';
+
+    const hoverImage = document.createElement('img');
+    hoverImage.className = 'collection-hover-image';
+    hoverImage.src = collectionHoverPhotos[index];
+    hoverImage.alt = 'Artwork ' + (index + 1) + ' shown in an interior setting';
+    hoverImage.loading = 'lazy';
+
+    const info = document.createElement('div');
+    info.className = 'collection-info';
+
+    const titleLine = document.createElement('p');
+    titleLine.className = 'collection-card-title';
+    titleLine.textContent = details.title || '';
+
+    const techniqueLine = document.createElement('p');
+    techniqueLine.className = 'collection-card-line';
+    const techniqueLabel = document.createElement('span');
+    techniqueLabel.className = 'cc-label';
+    techniqueLabel.textContent = 'Technique: ';
+    const techniqueDesc = document.createElement('span');
+    techniqueDesc.className = 'cc-desc';
+    techniqueDesc.textContent = details.technique || '';
+    techniqueLine.appendChild(techniqueLabel);
+    techniqueLine.appendChild(techniqueDesc);
+
+    const styleLine = document.createElement('p');
+    styleLine.className = 'collection-card-line';
+    const styleLabel = document.createElement('span');
+    styleLabel.className = 'cc-label';
+    styleLabel.textContent = 'Style: ';
+    const styleDesc = document.createElement('span');
+    styleDesc.className = 'cc-desc';
+    styleDesc.textContent = details.style || '';
+    styleLine.appendChild(styleLabel);
+    styleLine.appendChild(styleDesc);
+
+    info.appendChild(titleLine);
+    info.appendChild(techniqueLine);
+    info.appendChild(styleLine);
+
+    card.appendChild(image);
+    card.appendChild(hoverImage);
+    card.appendChild(info);
+    collectionTrack.appendChild(card);
+  });
+
+  function enableDragScroll(viewport) {
+    if (!viewport) return;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartScroll = 0;
+
+    viewport.addEventListener('pointerdown', (event) => {
+      isDragging = true;
+      dragStartX = event.clientX;
+      dragStartScroll = viewport.scrollLeft;
+      viewport.classList.add('is-dragging');
+      viewport.setPointerCapture(event.pointerId);
+    });
+
+    viewport.addEventListener('pointermove', (event) => {
+      if (!isDragging) return;
+      event.preventDefault();
+      viewport.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
+    });
+
+    function stopDrag(event) {
+      if (!isDragging) return;
+      isDragging = false;
+      viewport.classList.remove('is-dragging');
+      if (viewport.hasPointerCapture(event.pointerId)) {
+        viewport.releasePointerCapture(event.pointerId);
+      }
+    }
+
+    viewport.addEventListener('pointerup', stopDrag);
+    viewport.addEventListener('pointercancel', stopDrag);
+  }
+
+  enableDragScroll(document.getElementById('collection-viewport'));
+
+  // Native touch scrolling; mouse dragging and keyboard access for the process row.
+  const processRow = document.getElementById('process-cards');
+  const sizeMobileProcessCards = () => {
+    const scale = Math.max(0, (processRow.clientWidth - 16) / 1.5 / 628);
+    processRow.style.setProperty('--mobile-card-scale', String(scale));
+  };
+  new ResizeObserver(sizeMobileProcessCards).observe(processRow);
+  sizeMobileProcessCards();
+
+  let processDrag = null;
+  processRow.addEventListener('pointerdown', event => {
+    if (event.pointerType !== 'mouse' || event.button !== 0) return;
+    processDrag = {x:event.clientX, scroll:processRow.scrollLeft};
+    processRow.setPointerCapture(event.pointerId);
+    processRow.classList.add('is-dragging');
+    event.preventDefault();
+    processRow.focus({preventScroll:true});
+  });
+  processRow.addEventListener('pointermove', event => {
+    if (processDrag) processRow.scrollLeft = processDrag.scroll + processDrag.x - event.clientX;
+  });
+  const stopProcessDrag = () => {
+    processDrag = null;
+    processRow.classList.remove('is-dragging');
+  };
+  ['pointerup','pointercancel','lostpointercapture'].forEach(type => processRow.addEventListener(type, stopProcessDrag));
+  processRow.addEventListener('dragstart', event => event.preventDefault());
+  processRow.addEventListener('keydown', event => {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    event.preventDefault();
+    const step = processRow.querySelector('.process-story').getBoundingClientRect().width + parseFloat(getComputedStyle(processRow).gap);
+    processRow.scrollBy({left: event.key === 'ArrowRight' ? step : -step, behavior:'smooth'});
+  });
+
+
+  // ---------- Navbar routing (page switching + section scrolling) ----------
+
+  function getTargetPageView(el) {
+    const artworksPage = document.getElementById('artworks-page');
+    if (artworksPage && artworksPage.contains(el)) return 'artworks';
+    return 'home';
+  }
+
+  function resolveHashTarget(hash) {
+    if (!hash || hash === '#') return null;
+    try {
+      return document.querySelector(hash);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function scrollToTarget(target, immediate) {
+    const root = document.documentElement;
+    const prevBehavior = root.style.scrollBehavior;
+    if (immediate) {
+      // 'auto' in scrollTo() options defers to the CSS scroll-behavior property
+      // (which is 'smooth' site-wide), so force it off for truly instant positioning.
+      root.style.scrollBehavior = 'auto';
+    }
+
+    let y = 0;
+    if (target) {
+      const pageView = target.closest('.page-view');
+      const navbar = pageView ? pageView.querySelector('.navbar') : null;
+      const navH = navbar ? navbar.getBoundingClientRect().height : 0;
+      const rect = target.getBoundingClientRect();
+      y = Math.max(0, rect.top + window.pageYOffset - navH - 16);
+    }
+    window.scrollTo({ top: y, left: 0, behavior: immediate ? 'auto' : 'smooth' });
+
+    if (immediate) {
+      window.requestAnimationFrame(() => {
+        root.style.scrollBehavior = prevBehavior;
+      });
+    }
+  }
+
+  function navigateToHash(hash, immediate) {
+    const homePage = document.getElementById('home-page');
+    const artworksPage = document.getElementById('artworks-page');
+    const target = resolveHashTarget(hash);
+    const wantArtworks = target ? getTargetPageView(target) === 'artworks' : false;
+
+    homePage.hidden = wantArtworks;
+    artworksPage.hidden = !wantArtworks;
+
+    requestAnimationFrame(() => {
+      scrollToTarget(target, immediate);
+    });
+  }
+
+  function updatePageView() {
+    navigateToHash(window.location.hash || '#top', false);
+  }
+
+  function bindNavLinks() {
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const navbar = link.closest('.navbar');
+        if (navbar) {
+          navbar.classList.remove('menu-open');
+          const toggle = navbar.querySelector('.menu-toggle');
+          if (toggle) {
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-label', 'Open navigation menu');
+          }
+        }
+        const href = link.getAttribute('href');
+        if (!href || href === '#') return;
+        event.preventDefault();
+        if (window.location.hash === href) {
+          navigateToHash(href, false);
+        } else {
+          window.location.hash = href;
+        }
+      });
+    });
+  }
+
+  document.querySelectorAll('.menu-toggle').forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      const navbar = toggle.closest('.navbar');
+      if (!navbar) return;
+      const isOpen = navbar.classList.toggle('menu-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 720) {
+      document.querySelectorAll('.navbar.menu-open').forEach((navbar) => {
+        navbar.classList.remove('menu-open');
+        const toggle = navbar.querySelector('.menu-toggle');
+        if (toggle) {
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open navigation menu');
+        }
+      });
+    }
+  });
+
+  window.addEventListener('hashchange', updatePageView);
+  bindNavLinks();
+  navigateToHash(window.location.hash || '#top', true);
+</script>
+
+
+<script>
+(() => {
+const translations = {".nav-links a": ["خانه", "آثار هنری", "سفارش اثر", "درباره من", "ارتباط با من", "خانه", "آثار هنری", "سفارش اثر", "درباره من", "ارتباط با من"], ".headline": ["به دنیای نقاشی دیجیتال من خوش آمدید."], ".subhead": ["هر اثر، تلفیقی سنجیده از هنر دیجیتال و ادراک فضایی است که دیوار را به عنصری فعال در طراحی داخلی تبدیل می‌کند."], ".cta .btn, .btn-commissions": ["مشاهده اثر", "مشاهده اثر"], ".commissions-title": ["سفارش‌های منتخب"], ".c-name": ["آغوش خاک و سکوت سپید", "پژواک‌های هویت", "لحظه‌ای آرام"], ".cr-title": ["درخواست سفارش اثر"], ".cr-subtitle": ["هر اثر بر اساس موضوع، فضا و روایت مورد نظر سفارش‌دهنده طراحی و به صورت نقاشی دیجیتال معاصر اجرا می‌شود."], ".cr-note": ["• برای حفظ کیفیت و تمرکز، هر ماه تعداد محدودی پروژه پذیرفته می‌شود."], ".cr-process-title": ["فرایند همکاری"], ".cr-step-title": ["۱. مشاوره و بررسی پروژه", "۲. توسعه ایده", "۳. اجرای نهایی"], ".cr-step-body": ["بررسی موضوع، فضای مورد نظر و نیازهای پروژه برای شکل‌گیری ایده اولیه.", "ارائه کانسپت اولیه، طراحی ترکیب‌بندی و دریافت بازخورد برای تکمیل ایده اولیه.", "خلق اثر با تکنیک نقاشی دیجیتال معاصر، آماده برای چاپ با کیفیت بالا."], ".cr-actions .btn": ["ایمیل", "واتساپ"], ".about-title": ["درباره من"], ".about-body": ["من بهاره یزدانی، هنرمند نقاشی دیجیتال معاصر هستم. فعالیت هنری خود را از سال ۱۳۹۸ با آموزش و تمرین نقاشی سنتی آغاز کردم و در ادامه، با گذراندن دوره‌های تخصصی و توسعه فعالیت مستقل هنری، تمرکز خود را بر نقاشی دیجیتال معاصر قرار دادم.", "در آثارم، فیگور انسانی و دیگر سوژه‌های طبیعی و معماری را از طریق یک زبان بصری هندسی، فیگوراتیو، دکوراتیو و بیانگر بازتفسیر می‌کنم. فرم‌های هندسی، خطوط شارپ، ترکیب‌بندی‌های دکوراتیو، رنگ‌های ساختارمند و بافت‌های نقاشانه، عناصر اصلی زبان بصری من هستند و برخی از آثارم از ویژگی‌های بصری کوبیسم و آرت دکو تأثیر می‌گیرند.", "تمرکز من بر ایجاد تعادل میان ساختار هندسی و کیفیت نقاشانه است؛ به‌گونه‌ای که آثار، در عین برخورداری از وضوح و ساختار، حس و کیفیت بصری یک اثر نقاشی را حفظ کنند.", "در فرایند خلق هر اثر، به ترکیب‌بندی، رنگ، فرم، بافت و جزئیات توجه ویژه دارم و تلاش می‌کنم هر اثر هویت بصری مستقل و فضای منحصربه‌فرد خود را داشته باشد."], ".about-note": ["• اگر به سفارش یک اثر هنری علاقه‌مند هستید، لطفاً برای شروع گفتگو به صفحه سفارش اثر مراجعه کنید."], ".contact-title": ["ارتباط با من", "ارتباط با من"], ".contact-copy": ["برای سفارش آثار، همکاری‌های هنری یا دریافت اطلاعات بیشتر، از طریق راه‌های ارتباطی زیر با من در تماس باشید.", "برای سفارش آثار، همکاری‌های هنری یا دریافت اطلاعات بیشتر، از طریق راه‌های ارتباطی زیر با من در تماس باشید."], ".contact-btn": ["واتساپ", "ایمیل", "واتساپ", "ایمیل"], ".thank-you-title": ["ممنون از بازدید شما", "ممنون از بازدید شما"], ".artworks-breadcrumb a": ["خانه"], ".artworks-breadcrumb-current": ["آثار هنری"], ".collection-title": ["مجموعه آثار"], ".process-title": ["روند شکل‌گیری اثر"], ".process-copy p": ["در فرایند خلق آثار، رویکرد من متناسب با ایده، سوژه و ساختار بصری هر اثر تغییر می‌کند. در نقاشی دیجیتال، از ترکیبی از طراحی، رنگ‌گذاری، لایه‌گذاری، شکل‌دهی فرم و ایجاد بافت‌های نقاشانه استفاده می‌کنم تا تصویر به‌صورت تدریجی شکل بگیرد.", "در برخی آثار، ساختار تصویر با تأکید بر فضای منفی و رابطه میان فضای خالی و فرم‌های اصلی شکل می‌گیرد؛ در حالی که در آثار دیگر، فرم و فضا از طریق طراحی اولیه، رنگ‌گذاری مرحله‌ای و توسعه تدریجی جزئیات ساخته می‌شوند.", "در طول این فرایند، از قلم‌موها و روش‌های مختلف رنگ‌گذاری متناسب با نیاز هر اثر استفاده می‌کنم. گاهی رنگ‌ها در ابتدا به‌صورت ساده و ساختاریافته قرار می‌گیرند و سپس با اضافه شدن لایه‌های رنگ، نور، سایه و بافت، به‌تدریج توسعه پیدا می‌کنند.", "هدف من، استفاده از امکانات نقاشی دیجیتال برای ایجاد آثاری است که در آن فرم، خط، رنگ، ترکیب‌بندی و بافت در تعامل با یکدیگر قرار می‌گیرند. در این فرایند، امکانات دیجیتال را نه صرفاً به‌عنوان ابزار تکنولوژیک، بلکه به‌عنوان یک رسانه مستقل برای توسعه زبان بصری و کیفیت نقاشانه آثارم به کار می‌گیرم."]};
+const persianCards = [{"title": "زیر ماه سرخ", "paragraphs": ["این اثر، منظره‌ای معاصر از خانه‌هایی هندسی در امتداد ساحل است که در آن معماری و طبیعت در یک ترکیب‌بندی ساده و هماهنگ به یکدیگر می‌رسند. فرم‌های زاویه‌دار و ساختارهای هندسی خانه‌ها، در کنار خطوط نرم ساحل و گستره‌ی آرام دریا، تضادی میان نظم معماری و سیالیت طبیعت ایجاد می‌کنند.", "سطوح ساده و رنگ‌های تخت، همراه با بافت‌های ظریف و نقاشانه، به فضای اثر حال‌وهوایی مینیمال و در عین حال ملموس می‌بخشند. تکرار فرم‌های معماری و ریتم خطوط، چشم را در امتداد ساحل حرکت می‌دهد و حس سکون و آرامش را تقویت می‌کند.", "این اثر بیش از آنکه صرفاً تصویری از یک مکان باشد، برداشت شخصی از مفهوم زندگی در هماهنگی با طبیعت، سادگی و آرامش است."]}, {"title": "قدرت آرام", "paragraphs": ["این پرتره معاصر، هویت مردانه، قدرت و وقار آرام را از طریق زبانی بصری هندسی و دکوراتیو بررسی می‌کند. پوشش با الهام از لباس‌های سنتی، الگوهای لایه‌لایه و سیلوئت قدرتمند، شخصیت و حضور متمایزی به فیگور بخشیده‌اند.", "فرم‌های زاویه‌دار و خطوط کشیده در کنار بافت‌های اکسپرسیو قلم‌مو قرار گرفته‌اند و هندسه‌ی ساختاریافته را با کیفیتی ارگانیک و نقاشانه ترکیب می‌کنند. الگوهای لباس به بخش مهمی از ترکیب‌بندی تبدیل شده‌اند و با قاب گرفتن فیگور، رابطه‌ای ریتمیک میان رنگ، فرم و بافت ایجاد می‌کنند.", "پالت رنگی کنترل‌شده و خاکی، حضور ریشه‌دار و استوار فیگور را تقویت می‌کند، در حالی که پرداخت ساده‌شده‌ی چهره، تأکید بیشتری بر سیلوئت، تزئینات و شخصیت او قرار می‌دهد."]}, {"title": "لحظه‌ای آرام", "paragraphs": ["این پرتره‌ی معاصر، لحظه‌ای آرام و تأمل‌برانگیز را به تصویر می‌کشد؛ لحظه‌ای که حول سادگیِ نوشیدن چای شکل گرفته است. حالت آرام فیگور و حضور متفکرانه‌ی او، فضایی صمیمی ایجاد می‌کند و مخاطب را دعوت می‌کند تا برای لحظه‌ای از هیاهوی زندگی روزمره فاصله بگیرد.", "فرم‌های کشیده، ویژگی‌های ساده‌شده‌ی چهره و عناصر هندسی، زبان بصری معاصر و فیگوراتیو اثر را شکل می‌دهند، در حالی که بافت‌های اکسپرسیو قلم‌مو، گرما و عمق نقاشانه‌ای به ترکیب‌بندی می‌بخشند. تضاد میان فرم‌های ساختاریافته و جزئیات نرم و ارگانیک، ریتمی متعادل و هماهنگ ایجاد می‌کند.", "پالت رنگی گرم و خاکی، حس آرامش و راحتی را تقویت کرده و یک لحظه‌ی ساده و روزمره را به مطالعه‌ای درباره‌ی سکون، حضور و تأمل درونی تبدیل می‌کند."]}, {"title": "سکوت طلایی", "paragraphs": ["این پرتره معاصر، قدرت زنانه را از طریق تلفیقی آوانگارد از هنر فیگوراتیو مدرن و فشن‌آرت مفهومی به تصویر می‌کشد. فرم‌های اغراق‌شده و معمارانه، حضوری مسلط و سرشار از اعتمادبه‌نفس به فیگور بخشیده‌اند.", "انحناهای نرم و سیال کلاه مشکی در تضاد با سرشانه‌های تیز و هندسی کت طلایی قرار گرفته‌اند. پنهان شدن چشم‌ها در سایه، هاله‌ای از رازآلودگی و اقتدار آرام به فیگور می‌بخشد، در حالی که گردن کشیده و لب‌های قرمز و روشن، توجه را به حضور قدرتمند او جلب می‌کنند.", "ترکیب طلایی گرم و مشکی عمیق، کنتراستی جسورانه و لوکس ایجاد کرده است. پس‌زمینه خنثی و خاکی نیز تعادل بصری ایجاد می‌کند و اجازه می‌دهد فیگور همچنان نقطه اصلی توجه باقی بماند."]}, {"title": "پژواک‌های هویت", "paragraphs": ["این اثر با تکرار یک چهره در امتداد یکدیگر، به مفهوم هویت، تکرار و تفاوت‌های ظریف میان انسان‌ها می‌پردازد. چهره‌های مشابه در نگاه اول یکسان به نظر می‌رسند، اما تغییرات کوچک در رنگ، فرم و حالت، هر یک را به حضوری مستقل تبدیل می‌کند.", "ساختارهای هندسی، خطوط کشیده و فرم‌های ساده‌شده، ریتمی منظم و در عین حال پویا ایجاد کرده‌اند. تکرار فیگورها مانند پژواکی بصری عمل می‌کند؛ گویی یک هویت واحد در چند شکل مختلف بازتاب یافته است.", "تضاد میان سطوح رنگی و بافت‌های اکسپرسیو قلم‌مو، به ترکیب‌بندی هندسی اثر عمق و کیفیتی نقاشانه می‌بخشد و مرز میان تکرار و فردیت را برجسته می‌کند."]}, {"title": "آغوش خاک و سکوت سپید", "paragraphs": ["این پرتره‌ی تأثیرگذار، آرامش درونی، مکاشفه و پیوند عمیق زن با طبیعت را به تصویر می‌کشد. فیگور با چشمانی بسته، گلدانی سفالین را در آغوش گرفته است؛ گویی پیوندی محافظت‌کننده با ریشه‌ها و حس تعلق خود دارد. گل‌های سفید کاسموس بخشی از چهره‌ی او را پوشانده‌اند و نمادی از خلوص، رشد و افکاری هستند که در سکوت شکوفا می‌شوند.", "این اثر، اکسپرسیونیسم فیگوراتیو مدرن را با خطوط کشیده و ظریف الهام‌گرفته از آرت دکو ترکیب می‌کند. دست‌ها و انگشتان اغراق‌شده، حس ظرافت و آرامش را به فیگور می‌بخشند، در حالی که فرم‌های نرم و ارگانیک گل‌ها در تضاد با خطوط هندسی و راه‌راه لباس قرار گرفته‌اند.", "رنگ‌های خاکیِ تراکوتا و آجری با سفیدی درخشان گل‌ها و ترکیب سرمه‌ای و کرم لباس متعادل شده‌اند. پس‌زمینه‌ی گرم و فرم دایره‌ای نمادین پشت سر فیگور نیز فضایی از امنیت، گرما و ریشه‌دار بودن ایجاد می‌کند."]}, {"title": "صفی از قصه ها", "paragraphs": ["این اثر خیال‌انگیز و پرانرژی، مفهوم تنوع، فردیت و همزیستی را از طریق پنج پرنده با شخصیت‌های متفاوت به تصویر می‌کشد که در کنار یکدیگر روی یک خط قرار گرفته‌اند. هر پرنده ویژگی و شخصیت منحصربه‌فرد خود را دارد؛ از پرنده‌ای با کلاه لبه‌پهن و مرموز گرفته تا پرنده‌ای با تاجی از پرهای بازشده. جزئیات الهام‌گرفته از عناصر انسانی، به پرندگان شخصیتی داستانی می‌بخشند و قطرات رنگ آبی که از خط می‌چکند، آزادی و خودانگیختگی فرایند خلق هنری را یادآور می‌شوند.", "در این ترکیب، ساختارهای هندسی الهام‌گرفته از کوبیسم با زیبایی‌شناسی اوریگامی درهم‌آمیخته‌اند. زوایای تیز، خطوط قاطع و فرم‌های تاخورده و بلوکی، حس حجم و بُعد ایجاد می‌کنند و گل‌های کاغذی هندسی، ساختار منظم ترکیب‌بندی را کامل می‌کنند.", "پس‌زمینه‌ی کرمِ گرم و بافت‌دار، فضایی خنثی برای نمایش پالت زنده‌ی اخرایی، آبی عمیق، سبز، قرمز و زرد فراهم می‌کند. این رنگ‌ها در کنار یکدیگر ریتمی پویا ایجاد کرده و حس شادی، انرژی و حرکت را به مخاطب منتقل می‌کنند."]}, {"title": "سیلوئتِ اقتدار", "paragraphs": ["این پرتره معاصر، اقتدار و خویشتن‌داری مردانه را از طریق تلفیقی آوانگارد از هنر فیگوراتیو مدرن و فشن‌آرت مفهومی به تصویر می‌کشد. فرم‌های معمارانه و زاویه‌دار، حضوری محکم و مسلط به فیگور بخشیده‌اند.", "کلاه مشکی و بزرگ، بخش بالایی چهره و چشم‌ها را به‌طور کامل در سایه قرار داده و فضایی از رازآلودگی، سردی و اقتدار آرام ایجاد می‌کند. دست‌های به سینه، ژستی محکم و خوددار ایجاد کرده‌اند، در حالی که کت راه‌راه طلایی و مشکی با سرشانه‌های پهن و زاویه‌دار، بر سیلوئت قدرتمند فیگور تأکید می‌کند. ریش و سبیل آراسته نیز تعادلی میان زبری و ظرافت ایجاد کرده‌اند.", "ترکیب طلایی گرم و مشکی عمیق در کت، کنتراستی جسورانه و لوکس ایجاد کرده است، در حالی که پس‌زمینه بژ با بافتی ملایم، باعث می‌شود فیگور همچنان در مرکز توجه باقی بماند."]}, {"title": "سکوت مشترک", "paragraphs": ["این پرتره‌ی معاصر، گفت‌وگویی بی‌صدا میان دو زن را به تصویر می‌کشد. فیگورها با چشمانی بسته و چهره‌هایی نزدیک به یکدیگر، در فضایی آرام و تأمل‌برانگیز قرار گرفته‌اند؛ فضایی که هم‌زمان مفهوم دوگانگی و ارتباط را تداعی می‌کند؛ لحظه‌ای از درک متقابل، فارغ از هیاهوی دنیای بیرون.", "در این اثر، اکسپرسیونیسم فیگوراتیو مدرن با ساختارهای هندسی الهام‌گرفته از کوبیسم و خطوط جسورانه و مینیمال ترکیب شده است. فرم‌های زاویه‌دار و معمارانه در تضاد با انحنای نرم چشم‌های بسته قرار گرفته‌اند، در حالی که بافت غنی و ردِ قابل مشاهده قلم‌مو، به سطوح هندسی عمق و کیفیتی ارگانیک می‌بخشد.", "تضاد میان رنگ‌های خاکی و سبز زیتونی در یکی از فیگورها و پالت چشمگیر سیاه‌وسفید در دیگری، نمایانگر دو هویت متفاوت است که در کنار یکدیگر به نوعی هماهنگی می‌رسند. پس‌زمینه‌ی تیره و عمیق نیز فیگورها را از فضای اطراف جدا کرده و تمرکز را بر ارتباط نزدیک و حضور مشترک آن‌ها قرار می‌دهد."]}, {"title": "وقار پنهان", "paragraphs": ["این اثر تجلی‌گاهی از اکسپرسیونیسم فیگوراتیو مدرن است که با الهام از ساختارهای هندسی کوبیسم و خطوط کشیده و ظریف سبک آرت دکو (Art Deco) خلق شده است.", "در این نقاشی دیجیتال، تضاد میان پترن‌های راه‌راه و دایره‌ای روی لباس‌ها، در کنار فرم‌های کشیده و مینیمال فیگورها، ریتمی بصری و هماهنگ ایجاد می‌کند. چهار زن در کنار یکدیگر قرار گرفته‌اند؛ حضوری آرام و در عین حال قدرتمند که مفهوم وقار، همبستگی و حضور مستقل را به تصویر می‌کشد.", "رنگ سبز پس‌زمینه و تنالیته‌های خاکی، یادآور طراوت، طبیعت و حس ریشه‌دار بودن هستند؛ عناصری که در سکوت و حالت باوقار فیگورها بازتاب پیدا می‌کنند."]}, {"title": "رازِ زمرد", "paragraphs": ["این پرتره معاصر، زنی را در نمای نیم‌رخ به تصویر می‌کشد و با الهام از ساختارهای هندسی کوبیسم و خطوط کشیده و ظریف آرت دکو خلق شده است.", "کلاه هندسی سبز زمردی، بخشی از چشمان او را در سایه پنهان کرده و فضایی از رازآلودگی، اعتمادبه‌نفس و قدرت آرام ایجاد می‌کند. لب‌های قرمز و روشن و حرکت ظریف دست، در تضاد با ساختار زاویه‌دار کلاه و یقه قرار گرفته و بر زنانگی و آرامش درونی تأکید می‌کنند.", "تضاد جسورانه میان سبز زمردی، نارنجیِ گرمِ تراکوتا و پس‌زمینه زرد طلایی و بافت‌دار، ریتمی بصری و زنده ایجاد می‌کند. این فیگور از طریق فرم، رنگ و حضور خود، حس خودباوری و قدرتی آرام را منتقل می‌کند."]}, {"title": "پرتره‌ای از میراث", "paragraphs": ["این پرتره معاصر، مفهوم هویت، حضور و زیورآرایی با الهام از فرهنگ‌های بومی را از طریق یک ترکیب‌بندی جسورانه و هندسی بررسی می‌کند. فیگور با حضوری آرام اما قدرتمند به تصویر کشیده شده و در میان لایه‌هایی از الگوها و فرم‌های تزئینی با الهام از نقوش سنتی قرار گرفته است.", "اشکال هندسی، خطوط کشیده و بافت‌های اکسپرسیو قلم‌مو، تعادلی میان ساختار و حرکت ارگانیک ایجاد می‌کنند. الگوهای منظم و رنگ‌های متضاد، بر فردیت فیگور تأکید کرده و در عین حال کیفیتی ریتمیک و دکوراتیو به ترکیب‌بندی می‌بخشند.", "پالت رنگی خاکی و بافت‌های ملموس، حس گرما و پیوند را ایجاد می‌کنند، در حالی که ساده‌سازی ویژگی‌های چهره باعث می‌شود فرم کلی، الگوها و حضور فیگور در مرکز توجه قرار بگیرند"]}];
+const bindings = [];
+function bind(element, value, html = false) {
+ if (!element) return;
+ bindings.push({element, english:element.innerHTML, persian:value, html});
+ element.dataset.localized = '';
+}
+for (const [selector, values] of Object.entries(translations)) {
+ document.querySelectorAll(selector).forEach((el,i) => bind(el, values[i] || values[0]));
+}
+const escapeText = value => value.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+persianCards.forEach((card,i) => {
+ bind(document.querySelector('[data-copy-for="'+(i+1)+'"]'), '<h3>'+escapeText(card.title)+'</h3>'+card.paragraphs.map(p=>'<p>'+escapeText(p)+'</p>').join(''), true);
+});
+const collectionOrder = [8,12,9,3,2,4,5,7,6,11,10,1];
+const styles = ['هنر فیگوراتیو مدرن / فشن‌آرت مفهومی','تصویرسازی فیگوراتیو هندسی معاصر / الهام‌گرفته از فرهنگ','تصویرسازی فیگوراتیو هندسی معاصر / آرت دکو','تصویرسازی فیگوراتیو هندسی معاصر','تصویرسازی فیگوراتیو هندسی معاصر / الهام‌گرفته از فرهنگ','هنر فیگوراتیو مدرن / فشن‌آرت مفهومی','تصویرسازی فیگوراتیو هندسی معاصر / هنر مفهومی','تصویرسازی هندسی معاصر / الهام‌گرفته از کوبیسم','تصویرسازی فیگوراتیو هندسی معاصر / آرت دکو','تصویرسازی فیگوراتیو هندسی معاصر / آرت دکو','تصویرسازی فیگوراتیو هندسی معاصر / آرت دکو','تصویرسازی هندسی معاصر / منظره معماری'];
+document.querySelectorAll('.collection-card').forEach((el,i) => {
+ bind(el.querySelector('.collection-card-title'),persianCards[collectionOrder[i]-1].title);
+ const lines=el.querySelectorAll('.collection-card-line');
+ bind(lines[0],'تکنیک: نقاشی و تصویرسازی دیجیتال، با بافت‌های بیانگر و رد قلم‌مو');
+ bind(lines[1],'سبک: '+styles[i]);
+});
+const hint=document.querySelector('.collection-drag-hint');
+if(hint) bind(hint,'برای مشاهده آثار بیشتر به چپ و راست بکشید');
+function setLanguage(lang) {
+ const fa=lang==='fa';
+ document.documentElement.lang=fa?'fa':'en';
+ bindings.forEach(({element,english,persian,html})=>{
+  if(!fa || html) element.innerHTML=fa?persian:english;
+  else element.textContent=persian;
+ });
+ document.querySelectorAll('.language-select').forEach(el=>el.value=fa?'fa':'en');
+ document.querySelectorAll('.menu-toggle').forEach(el=>el.setAttribute('aria-label',fa?'باز و بسته کردن فهرست':'Toggle navigation menu'));
+ document.querySelectorAll('.angles-up').forEach(el=>el.setAttribute('aria-label',fa?'بازگشت به بالا':'Back to top'));
+ document.getElementById('process-cards').setAttribute('aria-label',fa?'روند شکل‌گیری آثار؛ برای دیدن همه کارت‌ها به چپ و راست بکشید.':'Artwork process cards. Swipe or use left and right arrow keys to browse.');
+ try{localStorage.setItem('portfolio-language',fa?'fa':'en');}catch{}
+}
+document.querySelectorAll('.language-select').forEach(el=>el.addEventListener('change',()=>setLanguage(el.value)));
+let initial='en';try{initial=localStorage.getItem('portfolio-language')||'en';}catch{}
+setLanguage(initial);
+})();
+</script>
+
 </body>
 </html>
