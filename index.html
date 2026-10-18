@@ -464,12 +464,12 @@
     font-weight: 300;
     font-size: 16px;
     color: var(--ink-dim);
-    margin: 0 0 80px;
+    margin: 0 0 56px;
   }
 
   .cr-collab{
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 340px minmax(0, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-areas:
       ".  title .  "
       "s1 s2    s3 ";
@@ -489,8 +489,6 @@
     justify-self: center;
     width: 340px;
     max-width: 100%;
-    text-align: left;
-    transform: translateX(54px);
     margin: 0;
   }
 
@@ -505,11 +503,9 @@
     justify-self: center;
     width: 340px;
     max-width: 100%;
-    transform: translateX(54px);
   }
   .cr-step-3{ grid-area: s3; min-width: 0; }
 
-  .cr-step-2 > .cr-step-title{ text-align: left; }
   .cr-step-2 > .cr-step-body{ text-align: center; margin: 0 auto; }
 
   .cr-step-1 > .cr-step-body,
@@ -522,7 +518,7 @@
     line-height: 1.3;
     color: #BC9449;
     white-space: nowrap;
-    margin: 0 0 22px;
+    margin: 0 0 16px;
   }
 
   .cr-step-body{
@@ -559,7 +555,7 @@
       grid-template-columns: 1fr;
       grid-template-areas: "title" "s1" "s2" "s3";
       justify-items: center;
-      gap: 40px;
+      gap: 28px;
       margin-bottom: 50px;
     }
     .cr-process-title{ font-size: 20px; text-align: center; }
@@ -1525,23 +1521,17 @@ html[lang="en"] .process-copy p,html[lang="fa"] .process-copy p,
 html[lang="en"] .process-story-copy,html[lang="fa"] .process-story-copy,
 html[lang="en"] .process-story-copy p,html[lang="fa"] .process-story-copy p,
 html[lang="en"] .process-story-copy h3,html[lang="fa"] .process-story-copy h3{text-align:center;}
-/* Keep long artwork descriptions balanced and readable. */
+/* Keep artwork-card layout unchanged; strengthen titles and body copy by weight only. */
 .process-copy p,.process-story-copy p{ text-wrap:pretty; widows:2; orphans:2; }
-.process-story{height:493px;grid-template-rows:211px 230px;}
-.process-story-copy{height:230px;padding:9px 10px 6px;font-size:9.5px;line-height:1.25;font-weight:400;overflow-wrap:normal;word-break:normal;}
-.process-story-copy h3{font-size:10px;line-height:1.25;font-weight:600;margin:0 0 7px;}
-.process-story-copy p{font-size:9.5px;line-height:1.25;font-weight:400;margin:0 0 6px;}
-html[lang="fa"] .process-story-copy p{line-height:1.25;margin-bottom:6px;}
-html[lang="fa"] .process-story-copy h3{line-height:1.25;}
-@media(max-width:600px){
-  .process-card-slot{flex-basis:calc(100% - 24px);aspect-ratio:auto;}
-  .process-card-slot .process-story{position:relative;top:auto;left:auto;width:100%;height:auto;padding:12px;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto auto;column-gap:8px;row-gap:10px;transform:none;}
-  .process-card-slot .process-story img{grid-row:1;width:100%;height:auto;aspect-ratio:293 / 211;border-radius:6px;}
-  .process-card-slot .process-story-copy{grid-column:1 / -1;grid-row:2;width:auto;height:auto;min-height:0;padding:10px 12px 12px;font-size:12px;line-height:1.45;font-weight:400;}
-  .process-card-slot .process-story-copy h3{font-size:13px;line-height:1.35;font-weight:600;margin:0 0 8px;}
-  .process-card-slot .process-story-copy p{font-size:12px;line-height:1.45;font-weight:400;margin:0 0 8px;}
-  html[lang="fa"] .process-card-slot .process-story-copy p{line-height:1.55;margin-bottom:8px;}
-}
+.process-story{height:474px;grid-template-rows:211px 211px;}
+.process-story-copy{height:211px;padding:8px 7px 0;font-size:9px;line-height:1.2;font-weight:400;overflow-wrap:normal;word-break:normal;}
+.process-story-copy h3{font-size:9px;line-height:1.2;font-weight:700;margin:0 0 10px;}
+.process-story-copy p{font-size:9px;line-height:1.2;font-weight:400;margin:0 0 10px;}
+html[lang="fa"] .process-story-copy p{line-height:1.4;margin-bottom:8px;}
+html[lang="fa"] .process-story-copy h3{line-height:1.4;}
+/* Smaller Persian technique and style options; keep labels distinct from descriptions. */
+html[lang="fa"] .collection-card .collection-card-line{font-size:10px;line-height:1.25;font-weight:300;}
+html[lang="fa"] .collection-card .cc-label{font-weight:500;}
 .process-cards,.collection-track,.artworks-track{direction:ltr;}
 @media(max-width:720px){.nav-right .lang{display:flex;}.language-select{font-size:13px;}.nav-right{flex-shrink:0;flex-direction:row-reverse;gap:10px;}}
 
@@ -1795,7 +1785,7 @@ body *{text-align:center !important;}
         <p>My Approach To Creating Each Work Varies According To Its Concept, Subject, And Visual Structure. In My Digital Painting Practice, I Combine Drawing, Color Application, Layering, Form Development, And Painterly Texturing To Gradually Build Each Image.</p>
         <p>In Some Works, The Composition Is Developed Through An Emphasis On Negative Space And The Relationship Between Empty Areas And The Primary Forms. In Others, Form And Space Are Constructed Through Preliminary Drawing, Successive Color Applications, And The Gradual Development Of Visual Details.</p>
         <p>Throughout The Process, I Use Different Brushes And Approaches To Color Application According To The Needs Of Each Work. In Some Pieces, Colors Are Initially Placed In A Simplified And Structured Manner And Are Then Gradually Developed Through Additional Layers Of Color, Light, Shadow, And Texture.</p>
-        <p>My Aim Is To Use The Possibilities Of Digital Painting To Create Works In Which Form, Line, Color, Composition, And Texture Interact With One Another. I Approach Digital Technology Not Simply As A Technical Tool, But As An Independent Medium Through Which I Can Develop My Visual Language And Preserve The Painterly Qualities Of My Work.</p>
+        <p>My Aim Is To Use The Possibilities Of Digital Painting To Create Works In Which Form, Line, Color, Composition, And Texture Interact With One Another. I Approach Digital Technology Not Simply As A Technical Tool, But As An Independent Medium Through Which I Can Develop My Visual Language And Preserve The Painterly Qualities Of My&nbsp;Work.</p>
       </div>
 
 <div class="process-cards" id="process-cards" role="region" aria-label="Artwork process cards. Swipe or use left and right arrow keys to browse." tabindex="0">
