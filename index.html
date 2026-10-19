@@ -85,7 +85,8 @@
   /* All links, including Home, are plain at rest and get the
      rectangle only on hover/focus */
   .nav-links a:hover,
-  .nav-links a:focus-visible{
+  .nav-links a:focus-visible,
+  .nav-links a.is-active{
     border-color: rgba(255,255,255,0.55);
   }
 
@@ -2303,9 +2304,51 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
     }
   });
 
+  function updateActiveNav() {
+    const artworksPage = document.getElementById('artworks-page');
+    const isArtworksPage = artworksPage && !artworksPage.hidden;
+    const links = (isArtworksPage
+      ? document.querySelectorAll('#artworks-navigation a[href^="#"]')
+      : document.querySelectorAll('#primary-navigation a[href^="#"]'));
+
+    let activeHash = '#top';
+    if (isArtworksPage) {
+      activeHash = '#artworks';
+    } else {
+      const commissions = document.getElementById('commissions');
+      const about = document.getElementById('about');
+      const contact = document.getElementById('contact');
+      const navbar = document.querySelector('#home-page .navbar');
+      const markerY = window.scrollY + (navbar ? navbar.offsetHeight : 0) + 40;
+      if (contact && markerY >= contact.offsetTop) activeHash = '#contact';
+      else if (about && markerY >= about.offsetTop) activeHash = '#about';
+      else if (commissions && markerY >= commissions.offsetTop) activeHash = '#commissions';
+    }
+
+    links.forEach(link => {
+      const active = link.getAttribute('href') === activeHash;
+      link.classList.toggle('is-active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }
+
+  let activeNavFrame = 0;
+  function scheduleActiveNavUpdate() {
+    if (activeNavFrame) return;
+    activeNavFrame = requestAnimationFrame(() => {
+      activeNavFrame = 0;
+      updateActiveNav();
+    });
+  }
+
+  window.addEventListener('scroll', scheduleActiveNavUpdate, { passive: true });
+  window.addEventListener('resize', scheduleActiveNavUpdate);
+  window.addEventListener('hashchange', () => requestAnimationFrame(updateActiveNav));
   window.addEventListener('hashchange', updatePageView);
   bindNavLinks();
   navigateToHash(window.location.hash || '#top', true);
+  requestAnimationFrame(updateActiveNav);
 </script>
 
 
