@@ -1503,7 +1503,7 @@
 .language-select{display:flex;align-items:center;gap:8px;font:inherit;color:inherit;background:transparent;border:0;cursor:pointer;padding:6px 2px;max-width:105px;appearance:none;-webkit-appearance:none;}.language-select::after{content:"⌄";font-size:14px;line-height:1;}
 .language-select option{color:#eee;background:#1c403c;}
 .language-select:focus-visible{outline:2px solid #BC9449;outline-offset:3px;}
-.nav-right .lang{display:flex;}
+.nav-right .lang{display:flex;}.language-icon{width:18px;height:18px;flex:0 0 auto;}
 html[lang="en"] [data-localized]{direction:ltr;}
 html[lang="fa"] [data-localized]{direction:rtl;font-family:Tahoma,"SF Pro Text",Arial,sans-serif;text-transform:none;letter-spacing:normal;}
 /* Keep copy aligned with its writing direction while preserving centered headings and controls. */
@@ -1712,7 +1712,7 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
           <path d="M4 7h16M4 12h16M4 17h16"/>
         </svg>
       </button>
-      <div class="lang"><button class="language-select" type="button" aria-label="Switch language">English</button></div>
+      <div class="lang"><svg class="language-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></svg><button class="language-select" type="button" aria-label="Switch language">English</button></div>
     </div>
   </nav>
 
@@ -1870,7 +1870,7 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
           <path d="M4 7h16M4 12h16M4 17h16"/>
         </svg>
       </button>
-      <div class="lang"><button class="language-select" type="button" aria-label="Switch language">English</button></div>
+      <div class="lang"><svg class="language-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></svg><button class="language-select" type="button" aria-label="Switch language">English</button></div>
     </div>
   </nav>
   <main class="artworks-main" id="artworks">
