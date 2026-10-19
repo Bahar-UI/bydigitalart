@@ -1515,11 +1515,15 @@
 }
 
 
-/* Keep the faces of the two elongated portraits in view. */
+/* Keep artwork subjects comfortably framed in the collection thumbnails. */
 .artworks-group .artworks-card:nth-child(2) img,
-.artworks-group .artworks-card:nth-child(5) img,
+.artworks-group .artworks-card:nth-child(5) img{object-position:50% 0%;}
+.collection-track .collection-card:nth-child(1) .collection-image,
+.collection-track .collection-card:nth-child(1) .collection-hover-image{object-position:50% 0%;}
 .collection-track .collection-card:nth-child(2) .collection-image,
-.collection-track .collection-card:nth-child(5) .collection-image{object-position:50% 0%;}
+.collection-track .collection-card:nth-child(2) .collection-hover-image,
+.collection-track .collection-card:nth-child(5) .collection-image,
+.collection-track .collection-card:nth-child(5) .collection-hover-image{object-position:50% 22%;}
 
 
 .process-card-slot{display:contents;}
