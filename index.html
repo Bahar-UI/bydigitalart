@@ -102,6 +102,11 @@
     transform:scaleX(1);
   }
 
+  .nav-links a.is-active,
+  .nav-links a[aria-current="page"]{
+    color:var(--gold);
+  }
+
   html[lang="fa"] .nav-links a::after{
     transform-origin:right center;
   }
@@ -929,7 +934,7 @@
   }
 
   .artworks-view .navbar a[aria-current="page"]{
-    color:var(--gold-light);
+    color:var(--gold);
   }
 
   .artworks-main{
