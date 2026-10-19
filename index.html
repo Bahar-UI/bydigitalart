@@ -1712,7 +1712,7 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
           <path d="M4 7h16M4 12h16M4 17h16"/>
         </svg>
       </button>
-      <div class="lang"><select class="language-select" aria-label="Language / زبان"><option value="en" lang="en">English</option><option value="fa" lang="fa">فارسی</option></select></div>
+      <div class="lang"><button class="language-select" type="button" aria-label="Switch language">English</button></div>
     </div>
   </nav>
 
@@ -1870,7 +1870,7 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
           <path d="M4 7h16M4 12h16M4 17h16"/>
         </svg>
       </button>
-      <div class="lang"><select class="language-select" aria-label="Language / زبان"><option value="en" lang="en">English</option><option value="fa" lang="fa">فارسی</option></select></div>
+      <div class="lang"><button class="language-select" type="button" aria-label="Switch language">English</button></div>
     </div>
   </nav>
   <main class="artworks-main" id="artworks">
@@ -2344,13 +2344,13 @@ function setLanguage(lang) {
   if(!fa || html) element.innerHTML=fa?persian:english;
   else element.textContent=persian;
  });
- document.querySelectorAll('.language-select').forEach(el=>el.value=fa?'fa':'en');
+ document.querySelectorAll('.language-select').forEach(el=>{ el.textContent=fa?'English':'فارسی'; el.setAttribute('aria-label',fa?'Switch language to English':'تغییر زبان به فارسی'); });
  document.querySelectorAll('.menu-toggle').forEach(el=>el.setAttribute('aria-label',fa?'باز و بسته کردن فهرست':'Toggle navigation menu'));
  document.querySelectorAll('.angles-up').forEach(el=>el.setAttribute('aria-label',fa?'بازگشت به بالا':'Back to top'));
  document.getElementById('process-cards').setAttribute('aria-label',fa?'روند شکل‌گیری آثار؛ برای دیدن همه کارت‌ها به چپ و راست بکشید.':'Artwork process cards. Swipe or use left and right arrow keys to browse.');
  try{localStorage.setItem('portfolio-language',fa?'fa':'en');}catch{}
 }
-document.querySelectorAll('.language-select').forEach(el=>el.addEventListener('change',()=>setLanguage(el.value)));
+document.querySelectorAll('.language-select').forEach(el=>el.addEventListener('click',()=>setLanguage(document.documentElement.lang==='fa'?'en':'fa')));
 let initial='en';try{initial=localStorage.getItem('portfolio-language')||'en';}catch{}
 setLanguage(initial);
 })();
