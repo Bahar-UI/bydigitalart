@@ -1478,9 +1478,9 @@
 
 /* Exact artwork process card dimensions, shared by desktop and mobile. */
 .process-cards{width:calc(100% - 24px);max-width:1440px;--card-gap:20px;}
-.process-story{flex:0 0 680px;width:680px;height:524px;box-sizing:border-box;padding:20px 15px 18px;grid-template-columns:293px 345px;grid-template-rows:211px 261px;column-gap:12px;row-gap:14px;}
-.process-story img{width:293px;height:211px;aspect-ratio:auto;border-radius:16px;object-fit:contain;}
-.process-story-copy{grid-column:2;grid-row:2;align-self:start;box-sizing:border-box;width:345px;height:261px;padding:10px 12px 8px;font-family:"SF Pro Text","SF Pro Display",-apple-system,BlinkMacSystemFont,sans-serif;font-size:9px;line-height:1.2;font-weight:100;}
+.process-story{flex:0 0 700px;width:700px;height:536px;box-sizing:border-box;padding:20px 15px 18px;grid-template-columns:310px 348px;grid-template-rows:223px 261px;column-gap:12px;row-gap:14px;}
+.process-story img{width:310px;height:223px;aspect-ratio:auto;border-radius:16px;object-fit:contain;}
+.process-story-copy{grid-column:2;grid-row:2;align-self:start;box-sizing:border-box;width:348px;height:261px;padding:10px 12px 8px;font-family:"SF Pro Text","SF Pro Display",-apple-system,BlinkMacSystemFont,sans-serif;font-size:9px;line-height:1.2;font-weight:100;}
 .process-story-copy h3{font-family:inherit;font-size:9px;line-height:1.2;font-weight:500;margin:0 0 10px;}
 .process-story-copy p{font-family:inherit;font-size:9px;line-height:1.2;font-weight:100;margin:0 0 10px;}
 .process-story-copy p:last-child{margin-bottom:0;}
@@ -1530,7 +1530,7 @@
 .process-card-slot{display:contents;}
 @media(max-width:600px){
 .process-cards{--mobile-card-scale:1;}
-.process-card-slot{display:block;position:relative;flex:0 0 calc((100% - 16px) / 1.5);min-width:0;aspect-ratio:680 / 524;}
+.process-card-slot{display:block;position:relative;flex:0 0 calc((100% - 16px) / 1.5);min-width:0;aspect-ratio:700 / 536;}
 .process-card-slot .process-story{position:absolute;top:0;left:0;transform:scale(var(--mobile-card-scale));transform-origin:top left;}
 }
 
@@ -1559,8 +1559,8 @@ html[lang="en"] .process-story-copy p,html[lang="fa"] .process-story-copy p,
 html[lang="en"] .process-story-copy h3,html[lang="fa"] .process-story-copy h3{text-align:center;}
 /* Keep artwork-card layout unchanged; strengthen titles and body copy by weight only. */
 .process-copy p,.process-story-copy p{ text-wrap:pretty; widows:2; orphans:2; }
-.process-story{height:524px;grid-template-rows:211px 261px;}
-.process-story-copy{height:261px;padding:10px 12px 8px;font-size:9px;line-height:1.2;font-weight:400;overflow-wrap:normal;word-break:normal;}
+.process-story{height:536px;grid-template-rows:223px 261px;}
+.process-story-copy{width:348px;height:261px;padding:10px 12px 8px;font-size:9px;line-height:1.2;font-weight:400;overflow-wrap:normal;word-break:normal;}
 .process-story-copy h3{font-size:9px;line-height:1.2;font-weight:800;margin:0 0 10px;}
 .process-story-copy p{font-size:9px;line-height:1.2;font-weight:400;margin:0 0 10px;}
 html[lang="fa"] .process-story-copy p{line-height:1.4;margin-bottom:8px;}
@@ -2198,7 +2198,7 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
   // Native touch scrolling; mouse dragging and keyboard access for the process row.
   const processRow = document.getElementById('process-cards');
   const sizeMobileProcessCards = () => {
-    const scale = Math.max(0, (processRow.clientWidth - 16) / 1.5 / 680);
+    const scale = Math.max(0, (processRow.clientWidth - 16) / 1.5 / 700);
     processRow.style.setProperty('--mobile-card-scale', String(scale));
   };
   new ResizeObserver(sizeMobileProcessCards).observe(processRow);
