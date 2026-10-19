@@ -1849,6 +1849,30 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
   }
 
 </style>
+<style>
+/* Final mobile override: beat the later desktop !important frame dimensions. */
+@media(max-width:600px){
+  .process-story[data-artwork-group="2"] .process-image-zoom,
+  .process-story[data-artwork-group="12"] .process-image-zoom{
+    width:100% !important;
+    height:auto !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    aspect-ratio:329 / 237 !important;
+    justify-self:stretch !important;
+    align-self:start !important;
+    border-radius:10px !important;
+    clip-path:inset(0 round 10px) !important;
+  }
+  .process-story[data-artwork-group="2"] .process-image-zoom img,
+  .process-story[data-artwork-group="12"] .process-image-zoom img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    transform:none !important;
+  }
+}
+</style>
 </head>
 <body>
 <!-- Strengthen opaque paper edges without outlining the transparent cyan glow. -->
