@@ -1671,6 +1671,29 @@ html[lang="fa"] .collection-card .cc-label{font-weight:500;}
   }
 }
 
+
+/* The two African portrait frames have fixed desktop dimensions above.
+   On phones, let them use the same grid cell sizing as every other photo. */
+@media(max-width:600px){
+  .process-story[data-artwork-group="2"] .process-image-zoom,
+  .process-story[data-artwork-group="12"] .process-image-zoom{
+    width:100% !important;
+    height:auto !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    aspect-ratio:329 / 237;
+    justify-self:stretch;
+    align-self:start;
+  }
+  .process-story[data-artwork-group="2"] .process-image-zoom img,
+  .process-story[data-artwork-group="12"] .process-image-zoom img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    transform:none !important;
+  }
+}
+
 </style>
 <style>
 /* Hero reference: preserve the supplied torn edges and their transparent glow. */
