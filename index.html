@@ -1873,6 +1873,18 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
   }
 }
 </style>
+<style>
+/* Phone layout: keep copy alongside the lower artwork and limit it to fit
+   the image height. Full descriptions remain available on larger screens. */
+@media(max-width:600px){
+  .process-card-slot .process-story-copy{
+    align-self:center !important;
+  }
+  .process-card-slot .process-story-copy p:nth-of-type(n+2){
+    display:none !important;
+  }
+}
+</style>
 </head>
 <body>
 <!-- Strengthen opaque paper edges without outlining the transparent cyan glow. -->
