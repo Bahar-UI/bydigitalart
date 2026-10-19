@@ -1266,13 +1266,16 @@
     justify-content:center;
     width:44px;
     height:44px;
+    padding:0;
     color:var(--ink);
     background:transparent;
-    border:1px solid rgba(255,255,255,.45);
-    border-radius:8px;
+    border:0;
+    border-radius:0;
+    box-shadow:none;
     cursor:pointer;
   }
-  .menu-toggle svg{ width:24px; height:24px; }
+  .menu-toggle svg{ width:27px; height:27px; }
+  .menu-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
 
   @media (max-width: 720px){
     body{ overflow-x:hidden; }
