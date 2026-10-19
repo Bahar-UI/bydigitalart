@@ -1539,10 +1539,14 @@
 }
 
 
-.language-select{display:flex;align-items:center;gap:8px;font:inherit;color:inherit;background:transparent;border:0;cursor:pointer;padding:6px 2px;max-width:105px;appearance:none;-webkit-appearance:none;}.language-select::after{content:"⌄";font-size:14px;line-height:1;}
-.language-select option{color:#eee;background:#1c403c;}
-.language-select:focus-visible{outline:2px solid #BC9449;outline-offset:3px;}
-.nav-right .lang{display:flex;}.language-icon{width:18px;height:18px;flex:0 0 auto;}
+.lang-switch{display:flex;align-items:center;justify-content:center;gap:9px;min-height:44px;white-space:nowrap;}
+.language-option{min-width:28px;min-height:44px;padding:0 2px;border:0;background:transparent;color:var(--ink);font:inherit;font-size:15px;letter-spacing:.02em;cursor:pointer;transition:color .2s ease;}
+.language-option[aria-pressed="true"]{color:var(--gold);}
+.language-option:hover{color:var(--gold-light);}
+.language-option:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:3px;}
+.language-divider{display:block;width:1px;height:18px;background:rgba(238,238,238,.62);}
+.nav-right .lang-switch{display:flex;}
+@media(max-width:720px){.language-option{font-size:13px;min-width:26px;}.lang-switch{gap:7px;}}
 html[lang="en"] [data-localized]{direction:ltr;}
 html[lang="fa"] [data-localized]{direction:rtl;font-family:Tahoma,"SF Pro Text",Arial,sans-serif;text-transform:none;letter-spacing:normal;}
 /* Keep copy aligned with its writing direction while preserving centered headings and controls. */
@@ -1751,7 +1755,7 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
           <path d="M4 7h16M4 12h16M4 17h16"/>
         </svg>
       </button>
-      <div class="lang"><svg class="language-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></svg><button class="language-select" type="button" aria-label="Switch language">English</button></div>
+      <div class="lang-switch" role="group" aria-label="Language"><button class="language-option" type="button" data-language="en" aria-pressed="true">En</button><span class="language-divider" aria-hidden="true"></span><button class="language-option" type="button" data-language="fa" aria-pressed="false">Fa</button></div>
     </div>
   </nav>
 
@@ -1909,7 +1913,7 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
           <path d="M4 7h16M4 12h16M4 17h16"/>
         </svg>
       </button>
-      <div class="lang"><svg class="language-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></svg><button class="language-select" type="button" aria-label="Switch language">English</button></div>
+      <div class="lang-switch" role="group" aria-label="Language"><button class="language-option" type="button" data-language="en" aria-pressed="true">En</button><span class="language-divider" aria-hidden="true"></span><button class="language-option" type="button" data-language="fa" aria-pressed="false">Fa</button></div>
     </div>
   </nav>
   <main class="artworks-main" id="artworks">
@@ -2425,13 +2429,13 @@ function setLanguage(lang) {
   if(!fa || html) element.innerHTML=fa?persian:english;
   else element.textContent=persian;
  });
- document.querySelectorAll('.language-select').forEach(el=>{ el.textContent=fa?'English':'فارسی'; el.setAttribute('aria-label',fa?'Switch language to English':'تغییر زبان به فارسی'); });
+ document.querySelectorAll('.language-option').forEach(el=>{ const active=el.dataset.language===(fa?'fa':'en'); el.setAttribute('aria-pressed',String(active)); el.setAttribute('aria-label',el.dataset.language==='en'?'English':'فارسی'); });
  document.querySelectorAll('.menu-toggle').forEach(el=>el.setAttribute('aria-label',fa?'باز و بسته کردن فهرست':'Toggle navigation menu'));
  document.querySelectorAll('.angles-up').forEach(el=>el.setAttribute('aria-label',fa?'بازگشت به بالا':'Back to top'));
  document.getElementById('process-cards').setAttribute('aria-label',fa?'روند شکل‌گیری آثار؛ برای دیدن همه کارت‌ها به چپ و راست بکشید.':'Artwork process cards. Swipe or use left and right arrow keys to browse.');
  try{localStorage.setItem('portfolio-language',fa?'fa':'en');}catch{}
 }
-document.querySelectorAll('.language-select').forEach(el=>el.addEventListener('click',()=>setLanguage(document.documentElement.lang==='fa'?'en':'fa')));
+document.querySelectorAll('.language-option').forEach(el=>el.addEventListener('click',()=>setLanguage(el.dataset.language)));
 let initial='en';try{initial=localStorage.getItem('portfolio-language')||'en';}catch{}
 setLanguage(initial);
 })();
