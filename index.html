@@ -1910,13 +1910,15 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
     inset:auto !important;
     transform:none !important;
     width:100% !important;
-    height:auto !important;
+    height:440px !important;
     min-width:0 !important;
-    min-height:0 !important;
+    min-height:440px !important;
+    max-height:440px !important;
     box-sizing:border-box !important;
     padding:22px 22px 32px !important;
     grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-    grid-template-rows:auto auto !important;
+    grid-template-rows:minmax(0,1fr) minmax(0,1fr) !important;
+    overflow:hidden !important;
     column-gap:10px !important;
     row-gap:10px !important;
     align-items:start !important;
