@@ -1719,6 +1719,41 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
   -webkit-backdrop-filter:blur(12px) saturate(130%);
   backdrop-filter:blur(12px) saturate(130%);
 }
+
+  /* Match the two portrait artworks to the other finished-image frames. */
+  .process-story[data-artwork-group="2"] .process-image-zoom,
+  .process-story[data-artwork-group="12"] .process-image-zoom{
+    display:block !important;
+    width:100% !important;
+    height:100% !important;
+    min-width:0;
+    min-height:0;
+    overflow:hidden !important;
+    border-radius:16px !important;
+    clip-path:inset(0 round 16px) !important;
+  }
+
+  .process-story[data-artwork-group="2"] .process-image-zoom img,
+  .process-story[data-artwork-group="12"] .process-image-zoom img{
+    display:block !important;
+    width:100% !important;
+    height:100% !important;
+    border-radius:inherit !important;
+    object-fit:cover !important;
+    object-position:center;
+    transform:none !important;
+  }
+
+  @media(max-width:600px){
+    .process-story[data-artwork-group="2"] .process-image-zoom,
+    .process-story[data-artwork-group="12"] .process-image-zoom,
+    .process-story[data-artwork-group="2"] .process-image-zoom img,
+    .process-story[data-artwork-group="12"] .process-image-zoom img{
+      border-radius:12px !important;
+      clip-path:inset(0 round 12px) !important;
+    }
+  }
+
 </style>
 </head>
 <body>
