@@ -1886,9 +1886,9 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
 }
 </style>
 <style>
-/* Final mobile override for artwork process cards. Reset every desktop
-   fixed width so the lower image and copy occupy separate equal columns. */
-@media(max-width:600px){
+/* Mobile Figma layout: two process images on top, finished artwork below,
+   followed by the complete title and description across the card width. */
+@media(max-width:900px){
   .process-cards{
     width:calc(100% - 24px) !important;
     gap:12px !important;
@@ -1910,18 +1910,19 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
     inset:auto !important;
     transform:none !important;
     width:100% !important;
-    height:470px !important;
+    height:max(700px, calc(45vw + 525px)) !important;
     min-width:0 !important;
-    min-height:470px !important;
-    max-height:470px !important;
+    min-height:max(700px, calc(45vw + 525px)) !important;
+    max-height:max(700px, calc(45vw + 525px)) !important;
     box-sizing:border-box !important;
-    padding:16px !important;
+    padding:14px 12px 20px !important;
     grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-    grid-template-rows:auto auto !important;
-    overflow:hidden !important;
+    grid-template-rows:auto auto auto !important;
     column-gap:10px !important;
-    row-gap:10px !important;
+    row-gap:12px !important;
+    align-content:start !important;
     align-items:start !important;
+    overflow:hidden !important;
   }
   .process-card-slot .process-story > img{
     display:block !important;
@@ -1931,7 +1932,7 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
     min-width:0 !important;
     aspect-ratio:329 / 237 !important;
     object-fit:contain !important;
-    border-radius:10px !important;
+    border-radius:16px !important;
   }
   .process-card-slot .process-story > img:nth-of-type(1){
     grid-column:1 !important;
@@ -1954,8 +1955,8 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
     min-height:0 !important;
     aspect-ratio:329 / 237 !important;
     overflow:hidden !important;
-    border-radius:10px !important;
-    clip-path:inset(0 round 10px) !important;
+    border-radius:16px !important;
+    clip-path:inset(0 round 16px) !important;
   }
   .process-card-slot .process-story > .process-image-zoom img{
     display:block !important;
@@ -1968,50 +1969,39 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
   }
   .process-card-slot .process-story-copy{
     display:block !important;
-    grid-column:2 !important;
-    grid-row:2 !important;
+    grid-column:1 / -1 !important;
+    grid-row:3 !important;
     align-self:start !important;
     justify-self:stretch !important;
-    margin-top:0 !important;
     width:auto !important;
     max-width:100% !important;
     height:auto !important;
     min-width:0 !important;
-    padding:4px 2px !important;
-    font-size:10px !important;
-    line-height:1.35 !important;
+    padding:0 8px 0 !important;
+    margin:0 !important;
+    text-align:center !important;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif !important;
+    font-size:clamp(12px,3.4vw,15px) !important;
+    line-height:1.5 !important;
+    font-weight:400 !important;
+    overflow:visible !important;
   }
   .process-card-slot .process-story-copy h3{
-    font-size:11px !important;
-    line-height:1.25 !important;
-    margin:0 0 6px !important;
+    font-size:clamp(15px,4vw,19px) !important;
+    line-height:1.35 !important;
+    margin:0 0 12px !important;
   }
   .process-card-slot .process-story-copy p{
     display:block !important;
     overflow:visible !important;
-    font-size:9px !important;
-    line-height:1.2 !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
     font-weight:400 !important;
-    margin:0 0 7px !important;
+    margin:0 0 16px !important;
   }
   .process-card-slot .process-story-copy p:nth-of-type(n+2){
     display:block !important;
   }
-  @media(max-width:480px){
-    .process-card-slot .process-story{
-      height:500px !important;
-      min-height:500px !important;
-      max-height:500px !important;
-    }
-  }
-  @media(max-width:340px){
-    .process-card-slot .process-story{
-      height:520px !important;
-      min-height:520px !important;
-      max-height:520px !important;
-    }
-  }
-
 }
 </style>
 </head>
