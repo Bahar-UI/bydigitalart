@@ -72,6 +72,7 @@
   }
 
   .nav-links a{
+    position:relative;
     color: var(--ink);
     text-decoration:none;
     font-size: 16px;
@@ -82,12 +83,41 @@
     transition: border-color 0.3s ease;
   }
 
+  .nav-links a::after{
+    content:"";
+    position:absolute;
+    left:18px;
+    right:18px;
+    bottom:4px;
+    height:1px;
+    background:currentColor;
+    transform:scaleX(0);
+    transform-origin:left center;
+    transition:transform 420ms cubic-bezier(.22,.8,.32,1);
+    pointer-events:none;
+  }
+
+  .nav-links a:hover::after,
+  .nav-links a:focus-visible::after{
+    transform:scaleX(1);
+  }
+
+  .nav-links a.is-active,
+  .nav-links a[aria-current="page"]{
+    color:var(--gold);
+  }
+
+  html[lang="fa"] .nav-links a::after{
+    transform-origin:right center;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .nav-links a::after{transition-duration:0.01ms;}
+  }
+
   /* All links, including Home, are plain at rest and get the
      rectangle only on hover/focus */
-  .nav-links a:hover,
-  .nav-links a:focus-visible{
-    border-color: rgba(255,255,255,0.55);
-  }
+
 
   .nav-right{
     display:flex;
@@ -282,8 +312,8 @@
     overflow: hidden;
     background-color: #16302C;
     background-image: url("assets/image-001.png");
-    background-size: cover;
-    background-position: top center;
+    background-size: 100% 100%;
+    background-position: center;
     background-repeat: no-repeat;
     padding: 90px 0 100px;
     text-align: center;
@@ -464,7 +494,7 @@
     font-weight: 300;
     font-size: 16px;
     color: var(--ink-dim);
-    margin: 0 0 56px;
+    margin: 0 0 124px;
   }
 
   .cr-collab{
@@ -476,7 +506,7 @@
     column-gap: 24px;
     row-gap: 24px;
     align-items: start;
-    margin-bottom: 76px;
+    margin-bottom: 40px;
     text-align: center;
   }
 
@@ -501,7 +531,7 @@
   .cr-step-2{
     grid-area: s2;
     justify-self: center;
-    width: 340px;
+    width: 360px;
     max-width: 100%;
   }
   .cr-step-3{ grid-area: s3; min-width: 0; }
@@ -510,6 +540,7 @@
 
   .cr-step-1 > .cr-step-body,
   .cr-step-3 > .cr-step-body{ margin: 0 auto; }
+
 
   .cr-step-title{
     font-family: 'Libre Baskerville', Georgia, serif;
@@ -524,10 +555,10 @@
   .cr-step-body{
     font-family: 'Libre Baskerville', Georgia, serif;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.6;
     color: #EEEEEE;
-    max-width: 320px;
+    max-width: 360px;
   }
 
   .cr-actions{
@@ -548,7 +579,7 @@
     .commission-request{ padding: 60px 20px 70px; }
     .cr-title{ font-size: 32px; margin-bottom: 24px; }
     .cr-subtitle{ font-size: 19px; margin-bottom: 18px; }
-    .cr-note{ font-size: 14px; margin-bottom: 50px; }
+    .cr-note{ font-size: 14px; margin-bottom: 94px; }
     .cr-container{ padding: 0 20px; }
     .cr-process-title, .cr-step-2{ transform: none; }
     .cr-collab{
@@ -556,7 +587,7 @@
       grid-template-areas: "title" "s1" "s2" "s3";
       justify-items: center;
       gap: 28px;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
     .cr-process-title{ font-size: 20px; text-align: center; }
     .cr-step{ width: 100%; max-width: 340px; padding: 0; }
@@ -663,18 +694,18 @@
   .contact-title{
     margin: 0;
     font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 40px;
-    line-height: 1.15;
+    font-size: clamp(28px, 2.4vw, 34px);
+    line-height: 1.2;
     font-weight: 700;
     color: var(--ink);
   }
 
   .contact-copy{
     max-width: 1120px;
-    margin: 42px auto 0;
+    margin: 34px auto 0;
     font-family: 'Libre Baskerville', Georgia, serif;
-    font-size: 36px;
-    line-height: 1.3;
+    font-size: clamp(19px, 1.65vw, 24px);
+    line-height: 1.5;
     font-weight: 400;
     color: var(--ink);
   }
@@ -775,8 +806,8 @@
 
   @media (max-width: 720px){
     .contact{ padding: 66px 24px 84px; }
-    .contact-title{ font-size: 30px; }
-    .contact-copy{ margin-top: 30px; font-size: 23px; line-height: 1.38; }
+    .contact-title{ font-size: 27px; }
+    .contact-copy{ margin-top: 26px; font-size: 19px; line-height: 1.5; }
     .contact-actions{ margin-top: 34px; gap: 14px; }
     .contact-btn{ padding: 8px 18px; font-size: 24px; }
     .angles-up{ top: 66px; right: 20px; width: 30px; height: 50px; }
@@ -785,12 +816,12 @@
   /* ================= THANK YOU ================= */
   .thank-you{
     background: var(--deep-green);
-    padding: 0 77px 34px;
+    padding: 0 0 34px;
   }
 
   .thank-you-card{
     width: 100%;
-    max-width: 1442px;
+    max-width: none;
     min-height: 372px;
     margin: 0 auto;
     padding: 38px 30px 28px;
@@ -883,7 +914,7 @@
   }
 
   @media (max-width: 720px){
-    .thank-you{ padding: 0 10px 20px; }
+    .thank-you{ padding: 0 0 20px; }
     .thank-you-card{ min-height: 280px; padding: 32px 20px 24px; }
     .thank-you-portrait-wrap,
     .thank-you-portrait{ width: 140px; height: 140px; }
@@ -903,7 +934,7 @@
   }
 
   .artworks-view .navbar a[aria-current="page"]{
-    color:var(--gold-light);
+    color:var(--gold);
   }
 
   .artworks-main{
@@ -943,7 +974,7 @@
 
   .artworks-marquee{
     width:100%;
-    margin-top:35px;
+    margin-top:55px;
     padding:0;
     overflow:hidden;
     contain:paint;
@@ -984,7 +1015,7 @@
   .artworks-card:hover img{ transform:scale(1.035); }
 
   .collection-section{
-    margin-top:82px;
+    margin-top:90px;
     padding-bottom:100px;
   }
 
@@ -1216,7 +1247,7 @@
   @media (max-width:700px){
     .artworks-main{ min-height:calc(100vh - 76px); }
     .artworks-breadcrumb{ margin:20px 20px 0; }
-    .artworks-marquee{ margin-top:35px; }
+    .artworks-marquee{ margin-top:50px; }
     .artworks-card{ width:147px; height:147px; border-radius:50%; }
     .artworks-track,.artworks-group{ gap:18px; }
     .collection-title{ margin-right:20px; margin-left:20px; }
@@ -1235,13 +1266,16 @@
     justify-content:center;
     width:44px;
     height:44px;
+    padding:0;
     color:var(--ink);
     background:transparent;
-    border:1px solid rgba(255,255,255,.45);
-    border-radius:8px;
+    border:0;
+    border-radius:0;
+    box-shadow:none;
     cursor:pointer;
   }
-  .menu-toggle svg{ width:24px; height:24px; }
+  .menu-toggle svg{ width:27px; height:27px; }
+  .menu-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
 
   @media (max-width: 720px){
     body{ overflow-x:hidden; }
@@ -1319,7 +1353,7 @@
   /* Collection cards: compact, touch-friendly and visibly swipeable on phones */
   .collection-drag-hint{ display:none; }
   @media (max-width:700px){
-    .collection-section{ margin-top:64px; padding-bottom:70px; }
+    .collection-section{ margin-top:70px; padding-bottom:70px; }
     .collection-title{ font-size:30px; }
     .collection-drag-hint{
       display:flex; align-items:center; justify-content:center; gap:10px;
@@ -1447,9 +1481,13 @@
 
 /* Exact artwork process card dimensions, shared by desktop and mobile. */
 .process-cards{width:calc(100% - 24px);max-width:1440px;--card-gap:20px;}
-.process-story{flex:0 0 628px;width:628px;height:474px;box-sizing:border-box;padding:20px 15px 18px;grid-template-columns:293px 293px;grid-template-rows:211px 211px;column-gap:12px;row-gap:14px;}
-.process-story img{width:293px;height:211px;aspect-ratio:auto;border-radius:16px;object-fit:contain;}
-.process-story-copy{grid-column:2;grid-row:2;align-self:start;box-sizing:border-box;width:293px;height:211px;padding:8px 7px 0;font-family:"SF Pro Text","SF Pro Display",-apple-system,BlinkMacSystemFont,sans-serif;font-size:9px;line-height:1.2;font-weight:100;}
+.process-story{flex:0 0 700px;width:700px;height:550px;box-sizing:border-box;padding:20px 15px 18px;grid-template-columns:329px 329px;grid-template-rows:237px 261px;column-gap:12px;row-gap:14px;}
+.process-story img{width:329px;height:237px;aspect-ratio:auto;border-radius:16px;object-fit:contain;}
+.process-image-zoom{width:329px;height:237px;overflow:hidden;border-radius:16px;clip-path:inset(0 round 16px);isolation:isolate;}
+.process-image-zoom img{border-radius:16px;transform:scale(1.35);}
+@media(max-width:600px){.process-image-zoom,.process-image-zoom img{border-radius:4px;}.process-image-zoom{clip-path:inset(0 round 4px);}}
+
+.process-story-copy{grid-column:2;grid-row:2;align-self:start;box-sizing:border-box;width:329px;height:261px;padding:10px 12px 8px;font-family:"SF Pro Text","SF Pro Display",-apple-system,BlinkMacSystemFont,sans-serif;font-size:9px;line-height:1.2;font-weight:100;}
 .process-story-copy h3{font-family:inherit;font-size:9px;line-height:1.2;font-weight:500;margin:0 0 10px;}
 .process-story-copy p{font-family:inherit;font-size:9px;line-height:1.2;font-weight:100;margin:0 0 10px;}
 .process-story-copy p:last-child{margin-bottom:0;}
@@ -1484,25 +1522,34 @@
 }
 
 
-/* Keep the faces of the two elongated portraits in view. */
+/* Keep artwork subjects comfortably framed in the collection thumbnails. */
+.artworks-group .artworks-card:nth-child(1) img{object-position:50% 0%;}
 .artworks-group .artworks-card:nth-child(2) img,
-.artworks-group .artworks-card:nth-child(5) img,
+.artworks-group .artworks-card:nth-child(5) img{object-position:50% 22%;}
+.collection-track .collection-card:nth-child(1) .collection-image,
+.collection-track .collection-card:nth-child(1) .collection-hover-image{object-position:50% 0%;}
 .collection-track .collection-card:nth-child(2) .collection-image,
-.collection-track .collection-card:nth-child(5) .collection-image{object-position:50% 0%;}
+.collection-track .collection-card:nth-child(2) .collection-hover-image,
+.collection-track .collection-card:nth-child(5) .collection-image,
+.collection-track .collection-card:nth-child(5) .collection-hover-image{object-position:50% 22%;}
 
 
 .process-card-slot{display:contents;}
 @media(max-width:600px){
 .process-cards{--mobile-card-scale:1;}
-.process-card-slot{display:block;position:relative;flex:0 0 calc((100% - 16px) / 1.5);min-width:0;aspect-ratio:628 / 474;}
+.process-card-slot{display:block;position:relative;flex:0 0 calc((100% - 16px) / 1.5);min-width:0;aspect-ratio:700 / 550;}
 .process-card-slot .process-story{position:absolute;top:0;left:0;transform:scale(var(--mobile-card-scale));transform-origin:top left;}
 }
 
 
-.language-select{font:inherit;color:inherit;background:transparent;border:0;cursor:pointer;padding:6px 2px;max-width:105px;}
-.language-select option{color:#eee;background:#1c403c;}
-.language-select:focus-visible{outline:2px solid #BC9449;outline-offset:3px;}
-.nav-right .lang{display:flex;}
+.lang-switch{display:flex;align-items:center;justify-content:center;gap:9px;min-height:44px;white-space:nowrap;}
+.language-option{min-width:28px;min-height:44px;padding:0 2px;border:0;background:transparent;color:var(--ink);font:inherit;font-size:15px;letter-spacing:.02em;cursor:pointer;transition:color .2s ease;}
+.language-option[aria-pressed="true"]{color:var(--gold);}
+.language-option:hover{color:var(--gold-light);}
+.language-option:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:3px;}
+.language-divider{display:block;width:1px;height:18px;background:rgba(238,238,238,.62);}
+.nav-right .lang-switch{display:flex;}
+@media(max-width:720px){.language-option{font-size:13px;min-width:26px;}.lang-switch{gap:7px;}}
 html[lang="en"] [data-localized]{direction:ltr;}
 html[lang="fa"] [data-localized]{direction:rtl;font-family:Tahoma,"SF Pro Text",Arial,sans-serif;text-transform:none;letter-spacing:normal;}
 /* Keep copy aligned with its writing direction while preserving centered headings and controls. */
@@ -1523,9 +1570,9 @@ html[lang="en"] .process-story-copy p,html[lang="fa"] .process-story-copy p,
 html[lang="en"] .process-story-copy h3,html[lang="fa"] .process-story-copy h3{text-align:center;}
 /* Keep artwork-card layout unchanged; strengthen titles and body copy by weight only. */
 .process-copy p,.process-story-copy p{ text-wrap:pretty; widows:2; orphans:2; }
-.process-story{height:474px;grid-template-rows:211px 211px;}
-.process-story-copy{height:211px;padding:8px 7px 0;font-size:9px;line-height:1.2;font-weight:400;overflow-wrap:normal;word-break:normal;}
-.process-story-copy h3{font-size:9px;line-height:1.2;font-weight:700;margin:0 0 10px;}
+.process-story{height:550px;grid-template-rows:237px 261px;}
+.process-story-copy{width:329px;height:261px;padding:10px 12px 8px;font-size:9px;line-height:1.2;font-weight:400;overflow-wrap:normal;word-break:normal;}
+.process-story-copy h3{font-size:9px;line-height:1.2;font-weight:800;margin:0 0 10px;}
 .process-story-copy p{font-size:9px;line-height:1.2;font-weight:400;margin:0 0 10px;}
 html[lang="fa"] .process-story-copy p{line-height:1.4;margin-bottom:8px;}
 html[lang="fa"] .process-story-copy h3{line-height:1.4;}
@@ -1543,6 +1590,123 @@ html[lang="fa"] .collection-card .cc-label{font-weight:500;}
 .collection-card .collection-info{transition:opacity 300ms ease;}
 .collection-card:hover .collection-info,
 .collection-card:focus-within .collection-info{opacity:0;}
+
+/* Mobile artwork cards follow the Figma composition:
+   two images above, finished art centered below, then the complete copy. */
+@media(max-width:600px){
+  .process-cards{
+    width:calc(100% - 24px);
+    --card-gap:12px;
+    gap:12px;
+    align-items:stretch;
+    scroll-snap-type:x mandatory;
+    padding-bottom:4px;
+  }
+  .process-card-slot{
+    display:flex;
+    flex:0 0 100%;
+    width:100%;
+    min-height:0;
+    aspect-ratio:auto;
+    position:relative;
+    scroll-snap-align:center;
+  }
+  .process-card-slot .process-story{
+    position:relative;
+    inset:auto;
+    transform:none;
+    transform-origin:initial;
+    flex:1 1 auto;
+    width:100%;
+    height:auto;
+    min-height:0;
+    padding:18px 18px 22px;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-rows:auto auto auto;
+    column-gap:12px;
+    row-gap:12px;
+    align-items:start;
+    align-content:start;
+  }
+  .process-card-slot .process-story > img:nth-of-type(1),
+  .process-card-slot .process-story > img:nth-of-type(2){
+    grid-row:1;
+    width:100%;
+    height:auto;
+    aspect-ratio:329 / 237;
+    object-fit:contain;
+    border-radius:10px;
+  }
+  .process-card-slot .process-story > img:nth-of-type(1){grid-column:1;}
+  .process-card-slot .process-story > img:nth-of-type(2){grid-column:2;}
+  .process-card-slot .process-story > .process-image-zoom{
+    grid-column:1 / -1;
+    grid-row:2;
+    justify-self:center;
+    width:calc((100% - 12px) / 2);
+    height:auto;
+    aspect-ratio:329 / 237;
+    border-radius:10px;
+    clip-path:inset(0 round 10px);
+  }
+  .process-card-slot .process-story > .process-image-zoom img{
+    width:100%;
+    height:100%;
+    border-radius:10px;
+    transform:none;
+    object-fit:cover;
+  }
+  .process-card-slot .process-story-copy{
+    grid-column:1 / -1;
+    grid-row:3;
+    align-self:start;
+    width:auto;
+    height:auto;
+    margin-top:0;
+    padding:0 2px;
+    font-size:12px;
+    line-height:1.45;
+    font-weight:400;
+    overflow:visible;
+  }
+  .process-card-slot .process-story-copy h3{
+    font-size:14px;
+    line-height:1.3;
+    margin:0 0 8px;
+  }
+  .process-card-slot .process-story-copy p{
+    display:block;
+    font-size:12px;
+    line-height:1.45;
+    font-weight:400;
+    margin:0 0 8px;
+  }
+  .process-card-slot .process-story-copy p:last-child{margin-bottom:0;}
+}
+
+
+/* The two African portrait frames have fixed desktop dimensions above.
+   On phones, let them use the same grid cell sizing as every other photo. */
+@media(max-width:600px){
+  .process-story[data-artwork-group="2"] .process-image-zoom,
+  .process-story[data-artwork-group="12"] .process-image-zoom{
+    width:100% !important;
+    height:auto !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    aspect-ratio:329 / 237;
+    justify-self:stretch;
+    align-self:start;
+  }
+  .process-story[data-artwork-group="2"] .process-image-zoom img,
+  .process-story[data-artwork-group="12"] .process-image-zoom img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    transform:none !important;
+  }
+}
+
 </style>
 <style>
 /* Hero reference: preserve the supplied torn edges and their transparent glow. */
@@ -1558,9 +1722,324 @@ html[lang="fa"] .collection-card .cc-label{font-weight:500;}
   .hero .visual { order:4; margin-top:12px; }
 }
 
+/* Slightly enlarge and strengthen Persian navigation labels. */
+html[lang="fa"] .nav-links a{font-size:18px;font-weight:500;}
+@media(max-width:720px){html[lang="fa"] .nav-links a{font-size:17px;}}
+
 /* Site-wide typography alignment: center every visible text block in both languages. */
 body *{text-align:center !important;}
+
+
+
+/* Submitted interior image as the full hero background, with readable overlay copy. */
+.hero{
+  min-height:100vh;
+  padding-bottom:0;
+  background:url("assets/hero-banner.svg") center center / cover no-repeat;
+}
+.hero::before{
+  background:
+    linear-gradient(90deg,rgba(9,27,24,.06) 28%,rgba(9,27,24,.20) 56%,rgba(9,27,24,.66) 100%),
+    linear-gradient(180deg,rgba(9,27,24,.12),rgba(9,27,24,.20));
+  mix-blend-mode:normal;
+}
+.hero .visual{display:none !important;}
+.hero .intro{
+  position:absolute;
+  z-index:10;
+  top:50%;
+  left:auto;
+  right:clamp(16px,2.5vw,40px);
+  width:min(36vw,480px);
+  max-width:none;
+  margin:0;
+  padding:0;
+  transform:translateY(-50%);
+}
+.hero .headline{
+  white-space:normal;
+  font-size:clamp(34px,3.2vw,48px);
+  line-height:1.2;
+  text-shadow:0 2px 16px rgba(0,0,0,.48);
+}
+.hero .subhead{
+  max-width:none;
+  margin:22px auto 0;
+  font-size:clamp(18px,1.7vw,23px);
+  line-height:1.5;
+  text-shadow:0 2px 12px rgba(0,0,0,.55);
+}
+.hero .cta{margin-top:32px;}
+@media(max-width:720px){
+  .hero{
+    min-height:100svh;
+    padding-bottom:34px;
+    background-position:48% center;
+    background-size:cover;
+    background-repeat:no-repeat;
+  }
+  .hero::before{
+    background:
+      linear-gradient(180deg,rgba(9,27,24,.48),rgba(9,27,24,.40) 48%,rgba(9,27,24,.62)),
+      linear-gradient(90deg,rgba(9,27,24,.22),rgba(9,27,24,.30));
+  }
+  .hero .intro{
+    position:absolute;
+    top:50%;
+    left:0;
+    right:0;
+    width:100%;
+    max-width:none;
+    margin:0 auto;
+    padding:0 18px;
+    transform:translateY(-50%);
+    display:block;
+  }
+  .hero .headline{
+    max-width:620px;
+    margin:0 auto;
+    padding:0 12px;
+    font-size:clamp(28px,8vw,36px);
+    line-height:1.25;
+    white-space:normal;
+  }
+  .hero .subhead{
+    max-width:620px;
+    margin:18px auto 0;
+    padding:0 20px;
+    font-size:18px;
+    line-height:1.5;
+  }
+  .hero .cta{margin-top:28px;}
+}
+
+/* Keep the navigation available while scrolling the page. */
+html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height) + 12px);}
+.navbar{
+  position:fixed;
+  inset:0 0 auto;
+  width:100%;
+  z-index:1000;
+}
+.hero{padding-top:var(--site-header-height);}
+@media(max-width:720px){
+  html{--site-header-height:76px;}
+}
+
+/* Subtle green glass treatment after the page starts scrolling. */
+.navbar{
+  transition:background-color .25s ease,border-color .25s ease,backdrop-filter .25s ease;
+}
+.navbar.is-scrolled{
+  background:rgba(26,50,47,.76);
+  border-bottom-color:rgba(212,175,106,.20);
+  -webkit-backdrop-filter:blur(12px) saturate(130%);
+  backdrop-filter:blur(12px) saturate(130%);
+}
+
+  /* Match the two portrait artworks to the other finished-image frames. */
+  .process-story[data-artwork-group="2"] .process-image-zoom,
+  .process-story[data-artwork-group="12"] .process-image-zoom{
+    display:block !important;
+    width:329px !important;
+    height:237px !important;
+    min-width:0;
+    min-height:0;
+    overflow:hidden !important;
+    border-radius:16px !important;
+    clip-path:inset(0 round 16px) !important;
+  }
+
+  .process-story[data-artwork-group="2"] .process-image-zoom img,
+  .process-story[data-artwork-group="12"] .process-image-zoom img{
+    display:block !important;
+    width:100% !important;
+    height:100% !important;
+    border-radius:inherit !important;
+    object-fit:cover !important;
+    object-position:center;
+    transform:none !important;
+  }
+
 </style>
+<style>
+/* Final mobile override: beat the later desktop !important frame dimensions. */
+@media(max-width:600px){
+  .process-story[data-artwork-group="2"] .process-image-zoom,
+  .process-story[data-artwork-group="12"] .process-image-zoom{
+    width:100% !important;
+    height:auto !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    aspect-ratio:329 / 237 !important;
+    justify-self:stretch !important;
+    align-self:start !important;
+    border-radius:10px !important;
+    clip-path:inset(0 round 10px) !important;
+  }
+  .process-story[data-artwork-group="2"] .process-image-zoom img,
+  .process-story[data-artwork-group="12"] .process-image-zoom img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    transform:none !important;
+  }
+}
+</style>
+<style>
+/* Phone layout: keep copy alongside the lower artwork and limit it to fit
+   the image height. Full descriptions remain available on larger screens. */
+@media(max-width:600px){
+  .process-card-slot .process-story-copy{
+    align-self:center !important;
+  }
+  .process-card-slot .process-story-copy p:nth-of-type(n+2){
+    display:none !important;
+  }
+}
+</style>
+<style>
+/* Mobile Figma layout: two process images above, finished art centered below,
+   then the complete description. Cards stretch to the tallest description. */
+@media(max-width:900px){
+  .process-cards{
+    width:calc(100% - 24px) !important;
+    gap:12px !important;
+    align-items:stretch !important;
+    scroll-snap-type:x mandatory;
+  }
+  .process-card-slot{
+    display:flex !important;
+    position:relative !important;
+    flex:0 0 100% !important;
+    width:100% !important;
+    min-width:0 !important;
+    height:auto !important;
+    aspect-ratio:auto !important;
+    align-items:stretch !important;
+    scroll-snap-align:center;
+  }
+  .process-card-slot .process-story{
+    display:grid !important;
+    position:relative !important;
+    inset:auto !important;
+    transform:none !important;
+    flex:1 1 auto !important;
+    width:100% !important;
+    height:auto !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    max-height:none !important;
+    box-sizing:border-box !important;
+    padding:20px 18px 22px !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    grid-template-rows:auto auto auto !important;
+    column-gap:10px !important;
+    row-gap:12px !important;
+    align-content:start !important;
+    align-items:start !important;
+    overflow:hidden !important;
+  }
+  .process-card-slot .process-story > img{
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    min-width:0 !important;
+    aspect-ratio:329 / 237 !important;
+    object-fit:contain !important;
+    border-radius:16px !important;
+  }
+  .process-card-slot .process-story > img:nth-of-type(1){
+    grid-column:1 !important;
+    grid-row:1 !important;
+    justify-self:center !important;
+    width:calc(100% - 16px) !important;
+    margin-top:6px !important;
+  }
+  .process-card-slot .process-story > img:nth-of-type(2){
+    grid-column:2 !important;
+    grid-row:1 !important;
+    justify-self:center !important;
+    width:calc(100% - 16px) !important;
+    margin-top:6px !important;
+  }
+  .process-card-slot .process-story > img:nth-of-type(3){
+    grid-column:1 / -1 !important;
+    grid-row:2 !important;
+    justify-self:center !important;
+    align-self:start !important;
+    width:calc((100% - 10px) / 2) !important;
+    max-width:100% !important;
+    height:auto !important;
+    aspect-ratio:329 / 237 !important;
+    object-fit:cover !important;
+    border-radius:16px !important;
+  }
+  .process-card-slot .process-story > .process-image-zoom{
+    display:block !important;
+    grid-column:1 / -1 !important;
+    grid-row:2 !important;
+    justify-self:center !important;
+    align-self:start !important;
+    width:calc((100% - 10px) / 2) !important;
+    max-width:100% !important;
+    height:auto !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    aspect-ratio:329 / 237 !important;
+    overflow:hidden !important;
+    border-radius:16px !important;
+    clip-path:inset(0 round 16px) !important;
+  }
+  .process-card-slot .process-story > .process-image-zoom img{
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    height:100% !important;
+    border-radius:inherit !important;
+    object-fit:cover !important;
+    transform:none !important;
+  }
+  .process-card-slot .process-story-copy{
+    display:block !important;
+    grid-column:1 / -1 !important;
+    grid-row:3 !important;
+    align-self:start !important;
+    justify-self:stretch !important;
+    width:auto !important;
+    max-width:100% !important;
+    height:auto !important;
+    min-width:0 !important;
+    padding:0 8px !important;
+    margin:0 !important;
+    text-align:center !important;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif !important;
+    font-size:clamp(12px,3.4vw,15px) !important;
+    line-height:1.5 !important;
+    font-weight:400 !important;
+    overflow-wrap:anywhere !important;
+    word-break:normal !important;
+  }
+  .process-card-slot .process-story-copy h3{
+    font-size:clamp(15px,4vw,19px) !important;
+    line-height:1.35 !important;
+    margin:0 0 12px !important;
+  }
+  .process-card-slot .process-story-copy p{
+    display:block !important;
+    max-width:100% !important;
+    overflow:visible !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
+    font-weight:400 !important;
+    margin:0 0 16px !important;
+    overflow-wrap:anywhere !important;
+  }
+  .process-card-slot .process-story-copy p:nth-of-type(n+2){
+    display:block !important;
+  }
+}</style>
 </head>
 <body>
 <!-- Strengthen opaque paper edges without outlining the transparent cyan glow. -->
@@ -1599,7 +2078,7 @@ body *{text-align:center !important;}
           <path d="M4 7h16M4 12h16M4 17h16"/>
         </svg>
       </button>
-      <div class="lang"><select class="language-select" aria-label="Language / زبان"><option value="en" lang="en">English</option><option value="fa" lang="fa">فارسی</option></select></div>
+      <div class="lang-switch" role="group" aria-label="Language"><button class="language-option" type="button" data-language="en" aria-pressed="true">En</button><span class="language-divider" aria-hidden="true"></span><button class="language-option" type="button" data-language="fa" aria-pressed="false">Fa</button></div>
     </div>
   </nav>
 
@@ -1607,7 +2086,7 @@ body *{text-align:center !important;}
     <h1 class="headline">Welcome To My World Of Digital Painting</h1>
     <p class="subhead">Each work is a considered fusion of digital art and spatial perception,<br>transforming the wall into an active element of interior design.</p>
     <div class="cta">
-      <a class="btn" href="#artworks">View Works</a>
+      <a class="btn" href="#artworks">View More</a>
     </div>
   </div>
 
@@ -1647,7 +2126,7 @@ body *{text-align:center !important;}
       <span class="c-overlay"><span class="c-name">A Quiet Moment</span></span>
     </a>
   </div>
-  <a class="btn btn-commissions" href="#artworks">View Works</a>
+  <a class="btn btn-commissions" href="#artworks">View More</a>
 </section>
 
 <section class="commission-request" id="commission-request">
@@ -1660,16 +2139,16 @@ body *{text-align:center !important;}
       <h3 class="cr-process-title">Collaboration Process</h3>
 
       <div class="cr-step cr-step-1">
-        <h4 class="cr-step-title">1. Project Consultation And Review</h4>
-        <p class="cr-step-body">Reviewing The Concept, Intended Space, And Project Requirements To Form The Initial Idea.</p>
+        <h4 class="cr-step-title">1. Project Review</h4>
+        <p class="cr-step-body">Reviewing the project concept, intended space, and specific requirements to establish the initial creative direction.</p>
       </div>
       <div class="cr-step cr-step-2">
         <h4 class="cr-step-title">2. Concept Development</h4>
-        <p class="cr-step-body">Presenting The Initial Concept, Designing The Composition, And Receiving Feedback To Refine The Artwork.</p>
+        <p class="cr-step-body">Presenting the initial concept, developing the composition, and incorporating feedback to refine the artwork.</p>
       </div>
       <div class="cr-step cr-step-3">
         <h4 class="cr-step-title">3. Final Execution</h4>
-        <p class="cr-step-body">Creating The Artwork Using Contemporary Digital Painting Techniques, Ready For Presentation Or High-Quality Printing.</p>
+        <p class="cr-step-body">Creating the original artwork using contemporary digital painting techniques, prepared for presentation or high-quality printing.</p>
       </div>
     </div>
 
@@ -1757,7 +2236,7 @@ body *{text-align:center !important;}
           <path d="M4 7h16M4 12h16M4 17h16"/>
         </svg>
       </button>
-      <div class="lang"><select class="language-select" aria-label="Language / زبان"><option value="en" lang="en">English</option><option value="fa" lang="fa">فارسی</option></select></div>
+      <div class="lang-switch" role="group" aria-label="Language"><button class="language-option" type="button" data-language="en" aria-pressed="true">En</button><span class="language-divider" aria-hidden="true"></span><button class="language-option" type="button" data-language="fa" aria-pressed="false">Fa</button></div>
     </div>
   </nav>
   <main class="artworks-main" id="artworks">
@@ -1798,7 +2277,7 @@ body *{text-align:center !important;}
 <div class="process-card-slot"><article class="process-story" data-artwork-group="2" aria-label="Artwork 2 creation process">
 <img src="assets/image-021.png" alt="Preliminary sketch, artwork 2" loading="lazy" decoding="async" width="293" height="211">
 <img src="assets/image-022.png" alt="Painting in progress, artwork 2" loading="lazy" decoding="async" width="293" height="211">
-<img src="assets/image-023.png" alt="Finished artwork, artwork 2" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-image-zoom"><img src="assets/image-023.png?v=3ae064e43abc7c3c30343113cf82d55c37a8d681" alt="Finished artwork, artwork 2" loading="lazy" decoding="async" width="293" height="211"></div>
 <div class="process-story-copy" data-copy-for="2"><h3>Quiet Strength</h3><p>This contemporary portrait explores masculine identity, strength, and quiet dignity through a geometric and decorative visual language. The figure’s traditional-inspired attire, layered patterns, and strong silhouette create a distinctive sense of character and presence.</p><p>Angular forms and elongated lines interact with expressive brush textures, combining structured geometry with an organic painterly quality. The patterns of the clothing become an essential part of the composition, framing the figure and creating a rhythmic relationship between color, form, and texture.</p><p>The restrained yet earthy palette reinforces the figure’s grounded presence, while the simplified facial treatment places greater emphasis on silhouette, ornament, and character.</p></div>
 </article></div>
 <div class="process-card-slot"><article class="process-story" data-artwork-group="3" aria-label="Artwork 3 creation process">
@@ -1829,7 +2308,7 @@ body *{text-align:center !important;}
 <img src="assets/image-036.png" alt="Preliminary sketch, artwork 7" loading="lazy" decoding="async" width="293" height="211">
 <img src="assets/image-037.png" alt="Painting in progress, artwork 7" loading="lazy" decoding="async" width="293" height="211">
 <img src="assets/image-038.png" alt="Finished artwork, artwork 7" loading="lazy" decoding="async" width="293" height="211">
-<div class="process-story-copy" data-copy-for="7"><h3>A Line of Stories</h3><p>This playful and imaginative work explores diversity, individuality, and coexistence through five distinct birds gathered along a single line. Each bird has its own character, from a mysterious figure wearing a wide-brimmed hat to one crowned with an expressive fan of feathers. Human-inspired details give the birds a sense of personality and narrative, while drops of blue paint falling from the line celebrate the freedom and spontaneity of the artistic process.</p><p>The composition combines Cubist-inspired geometric structures with the aesthetics of origami. Sharp angles, bold lines, and folded, block-like forms create a sense of volume and dimension, while the geometric paper flowers complete the structured composition.</p><p>A warm, textured cream background provides a neutral setting for the vivid palette of ochre, deep blue, green, red, and yellow. Together, these colors create a lively rhythm and convey a sense of joy, energy, and movement.</p></div>
+<div class="process-story-copy" data-copy-for="7"><h3>A Line of Stories</h3><p>This playful work explores diversity, individuality, and coexistence through five distinct birds, each with its own character—from a mysterious wide-brimmed hat to an expressive fan of feathers. Human-inspired details bring personality and narrative to the birds, while falling blue paint drops celebrate the freedom and spontaneity of the artistic process.</p><p>The composition combines Cubist-inspired geometric structures with the aesthetics of origami. Sharp angles, bold lines, and folded, block-like forms create a sense of volume and dimension, while the geometric paper flowers complete the structured composition.</p><p>A warm, textured cream background provides a neutral setting for the vivid palette of ochre, deep blue, green, red, and yellow. Together, these colors create a lively rhythm and convey a sense of joy, energy, and movement.</p></div>
 </article></div>
 <div class="process-card-slot"><article class="process-story" data-artwork-group="8" aria-label="Artwork 8 creation process">
 <img src="assets/image-039.png" alt="Preliminary sketch, artwork 8" loading="lazy" decoding="async" width="293" height="211">
@@ -1858,7 +2337,7 @@ body *{text-align:center !important;}
 <div class="process-card-slot"><article class="process-story" data-artwork-group="12" aria-label="Artwork 12 creation process">
 <img src="assets/image-021.png" alt="Preliminary sketch, artwork 12" loading="lazy" decoding="async" width="293" height="211">
 <img src="assets/image-051.png" alt="Painting in progress, artwork 12" loading="lazy" decoding="async" width="293" height="211">
-<img src="assets/image-052.png" alt="Finished artwork, artwork 12" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-image-zoom"><img src="assets/image-052.png?v=3ae064e43abc7c3c30343113cf82d55c37a8d681" alt="Finished artwork, artwork 12" loading="lazy" decoding="async" width="293" height="211"></div>
 <div class="process-story-copy" data-copy-for="12"><h3>Portrait of Heritage</h3><p>This contemporary portrait explores identity, presence, and cultural-inspired adornment through a bold geometric composition. The figure is presented with a calm yet powerful presence, surrounded by layered patterns and decorative forms inspired by traditional visual motifs.</p><p>Geometric shapes, elongated lines, and expressive brush textures create a balance between structure and organic movement. The carefully arranged patterns and contrasting tones emphasize the figure’s individuality while giving the composition a rhythmic, decorative quality.</p><p>The earthy palette and tactile textures create a sense of warmth and connection, while the simplified facial features allow the overall form, patterns, and presence of the figure to take center stage.</p></div>
 </article></div>
 </div>
@@ -2050,7 +2529,7 @@ body *{text-align:center !important;}
   // Native touch scrolling; mouse dragging and keyboard access for the process row.
   const processRow = document.getElementById('process-cards');
   const sizeMobileProcessCards = () => {
-    const scale = Math.max(0, (processRow.clientWidth - 16) / 1.5 / 628);
+    const scale = Math.max(0, (processRow.clientWidth - 16) / 1.5 / 700);
     processRow.style.setProperty('--mobile-card-scale', String(scale));
   };
   new ResizeObserver(sizeMobileProcessCards).observe(processRow);
@@ -2190,16 +2669,58 @@ body *{text-align:center !important;}
     }
   });
 
+  function updateActiveNav() {
+    const artworksPage = document.getElementById('artworks-page');
+    const isArtworksPage = artworksPage && !artworksPage.hidden;
+    const links = (isArtworksPage
+      ? document.querySelectorAll('#artworks-navigation a[href^="#"]')
+      : document.querySelectorAll('#primary-navigation a[href^="#"]'));
+
+    let activeHash = '#top';
+    if (isArtworksPage) {
+      activeHash = '#artworks';
+    } else {
+      const commissions = document.getElementById('commissions');
+      const about = document.getElementById('about');
+      const contact = document.getElementById('contact');
+      const navbar = document.querySelector('#home-page .navbar');
+      const markerY = window.scrollY + (navbar ? navbar.offsetHeight : 0) + 40;
+      if (contact && markerY >= contact.offsetTop) activeHash = '#contact';
+      else if (about && markerY >= about.offsetTop) activeHash = '#about';
+      else if (commissions && markerY >= commissions.offsetTop) activeHash = '#commissions';
+    }
+
+    links.forEach(link => {
+      const active = link.getAttribute('href') === activeHash;
+      link.classList.toggle('is-active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }
+
+  let activeNavFrame = 0;
+  function scheduleActiveNavUpdate() {
+    if (activeNavFrame) return;
+    activeNavFrame = requestAnimationFrame(() => {
+      activeNavFrame = 0;
+      updateActiveNav();
+    });
+  }
+
+  window.addEventListener('scroll', scheduleActiveNavUpdate, { passive: true });
+  window.addEventListener('resize', scheduleActiveNavUpdate);
+  window.addEventListener('hashchange', () => requestAnimationFrame(updateActiveNav));
   window.addEventListener('hashchange', updatePageView);
   bindNavLinks();
   navigateToHash(window.location.hash || '#top', true);
+  requestAnimationFrame(updateActiveNav);
 </script>
 
 
 <script>
 (() => {
-const translations = {".nav-links a": ["خانه", "آثار هنری", "سفارش اثر", "درباره من", "ارتباط با من", "خانه", "آثار هنری", "سفارش اثر", "درباره من", "ارتباط با من"], ".headline": ["به دنیای نقاشی دیجیتال من خوش آمدید."], ".subhead": ["هر اثر، تلفیقی سنجیده از هنر دیجیتال و ادراک فضایی است که دیوار را به عنصری فعال در طراحی داخلی تبدیل می‌کند."], ".cta .btn, .btn-commissions": ["مشاهده اثر", "مشاهده اثر"], ".commissions-title": ["سفارش‌های منتخب"], ".c-name": ["آغوش خاک و سکوت سپید", "پژواک‌های هویت", "لحظه‌ای آرام"], ".cr-title": ["درخواست سفارش اثر"], ".cr-subtitle": ["هر اثر بر اساس موضوع، فضا و روایت مورد نظر سفارش‌دهنده طراحی و به صورت نقاشی دیجیتال معاصر اجرا می‌شود."], ".cr-note": ["• برای حفظ کیفیت و تمرکز، هر ماه تعداد محدودی پروژه پذیرفته می‌شود."], ".cr-process-title": ["فرایند همکاری"], ".cr-step-title": ["۱. مشاوره و بررسی پروژه", "۲. توسعه ایده", "۳. اجرای نهایی"], ".cr-step-body": ["بررسی موضوع، فضای مورد نظر و نیازهای پروژه برای شکل‌گیری ایده اولیه.", "ارائه کانسپت اولیه، طراحی ترکیب‌بندی و دریافت بازخورد برای تکمیل ایده اولیه.", "خلق اثر با تکنیک نقاشی دیجیتال معاصر، آماده برای چاپ با کیفیت بالا."], ".cr-actions .btn": ["ثبت سفارش"], ".about-title": ["درباره من"], ".about-body": ["من بهاره یزدانی، هنرمند نقاشی دیجیتال معاصر هستم. فعالیت هنری خود را از سال ۱۳۹۸ با آموزش و تمرین نقاشی سنتی آغاز کردم و در ادامه، با گذراندن دوره‌های تخصصی و توسعه فعالیت مستقل هنری، تمرکز خود را بر نقاشی دیجیتال معاصر قرار دادم.", "در آثارم، فیگور انسانی و دیگر سوژه‌های طبیعی و معماری را از طریق یک زبان بصری هندسی، فیگوراتیو، دکوراتیو و بیانگر بازتفسیر می‌کنم. فرم‌های هندسی، خطوط شارپ، ترکیب‌بندی‌های دکوراتیو، رنگ‌های ساختارمند و بافت‌های نقاشانه، عناصر اصلی زبان بصری من هستند و برخی از آثارم از ویژگی‌های بصری کوبیسم و آرت دکو تأثیر می‌گیرند.", "تمرکز من بر ایجاد تعادل میان ساختار هندسی و کیفیت نقاشانه است؛ به‌گونه‌ای که آثار، در عین برخورداری از وضوح و ساختار، حس و کیفیت بصری یک اثر نقاشی را حفظ کنند.", "در فرایند خلق هر اثر، به ترکیب‌بندی، رنگ، فرم، بافت و جزئیات توجه ویژه دارم و تلاش می‌کنم هر اثر هویت بصری مستقل و فضای منحصربه‌فرد خود را داشته باشد."], ".about-note": ["• اگر به سفارش یک اثر هنری علاقه‌مند هستید، لطفاً برای شروع گفتگو به صفحه سفارش اثر مراجعه کنید."], ".contact-title": ["ارتباط با من", "ارتباط با من"], ".contact-copy": ["برای سفارش آثار، همکاری‌های هنری یا دریافت اطلاعات بیشتر، از طریق راه‌های ارتباطی زیر با من در تماس باشید.", "برای سفارش آثار، همکاری‌های هنری یا دریافت اطلاعات بیشتر، از طریق راه‌های ارتباطی زیر با من در تماس باشید."], ".contact-btn": ["واتساپ", "ایمیل", "واتساپ", "ایمیل"], ".thank-you-title": ["ممنون از بازدید شما", "ممنون از بازدید شما"], ".artworks-breadcrumb a": ["خانه"], ".artworks-breadcrumb-current": ["آثار هنری"], ".collection-title": ["مجموعه آثار"], ".process-title": ["روند شکل‌گیری اثر"], ".process-copy p": ["در فرایند خلق آثار، رویکرد من متناسب با ایده، سوژه و ساختار بصری هر اثر تغییر می‌کند. در نقاشی دیجیتال، از ترکیبی از طراحی، رنگ‌گذاری، لایه‌گذاری، شکل‌دهی فرم و ایجاد بافت‌های نقاشانه استفاده می‌کنم تا تصویر به‌صورت تدریجی شکل بگیرد.", "در برخی آثار، ساختار تصویر با تأکید بر فضای منفی و رابطه میان فضای خالی و فرم‌های اصلی شکل می‌گیرد؛ در حالی که در آثار دیگر، فرم و فضا از طریق طراحی اولیه، رنگ‌گذاری مرحله‌ای و توسعه تدریجی جزئیات ساخته می‌شوند.", "در طول این فرایند، از قلم‌موها و روش‌های مختلف رنگ‌گذاری متناسب با نیاز هر اثر استفاده می‌کنم. گاهی رنگ‌ها در ابتدا به‌صورت ساده و ساختاریافته قرار می‌گیرند و سپس با اضافه شدن لایه‌های رنگ، نور، سایه و بافت، به‌تدریج توسعه پیدا می‌کنند.", "هدف من، استفاده از امکانات نقاشی دیجیتال برای ایجاد آثاری است که در آن فرم، خط، رنگ، ترکیب‌بندی و بافت در تعامل با یکدیگر قرار می‌گیرند. در این فرایند، امکانات دیجیتال را نه صرفاً به‌عنوان ابزار تکنولوژیک، بلکه به‌عنوان یک رسانه مستقل برای توسعه زبان بصری و کیفیت نقاشانه آثارم به کار می‌گیرم."]};
-const persianCards = [{"title": "زیر ماه سرخ", "paragraphs": ["این اثر، منظره‌ای معاصر از خانه‌هایی هندسی در امتداد ساحل است که در آن معماری و طبیعت در یک ترکیب‌بندی ساده و هماهنگ به یکدیگر می‌رسند. فرم‌های زاویه‌دار و ساختارهای هندسی خانه‌ها، در کنار خطوط نرم ساحل و گستره‌ی آرام دریا، تضادی میان نظم معماری و سیالیت طبیعت ایجاد می‌کنند.", "سطوح ساده و رنگ‌های تخت، همراه با بافت‌های ظریف و نقاشانه، به فضای اثر حال‌وهوایی مینیمال و در عین حال ملموس می‌بخشند. تکرار فرم‌های معماری و ریتم خطوط، چشم را در امتداد ساحل حرکت می‌دهد و حس سکون و آرامش را تقویت می‌کند.", "این اثر بیش از آنکه صرفاً تصویری از یک مکان باشد، برداشت شخصی از مفهوم زندگی در هماهنگی با طبیعت، سادگی و آرامش است."]}, {"title": "قدرت آرام", "paragraphs": ["این پرتره معاصر، هویت مردانه، قدرت و وقار آرام را از طریق زبانی بصری هندسی و دکوراتیو بررسی می‌کند. پوشش با الهام از لباس‌های سنتی، الگوهای لایه‌لایه و سیلوئت قدرتمند، شخصیت و حضور متمایزی به فیگور بخشیده‌اند.", "فرم‌های زاویه‌دار و خطوط کشیده در کنار بافت‌های اکسپرسیو قلم‌مو قرار گرفته‌اند و هندسه‌ی ساختاریافته را با کیفیتی ارگانیک و نقاشانه ترکیب می‌کنند. الگوهای لباس به بخش مهمی از ترکیب‌بندی تبدیل شده‌اند و با قاب گرفتن فیگور، رابطه‌ای ریتمیک میان رنگ، فرم و بافت ایجاد می‌کنند.", "پالت رنگی کنترل‌شده و خاکی، حضور ریشه‌دار و استوار فیگور را تقویت می‌کند، در حالی که پرداخت ساده‌شده‌ی چهره، تأکید بیشتری بر سیلوئت، تزئینات و شخصیت او قرار می‌دهد."]}, {"title": "لحظه‌ای آرام", "paragraphs": ["این پرتره‌ی معاصر، لحظه‌ای آرام و تأمل‌برانگیز را به تصویر می‌کشد؛ لحظه‌ای که حول سادگیِ نوشیدن چای شکل گرفته است. حالت آرام فیگور و حضور متفکرانه‌ی او، فضایی صمیمی ایجاد می‌کند و مخاطب را دعوت می‌کند تا برای لحظه‌ای از هیاهوی زندگی روزمره فاصله بگیرد.", "فرم‌های کشیده، ویژگی‌های ساده‌شده‌ی چهره و عناصر هندسی، زبان بصری معاصر و فیگوراتیو اثر را شکل می‌دهند، در حالی که بافت‌های اکسپرسیو قلم‌مو، گرما و عمق نقاشانه‌ای به ترکیب‌بندی می‌بخشند. تضاد میان فرم‌های ساختاریافته و جزئیات نرم و ارگانیک، ریتمی متعادل و هماهنگ ایجاد می‌کند.", "پالت رنگی گرم و خاکی، حس آرامش و راحتی را تقویت کرده و یک لحظه‌ی ساده و روزمره را به مطالعه‌ای درباره‌ی سکون، حضور و تأمل درونی تبدیل می‌کند."]}, {"title": "سکوت طلایی", "paragraphs": ["این پرتره معاصر، قدرت زنانه را از طریق تلفیقی آوانگارد از هنر فیگوراتیو مدرن و فشن‌آرت مفهومی به تصویر می‌کشد. فرم‌های اغراق‌شده و معمارانه، حضوری مسلط و سرشار از اعتمادبه‌نفس به فیگور بخشیده‌اند.", "انحناهای نرم و سیال کلاه مشکی در تضاد با سرشانه‌های تیز و هندسی کت طلایی قرار گرفته‌اند. پنهان شدن چشم‌ها در سایه، هاله‌ای از رازآلودگی و اقتدار آرام به فیگور می‌بخشد، در حالی که گردن کشیده و لب‌های قرمز و روشن، توجه را به حضور قدرتمند او جلب می‌کنند.", "ترکیب طلایی گرم و مشکی عمیق، کنتراستی جسورانه و لوکس ایجاد کرده است. پس‌زمینه خنثی و خاکی نیز تعادل بصری ایجاد می‌کند و اجازه می‌دهد فیگور همچنان نقطه اصلی توجه باقی بماند."]}, {"title": "پژواک‌های هویت", "paragraphs": ["این اثر با تکرار یک چهره در امتداد یکدیگر، به مفهوم هویت، تکرار و تفاوت‌های ظریف میان انسان‌ها می‌پردازد. چهره‌های مشابه در نگاه اول یکسان به نظر می‌رسند، اما تغییرات کوچک در رنگ، فرم و حالت، هر یک را به حضوری مستقل تبدیل می‌کند.", "ساختارهای هندسی، خطوط کشیده و فرم‌های ساده‌شده، ریتمی منظم و در عین حال پویا ایجاد کرده‌اند. تکرار فیگورها مانند پژواکی بصری عمل می‌کند؛ گویی یک هویت واحد در چند شکل مختلف بازتاب یافته است.", "تضاد میان سطوح رنگی و بافت‌های اکسپرسیو قلم‌مو، به ترکیب‌بندی هندسی اثر عمق و کیفیتی نقاشانه می‌بخشد و مرز میان تکرار و فردیت را برجسته می‌کند."]}, {"title": "آغوش خاک و سکوت سپید", "paragraphs": ["این پرتره‌ی تأثیرگذار، آرامش درونی، مکاشفه و پیوند عمیق زن با طبیعت را به تصویر می‌کشد. فیگور با چشمانی بسته، گلدانی سفالین را در آغوش گرفته است؛ گویی پیوندی محافظت‌کننده با ریشه‌ها و حس تعلق خود دارد. گل‌های سفید کاسموس بخشی از چهره‌ی او را پوشانده‌اند و نمادی از خلوص، رشد و افکاری هستند که در سکوت شکوفا می‌شوند.", "این اثر، اکسپرسیونیسم فیگوراتیو مدرن را با خطوط کشیده و ظریف الهام‌گرفته از آرت دکو ترکیب می‌کند. دست‌ها و انگشتان اغراق‌شده، حس ظرافت و آرامش را به فیگور می‌بخشند، در حالی که فرم‌های نرم و ارگانیک گل‌ها در تضاد با خطوط هندسی و راه‌راه لباس قرار گرفته‌اند.", "رنگ‌های خاکیِ تراکوتا و آجری با سفیدی درخشان گل‌ها و ترکیب سرمه‌ای و کرم لباس متعادل شده‌اند. پس‌زمینه‌ی گرم و فرم دایره‌ای نمادین پشت سر فیگور نیز فضایی از امنیت، گرما و ریشه‌دار بودن ایجاد می‌کند."]}, {"title": "صفی از قصه ها", "paragraphs": ["این اثر خیال‌انگیز و پرانرژی، مفهوم تنوع، فردیت و همزیستی را از طریق پنج پرنده با شخصیت‌های متفاوت به تصویر می‌کشد که در کنار یکدیگر روی یک خط قرار گرفته‌اند. هر پرنده ویژگی و شخصیت منحصربه‌فرد خود را دارد؛ از پرنده‌ای با کلاه لبه‌پهن و مرموز گرفته تا پرنده‌ای با تاجی از پرهای بازشده. جزئیات الهام‌گرفته از عناصر انسانی، به پرندگان شخصیتی داستانی می‌بخشند و قطرات رنگ آبی که از خط می‌چکند، آزادی و خودانگیختگی فرایند خلق هنری را یادآور می‌شوند.", "در این ترکیب، ساختارهای هندسی الهام‌گرفته از کوبیسم با زیبایی‌شناسی اوریگامی درهم‌آمیخته‌اند. زوایای تیز، خطوط قاطع و فرم‌های تاخورده و بلوکی، حس حجم و بُعد ایجاد می‌کنند و گل‌های کاغذی هندسی، ساختار منظم ترکیب‌بندی را کامل می‌کنند.", "پس‌زمینه‌ی کرمِ گرم و بافت‌دار، فضایی خنثی برای نمایش پالت زنده‌ی اخرایی، آبی عمیق، سبز، قرمز و زرد فراهم می‌کند. این رنگ‌ها در کنار یکدیگر ریتمی پویا ایجاد کرده و حس شادی، انرژی و حرکت را به مخاطب منتقل می‌کنند."]}, {"title": "سیلوئتِ اقتدار", "paragraphs": ["این پرتره معاصر، اقتدار و خویشتن‌داری مردانه را از طریق تلفیقی آوانگارد از هنر فیگوراتیو مدرن و فشن‌آرت مفهومی به تصویر می‌کشد. فرم‌های معمارانه و زاویه‌دار، حضوری محکم و مسلط به فیگور بخشیده‌اند.", "کلاه مشکی و بزرگ، بخش بالایی چهره و چشم‌ها را به‌طور کامل در سایه قرار داده و فضایی از رازآلودگی، سردی و اقتدار آرام ایجاد می‌کند. دست‌های به سینه، ژستی محکم و خوددار ایجاد کرده‌اند، در حالی که کت راه‌راه طلایی و مشکی با سرشانه‌های پهن و زاویه‌دار، بر سیلوئت قدرتمند فیگور تأکید می‌کند. ریش و سبیل آراسته نیز تعادلی میان زبری و ظرافت ایجاد کرده‌اند.", "ترکیب طلایی گرم و مشکی عمیق در کت، کنتراستی جسورانه و لوکس ایجاد کرده است، در حالی که پس‌زمینه بژ با بافتی ملایم، باعث می‌شود فیگور همچنان در مرکز توجه باقی بماند."]}, {"title": "سکوت مشترک", "paragraphs": ["این پرتره‌ی معاصر، گفت‌وگویی بی‌صدا میان دو زن را به تصویر می‌کشد. فیگورها با چشمانی بسته و چهره‌هایی نزدیک به یکدیگر، در فضایی آرام و تأمل‌برانگیز قرار گرفته‌اند؛ فضایی که هم‌زمان مفهوم دوگانگی و ارتباط را تداعی می‌کند؛ لحظه‌ای از درک متقابل، فارغ از هیاهوی دنیای بیرون.", "در این اثر، اکسپرسیونیسم فیگوراتیو مدرن با ساختارهای هندسی الهام‌گرفته از کوبیسم و خطوط جسورانه و مینیمال ترکیب شده است. فرم‌های زاویه‌دار و معمارانه در تضاد با انحنای نرم چشم‌های بسته قرار گرفته‌اند، در حالی که بافت غنی و ردِ قابل مشاهده قلم‌مو، به سطوح هندسی عمق و کیفیتی ارگانیک می‌بخشد.", "تضاد میان رنگ‌های خاکی و سبز زیتونی در یکی از فیگورها و پالت چشمگیر سیاه‌وسفید در دیگری، نمایانگر دو هویت متفاوت است که در کنار یکدیگر به نوعی هماهنگی می‌رسند. پس‌زمینه‌ی تیره و عمیق نیز فیگورها را از فضای اطراف جدا کرده و تمرکز را بر ارتباط نزدیک و حضور مشترک آن‌ها قرار می‌دهد."]}, {"title": "وقار پنهان", "paragraphs": ["این اثر تجلی‌گاهی از اکسپرسیونیسم فیگوراتیو مدرن است که با الهام از ساختارهای هندسی کوبیسم و خطوط کشیده و ظریف سبک آرت دکو (Art Deco) خلق شده است.", "در این نقاشی دیجیتال، تضاد میان پترن‌های راه‌راه و دایره‌ای روی لباس‌ها، در کنار فرم‌های کشیده و مینیمال فیگورها، ریتمی بصری و هماهنگ ایجاد می‌کند. چهار زن در کنار یکدیگر قرار گرفته‌اند؛ حضوری آرام و در عین حال قدرتمند که مفهوم وقار، همبستگی و حضور مستقل را به تصویر می‌کشد.", "رنگ سبز پس‌زمینه و تنالیته‌های خاکی، یادآور طراوت، طبیعت و حس ریشه‌دار بودن هستند؛ عناصری که در سکوت و حالت باوقار فیگورها بازتاب پیدا می‌کنند."]}, {"title": "رازِ زمرد", "paragraphs": ["این پرتره معاصر، زنی را در نمای نیم‌رخ به تصویر می‌کشد و با الهام از ساختارهای هندسی کوبیسم و خطوط کشیده و ظریف آرت دکو خلق شده است.", "کلاه هندسی سبز زمردی، بخشی از چشمان او را در سایه پنهان کرده و فضایی از رازآلودگی، اعتمادبه‌نفس و قدرت آرام ایجاد می‌کند. لب‌های قرمز و روشن و حرکت ظریف دست، در تضاد با ساختار زاویه‌دار کلاه و یقه قرار گرفته و بر زنانگی و آرامش درونی تأکید می‌کنند.", "تضاد جسورانه میان سبز زمردی، نارنجیِ گرمِ تراکوتا و پس‌زمینه زرد طلایی و بافت‌دار، ریتمی بصری و زنده ایجاد می‌کند. این فیگور از طریق فرم، رنگ و حضور خود، حس خودباوری و قدرتی آرام را منتقل می‌کند."]}, {"title": "پرتره‌ای از میراث", "paragraphs": ["این پرتره معاصر، مفهوم هویت، حضور و زیورآرایی با الهام از فرهنگ‌های بومی را از طریق یک ترکیب‌بندی جسورانه و هندسی بررسی می‌کند. فیگور با حضوری آرام اما قدرتمند به تصویر کشیده شده و در میان لایه‌هایی از الگوها و فرم‌های تزئینی با الهام از نقوش سنتی قرار گرفته است.", "اشکال هندسی، خطوط کشیده و بافت‌های اکسپرسیو قلم‌مو، تعادلی میان ساختار و حرکت ارگانیک ایجاد می‌کنند. الگوهای منظم و رنگ‌های متضاد، بر فردیت فیگور تأکید کرده و در عین حال کیفیتی ریتمیک و دکوراتیو به ترکیب‌بندی می‌بخشند.", "پالت رنگی خاکی و بافت‌های ملموس، حس گرما و پیوند را ایجاد می‌کنند، در حالی که ساده‌سازی ویژگی‌های چهره باعث می‌شود فرم کلی، الگوها و حضور فیگور در مرکز توجه قرار بگیرند"]}];
+const translations = {".nav-links a": ["خانه", "آثار هنری", "سفارش اثر", "درباره من", "ارتباط با من", "خانه", "آثار هنری", "سفارش اثر", "درباره من", "ارتباط با من"], ".headline": ["به دنیای نقاشی دیجیتال من خوش آمدید."], ".subhead": ["هر اثر، تلفیقی سنجیده از هنر دیجیتال و ادراک فضایی است که دیوار را به عنصری فعال در طراحی داخلی تبدیل می‌کند."], ".cta .btn, .btn-commissions": ["مشاهده آثار", "مشاهده آثار"], ".commissions-title": ["سفارش‌های منتخب"], ".c-name": ["آغوش خاک و سکوت سپید", "پژواک‌های هویت", "لحظه‌ای آرام"], ".cr-title": ["درخواست سفارش اثر"], ".cr-subtitle": ["هر اثر بر اساس موضوع، فضا و روایت مورد نظر سفارش‌دهنده طراحی و به صورت نقاشی دیجیتال معاصر اجرا می‌شود."], ".cr-note": ["• برای حفظ کیفیت و تمرکز، هر ماه تعداد محدودی پروژه پذیرفته می‌شود."], ".cr-process-title": ["فرایند همکاری"], ".cr-step-title": ["۱. بررسی پروژه", "۲. توسعهٔ ایده", "۳. اجرای نهایی"], ".cr-step-body": ["بررسی ایدهٔ پروژه، فضای مورد نظر و نیازهای مشخص برای تعیین مسیر خلاقانهٔ اولیه.", "ارائهٔ ایدهٔ اولیه، توسعهٔ ترکیب‌بندی و به‌کارگیری بازخوردها برای اصلاح اثر هنری.", "خلق اثر هنری اصلی با تکنیک‌های نقاشی دیجیتال معاصر، آماده برای ارائه یا چاپ باکیفیت."], ".cr-actions .btn": ["ثبت سفارش"], ".about-title": ["درباره من"], ".about-body": ["من بهاره یزدانی، هنرمند نقاشی دیجیتال معاصر هستم. فعالیت هنری خود را از سال ۱۳۹۸ با آموزش و تمرین نقاشی سنتی آغاز کردم و در ادامه، با گذراندن دوره‌های تخصصی و توسعه فعالیت مستقل هنری، تمرکز خود را بر نقاشی دیجیتال معاصر قرار دادم.", "در آثارم، فیگور انسانی و دیگر سوژه‌های طبیعی و معماری را از طریق یک زبان بصری هندسی، فیگوراتیو، دکوراتیو و بیانگر بازتفسیر می‌کنم. فرم‌های هندسی، خطوط شارپ، ترکیب‌بندی‌های دکوراتیو، رنگ‌های ساختارمند و بافت‌های نقاشانه، عناصر اصلی زبان بصری من هستند و برخی از آثارم از ویژگی‌های بصری کوبیسم و آرت دکو تأثیر می‌گیرند.", "تمرکز من بر ایجاد تعادل میان ساختار هندسی و کیفیت نقاشانه است؛ به‌گونه‌ای که آثار، در عین برخورداری از وضوح و ساختار، حس و کیفیت بصری یک اثر نقاشی را حفظ کنند.", "در فرایند خلق هر اثر، به ترکیب‌بندی، رنگ، فرم، بافت و جزئیات توجه ویژه دارم و تلاش می‌کنم هر اثر هویت بصری مستقل و فضای منحصربه‌فرد خود را داشته باشد."], ".about-note": ["• اگر به سفارش یک اثر هنری علاقه‌مند هستید، لطفاً برای شروع گفتگو به صفحه سفارش اثر مراجعه کنید."], ".contact-title": ["ارتباط با من", "ارتباط با من"], ".contact-copy": ["برای سفارش آثار، همکاری‌های هنری یا دریافت اطلاعات بیشتر، از طریق راه‌های ارتباطی زیر با من در تماس باشید.", "برای سفارش آثار، همکاری‌های هنری یا دریافت اطلاعات بیشتر، از طریق راه‌های ارتباطی زیر با من در تماس باشید."], ".contact-btn": ["واتساپ", "ایمیل", "واتساپ", "ایمیل"], ".thank-you-title": ["ممنون از بازدید شما", "ممنون از بازدید شما"], ".artworks-breadcrumb a": ["خانه"], ".artworks-breadcrumb-current": ["آثار هنری"], ".collection-title": ["مجموعه آثار"], ".process-title": ["روند شکل‌گیری اثر"], ".process-copy p": ["در فرایند خلق آثار، رویکرد من متناسب با ایده، سوژه و ساختار بصری هر اثر تغییر می‌کند. در نقاشی دیجیتال، از ترکیبی از طراحی، رنگ‌گذاری، لایه‌گذاری، شکل‌دهی فرم و ایجاد بافت‌های نقاشانه استفاده می‌کنم تا تصویر به‌صورت تدریجی شکل بگیرد.", "در برخی آثار، ساختار تصویر با تأکید بر فضای منفی و رابطه میان فضای خالی و فرم‌های اصلی شکل می‌گیرد؛ در حالی که در آثار دیگر، فرم و فضا از طریق طراحی اولیه، رنگ‌گذاری مرحله‌ای و توسعه تدریجی جزئیات ساخته می‌شوند.", "در طول این فرایند، از قلم‌موها و روش‌های مختلف رنگ‌گذاری متناسب با نیاز هر اثر استفاده می‌کنم. گاهی رنگ‌ها در ابتدا به‌صورت ساده و ساختاریافته قرار می‌گیرند و سپس با اضافه شدن لایه‌های رنگ، نور، سایه و بافت، به‌تدریج توسعه پیدا می‌کنند.", "هدف من، استفاده از امکانات نقاشی دیجیتال برای ایجاد آثاری است که در آن فرم، خط، رنگ، ترکیب‌بندی و بافت در تعامل با یکدیگر قرار می‌گیرند. در این فرایند، امکانات دیجیتال را نه صرفاً به‌عنوان ابزار تکنولوژیک، بلکه به‌عنوان یک رسانه مستقل برای توسعه زبان بصری و کیفیت نقاشانه آثارم به کار می‌گیرم."]};
+const persianCards = [{"title": "زیر ماه سرخ", "paragraphs": ["این اثر، منظره‌ای معاصر از خانه‌هایی هندسی در امتداد ساحل است که در آن معماری و طبیعت در یک ترکیب‌بندی ساده و هماهنگ به یکدیگر می‌رسند. فرم‌های زاویه‌دار و ساختارهای هندسی خانه‌ها، در کنار خطوط نرم ساحل و گستره‌ی آرام دریا، تضادی میان نظم معماری و سیالیت طبیعت ایجاد می‌کنند.", "سطوح ساده و رنگ‌های تخت، همراه با بافت‌های ظریف و نقاشانه، به فضای اثر حال‌وهوایی مینیمال و در عین حال ملموس می‌بخشند. تکرار فرم‌های معماری و ریتم خطوط، چشم را در امتداد ساحل حرکت می‌دهد و حس سکون و آرامش را تقویت می‌کند.", "این اثر بیش از آنکه صرفاً تصویری از یک مکان باشد، برداشت شخصی از مفهوم زندگی در هماهنگی با طبیعت، سادگی و آرامش است."]}, {"title": "قدرت آرام", "paragraphs": ["این پرتره معاصر، هویت مردانه، قدرت و وقار آرام را از طریق زبانی بصری هندسی و دکوراتیو بررسی می‌کند. پوشش با الهام از لباس‌های سنتی، الگوهای لایه‌لایه و سیلوئت قدرتمند، شخصیت و حضور متمایزی به فیگور بخشیده‌اند.", "فرم‌های زاویه‌دار و خطوط کشیده در کنار بافت‌های اکسپرسیو قلم‌مو قرار گرفته‌اند و هندسه‌ی ساختاریافته را با کیفیتی ارگانیک و نقاشانه ترکیب می‌کنند. الگوهای لباس به بخش مهمی از ترکیب‌بندی تبدیل شده‌اند و با قاب گرفتن فیگور، رابطه‌ای ریتمیک میان رنگ، فرم و بافت ایجاد می‌کنند.", "پالت رنگی کنترل‌شده و خاکی، حضور ریشه‌دار و استوار فیگور را تقویت می‌کند، در حالی که پرداخت ساده‌شده‌ی چهره، تأکید بیشتری بر سیلوئت، تزئینات و شخصیت او قرار می‌دهد."]}, {"title": "لحظه‌ای آرام", "paragraphs": ["این پرتره‌ی معاصر، لحظه‌ای آرام و تأمل‌برانگیز را به تصویر می‌کشد؛ لحظه‌ای که حول سادگیِ نوشیدن چای شکل گرفته است. حالت آرام فیگور و حضور متفکرانه‌ی او، فضایی صمیمی ایجاد می‌کند و مخاطب را دعوت می‌کند تا برای لحظه‌ای از هیاهوی زندگی روزمره فاصله بگیرد.", "فرم‌های کشیده، ویژگی‌های ساده‌شده‌ی چهره و عناصر هندسی، زبان بصری معاصر و فیگوراتیو اثر را شکل می‌دهند، در حالی که بافت‌های اکسپرسیو قلم‌مو، گرما و عمق نقاشانه‌ای به ترکیب‌بندی می‌بخشند. تضاد میان فرم‌های ساختاریافته و جزئیات نرم و ارگانیک، ریتمی متعادل و هماهنگ ایجاد می‌کند.", "پالت رنگی گرم و خاکی، حس آرامش و راحتی را تقویت کرده و یک لحظه‌ی ساده و روزمره را به مطالعه‌ای درباره‌ی سکون، حضور و تأمل درونی تبدیل می‌کند."]}, {"title": "سکوت طلایی", "paragraphs": ["این پرتره معاصر، قدرت زنانه را از طریق تلفیقی آوانگارد از هنر فیگوراتیو مدرن و فشن‌آرت مفهومی به تصویر می‌کشد. فرم‌های اغراق‌شده و معمارانه، حضوری مسلط و سرشار از اعتمادبه‌نفس به فیگور بخشیده‌اند.", "انحناهای نرم و سیال کلاه مشکی در تضاد با سرشانه‌های تیز و هندسی کت طلایی قرار گرفته‌اند. پنهان شدن چشم‌ها در سایه، هاله‌ای از رازآلودگی و اقتدار آرام به فیگور می‌بخشد، در حالی که گردن کشیده و لب‌های قرمز و روشن، توجه را به حضور قدرتمند او جلب می‌کنند.", "ترکیب طلایی گرم و مشکی عمیق، کنتراستی جسورانه و لوکس ایجاد کرده است. پس‌زمینه خنثی و خاکی نیز تعادل بصری ایجاد می‌کند و اجازه می‌دهد فیگور همچنان نقطه اصلی توجه باقی بماند."]}, {"title": "پژواک‌های هویت", "paragraphs": ["این اثر با تکرار یک چهره در امتداد یکدیگر، به مفهوم هویت، تکرار و تفاوت‌های ظریف میان انسان‌ها می‌پردازد. چهره‌های مشابه در نگاه اول یکسان به نظر می‌رسند، اما تغییرات کوچک در رنگ، فرم و حالت، هر یک را به حضوری مستقل تبدیل می‌کند.", "ساختارهای هندسی، خطوط کشیده و فرم‌های ساده‌شده، ریتمی منظم و در عین حال پویا ایجاد کرده‌اند. تکرار فیگورها مانند پژواکی بصری عمل می‌کند؛ گویی یک هویت واحد در چند شکل مختلف بازتاب یافته است.", "تضاد میان سطوح رنگی و بافت‌های اکسپرسیو قلم‌مو، به ترکیب‌بندی هندسی اثر عمق و کیفیتی نقاشانه می‌بخشد و مرز میان تکرار و فردیت را برجسته می‌کند."]}, {"title": "آغوش خاک و سکوت سپید", "paragraphs": ["این پرتره‌ی تأثیرگذار، آرامش درونی، مکاشفه و پیوند عمیق زن با طبیعت را به تصویر می‌کشد. فیگور با چشمانی بسته، گلدانی سفالین را در آغوش گرفته است؛ گویی پیوندی محافظت‌کننده با ریشه‌ها و حس تعلق خود دارد. گل‌های سفید کاسموس بخشی از چهره‌ی او را پوشانده‌اند و نمادی از خلوص، رشد و افکاری هستند که در سکوت شکوفا می‌شوند.", "این اثر، اکسپرسیونیسم فیگوراتیو مدرن را با خطوط کشیده و ظریف الهام‌گرفته از آرت دکو ترکیب می‌کند. دست‌ها و انگشتان اغراق‌شده، حس ظرافت و آرامش را به فیگور می‌بخشند، در حالی که فرم‌های نرم و ارگانیک گل‌ها در تضاد با خطوط هندسی و راه‌راه لباس قرار گرفته‌اند.", "رنگ‌های خاکیِ تراکوتا و آجری با سفیدی درخشان گل‌ها و ترکیب سرمه‌ای و کرم لباس متعادل شده‌اند. پس‌زمینه‌ی گرم و فرم دایره‌ای نمادین پشت سر فیگور نیز فضایی از امنیت، گرما و ریشه‌دار بودن ایجاد می‌کند."]}, {"title": "صفی از قصه ها", "paragraphs": ["این اثر بازیگوشانه، تنوع، فردیت و همزیستی را در پنج پرندهٔ متفاوت به تصویر می‌کشد؛ هرکدام با شخصیت ویژهٔ خود، از پرنده‌ای مرموز با کلاه لبه‌پهن تا پرنده‌ای با تاجی از پرهای باز. جزئیات انسانی به آن‌ها شخصیت و روایت می‌بخشند و قطره‌های آبی، آزادی و خودانگیختگی فرایند خلق را جشن می‌گیرند.", "در این ترکیب، ساختارهای هندسی الهام‌گرفته از کوبیسم با زیبایی‌شناسی اوریگامی درهم‌آمیخته‌اند. زوایای تیز، خطوط قاطع و فرم‌های تاخورده و بلوکی، حس حجم و بُعد ایجاد می‌کنند و گل‌های کاغذی هندسی، ساختار منظم ترکیب‌بندی را کامل می‌کنند.", "پس‌زمینه‌ی کرمِ گرم و بافت‌دار، فضایی خنثی برای نمایش پالت زنده‌ی اخرایی، آبی عمیق، سبز، قرمز و زرد فراهم می‌کند. این رنگ‌ها در کنار یکدیگر ریتمی پویا ایجاد کرده و حس شادی، انرژی و حرکت را به مخاطب منتقل می‌کنند."]}, {"title": "سیلوئتِ اقتدار", "paragraphs": ["این پرتره معاصر، اقتدار و خویشتن‌داری مردانه را از طریق تلفیقی آوانگارد از هنر فیگوراتیو مدرن و فشن‌آرت مفهومی به تصویر می‌کشد. فرم‌های معمارانه و زاویه‌دار، حضوری محکم و مسلط به فیگور بخشیده‌اند.", "کلاه مشکی و بزرگ، بخش بالایی چهره و چشم‌ها را به‌طور کامل در سایه قرار داده و فضایی از رازآلودگی، سردی و اقتدار آرام ایجاد می‌کند. دست‌های به سینه، ژستی محکم و خوددار ایجاد کرده‌اند، در حالی که کت راه‌راه طلایی و مشکی با سرشانه‌های پهن و زاویه‌دار، بر سیلوئت قدرتمند فیگور تأکید می‌کند. ریش و سبیل آراسته نیز تعادلی میان زبری و ظرافت ایجاد کرده‌اند.", "ترکیب طلایی گرم و مشکی عمیق در کت، کنتراستی جسورانه و لوکس ایجاد کرده است، در حالی که پس‌زمینه بژ با بافتی ملایم، باعث می‌شود فیگور همچنان در مرکز توجه باقی بماند."]}, {"title": "سکوت مشترک", "paragraphs": ["این پرتره‌ی معاصر، گفت‌وگویی بی‌صدا میان دو زن را به تصویر می‌کشد. فیگورها با چشمانی بسته و چهره‌هایی نزدیک به یکدیگر، در فضایی آرام و تأمل‌برانگیز قرار گرفته‌اند؛ فضایی که هم‌زمان مفهوم دوگانگی و ارتباط را تداعی می‌کند؛ لحظه‌ای از درک متقابل، فارغ از هیاهوی دنیای بیرون.", "در این اثر، اکسپرسیونیسم فیگوراتیو مدرن با ساختارهای هندسی الهام‌گرفته از کوبیسم و خطوط جسورانه و مینیمال ترکیب شده است. فرم‌های زاویه‌دار و معمارانه در تضاد با انحنای نرم چشم‌های بسته قرار گرفته‌اند، در حالی که بافت غنی و ردِ قابل مشاهده قلم‌مو، به سطوح هندسی عمق و کیفیتی ارگانیک می‌بخشد.", "تضاد میان رنگ‌های خاکی و سبز زیتونی در یکی از فیگورها و پالت چشمگیر سیاه‌وسفید در دیگری، نمایانگر دو هویت متفاوت است که در کنار یکدیگر به نوعی هماهنگی می‌رسند. پس‌زمینه‌ی تیره و عمیق نیز فیگورها را از فضای اطراف جدا کرده و تمرکز را بر ارتباط نزدیک و حضور مشترک آن‌ها قرار می‌دهد."]}, {"title": "وقار پنهان", "paragraphs": ["این اثر تجلی‌گاهی از اکسپرسیونیسم فیگوراتیو مدرن است که با الهام از ساختارهای هندسی کوبیسم و خطوط کشیده و ظریف سبک آرت دکو (Art Deco) خلق شده است.", "در این نقاشی دیجیتال، تضاد میان پترن‌های راه‌راه و دایره‌ای روی لباس‌ها، در کنار فرم‌های کشیده و مینیمال فیگورها، ریتمی بصری و هماهنگ ایجاد می‌کند. چهار زن در کنار یکدیگر قرار گرفته‌اند؛ حضوری آرام و در عین حال قدرتمند که مفهوم وقار، همبستگی و حضور مستقل را به تصویر می‌کشد.", "رنگ سبز پس‌زمینه و تنالیته‌های خاکی، یادآور طراوت، طبیعت و حس ریشه‌دار بودن هستند؛ عناصری که در سکوت و حالت باوقار فیگورها بازتاب پیدا می‌کنند."]}, {"title": "رازِ زمرد", "paragraphs": ["این پرتره معاصر، زنی را در نمای نیم‌رخ به تصویر می‌کشد و با الهام از ساختارهای هندسی کوبیسم و خطوط کشیده و ظریف آرت دکو خلق شده است.", "کلاه هندسی سبز زمردی، بخشی از چشمان او را در سایه پنهان کرده و فضایی از رازآلودگی، اعتمادبه‌نفس و قدرت آرام ایجاد می‌کند. لب‌های قرمز و روشن و حرکت ظریف دست، در تضاد با ساختار زاویه‌دار کلاه و یقه قرار گرفته و بر زنانگی و آرامش درونی تأکید می‌کنند.", "تضاد جسورانه میان سبز زمردی، نارنجیِ گرمِ تراکوتا و پس‌زمینه زرد طلایی و بافت‌دار، ریتمی بصری و زنده ایجاد می‌کند. این فیگور از طریق فرم، رنگ و حضور خود، حس خودباوری و قدرتی آرام را منتقل می‌کند."]}, {"title": "پرتره‌ای از میراث", "paragraphs": ["این پرتره معاصر، مفهوم هویت، حضور و زیورآرایی با الهام از فرهنگ‌های بومی را از طریق یک ترکیب‌بندی جسورانه و هندسی بررسی می‌کند. فیگور با حضوری آرام اما قدرتمند به تصویر کشیده شده و در میان لایه‌هایی از الگوها و فرم‌های تزئینی با الهام از نقوش سنتی قرار گرفته است.", "اشکال هندسی، خطوط کشیده و بافت‌های اکسپرسیو قلم‌مو، تعادلی میان ساختار و حرکت ارگانیک ایجاد می‌کنند. الگوهای منظم و رنگ‌های متضاد، بر فردیت فیگور تأکید کرده و در عین حال کیفیتی ریتمیک و دکوراتیو به ترکیب‌بندی می‌بخشند.", "پالت رنگی خاکی و بافت‌های ملموس، حس گرما و پیوند را ایجاد می‌کنند، در حالی که ساده‌سازی ویژگی‌های چهره باعث می‌شود فرم کلی، الگوها و حضور فیگور در مرکز توجه قرار بگیرند"]}];
 const bindings = [];
 function bind(element, value, html = false) {
  if (!element) return;
@@ -2231,17 +2752,29 @@ function setLanguage(lang) {
   if(!fa || html) element.innerHTML=fa?persian:english;
   else element.textContent=persian;
  });
- document.querySelectorAll('.language-select').forEach(el=>el.value=fa?'fa':'en');
+ document.querySelectorAll('.language-option').forEach(el=>{ const active=el.dataset.language===(fa?'fa':'en'); el.setAttribute('aria-pressed',String(active)); el.setAttribute('aria-label',el.dataset.language==='en'?'English':'فارسی'); });
  document.querySelectorAll('.menu-toggle').forEach(el=>el.setAttribute('aria-label',fa?'باز و بسته کردن فهرست':'Toggle navigation menu'));
  document.querySelectorAll('.angles-up').forEach(el=>el.setAttribute('aria-label',fa?'بازگشت به بالا':'Back to top'));
  document.getElementById('process-cards').setAttribute('aria-label',fa?'روند شکل‌گیری آثار؛ برای دیدن همه کارت‌ها به چپ و راست بکشید.':'Artwork process cards. Swipe or use left and right arrow keys to browse.');
  try{localStorage.setItem('portfolio-language',fa?'fa':'en');}catch{}
 }
-document.querySelectorAll('.language-select').forEach(el=>el.addEventListener('change',()=>setLanguage(el.value)));
+document.querySelectorAll('.language-option').forEach(el=>el.addEventListener('click',()=>setLanguage(el.dataset.language)));
 let initial='en';try{initial=localStorage.getItem('portfolio-language')||'en';}catch{}
 setLanguage(initial);
 })();
 </script>
 
+<script>
+(() => {
+  const headers = document.querySelectorAll('.navbar');
+  if (!headers.length) return;
+  const updateHeaderGlass = () => {
+    const scrolled = window.scrollY > 16;
+    headers.forEach(header => header.classList.toggle('is-scrolled', scrolled));
+  };
+  updateHeaderGlass();
+  window.addEventListener('scroll', updateHeaderGlass, { passive: true });
+})();
+</script>
 </body>
 </html>
