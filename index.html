@@ -2039,7 +2039,16 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
   .process-card-slot .process-story-copy p:nth-of-type(n+2){
     display:block !important;
   }
-}</style>
+}
+  /* Show A Wish in full while preserving the collection frame size. */
+  .collection-image-full,
+  .collection-card:hover .collection-image-full,
+  .collection-card:focus-within .collection-image-full{
+    object-fit:contain !important;
+    object-position:center;
+    background:#151b39;
+  }
+</style>
 </head>
 <body>
 <!-- Strengthen opaque paper edges without outlining the transparent cyan glow. -->
@@ -2304,6 +2313,12 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
 <img src="assets/image-035.png" alt="Finished artwork, artwork 6" loading="lazy" decoding="async" width="293" height="211">
 <div class="process-story-copy" data-copy-for="6"><h3>Embrace of Earth and White Silence</h3><p>This evocative portrait explores inner peace, introspection, and a woman’s deep connection with nature. With her eyes closed, the figure embraces a terracotta pot, suggesting a protective connection to her roots and sense of belonging. White cosmos flowers partially conceal her face, symbolizing purity, growth, and thoughts quietly coming into bloom.</p><p>The work combines modern figurative expressionism with elongated, delicate lines inspired by Art Deco. The exaggerated hands and fingers create a sense of elegance and calm, while the soft, organic forms of the flowers contrast with the structured, geometric stripes of the clothing.</p><p>The earthy terracotta and brick tones are balanced by the luminous white flowers and the deep navy and cream of the clothing. A warm background and symbolic circular form behind the figure create a sense of protection, warmth, and rootedness.</p></div>
 </article></div>
+<div class="process-card-slot"><article class="process-story" data-artwork-group="13" aria-label="Artwork 13 creation process">
+<img src="assets/Screenshot%201405-07-29%20at%2019.34.28.png" alt="Initial sketch for A Wish" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/Screenshot%201405-07-30%20at%2000.11.22.png" alt="Color and composition in progress for A Wish" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/ستاره.jpg" alt="Finished artwork A Wish, a rider reaching for a falling star" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-story-copy" data-copy-for="13"><h3>A Wish</h3><p>This dynamic nocturnal scene brings together the raw energy of an equestrian figure and the ethereal beauty of a falling star in a striking composition. The sharp, angular forms of the rider and horse contrast with the sweeping curve of the lasso, creating a dialogue between grounded strength and celestial wonder.</p><p>Simplified geometric surfaces and solid colors, combined with a palette of deep indigo and warm terracotta, give the work a bold, contemporary quality. The rhythmic, cubist-inspired lines guide the eye from the powerful stance of the horse to the glowing star, reinforcing a sense of motion and tension.</p><p>Rather than merely depicting a night ride, the work offers a personal interpretation of ambition and hope. It captures the fleeting, magical moment of daring to reach for the impossible and pulling a distant wish into reality.</p></div>
+</article></div>
 <div class="process-card-slot"><article class="process-story" data-artwork-group="7" aria-label="Artwork 7 creation process">
 <img src="assets/image-036.png" alt="Preliminary sketch, artwork 7" loading="lazy" decoding="async" width="293" height="211">
 <img src="assets/image-037.png" alt="Painting in progress, artwork 7" loading="lazy" decoding="async" width="293" height="211">
@@ -2339,12 +2354,6 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
 <img src="assets/image-051.png" alt="Painting in progress, artwork 12" loading="lazy" decoding="async" width="293" height="211">
 <div class="process-image-zoom"><img src="assets/image-052.png?v=3ae064e43abc7c3c30343113cf82d55c37a8d681" alt="Finished artwork, artwork 12" loading="lazy" decoding="async" width="293" height="211"></div>
 <div class="process-story-copy" data-copy-for="12"><h3>Portrait of Heritage</h3><p>This contemporary portrait explores identity, presence, and cultural-inspired adornment through a bold geometric composition. The figure is presented with a calm yet powerful presence, surrounded by layered patterns and decorative forms inspired by traditional visual motifs.</p><p>Geometric shapes, elongated lines, and expressive brush textures create a balance between structure and organic movement. The carefully arranged patterns and contrasting tones emphasize the figure’s individuality while giving the composition a rhythmic, decorative quality.</p><p>The earthy palette and tactile textures create a sense of warmth and connection, while the simplified facial features allow the overall form, patterns, and presence of the figure to take center stage.</p></div>
-</article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="13" aria-label="Artwork 13 creation process">
-<img src="assets/Screenshot%201405-07-29%20at%2019.34.28.png" alt="Initial sketch for A Wish" loading="lazy" decoding="async" width="293" height="211">
-<img src="assets/Screenshot%201405-07-30%20at%2000.11.22.png" alt="Color and composition in progress for A Wish" loading="lazy" decoding="async" width="293" height="211">
-<img src="assets/ستاره.jpg" alt="Finished artwork A Wish, a rider reaching for a falling star" loading="lazy" decoding="async" width="293" height="211">
-<div class="process-story-copy" data-copy-for="13"><h3>A Wish</h3><p>This dynamic nocturnal scene brings together the raw energy of an equestrian figure and the ethereal beauty of a falling star in a striking composition. The sharp, angular forms of the rider and horse contrast with the sweeping curve of the lasso, creating a dialogue between grounded strength and celestial wonder.</p><p>Simplified geometric surfaces and solid colors, combined with a palette of deep indigo and warm terracotta, give the work a bold, contemporary quality. The rhythmic, cubist-inspired lines guide the eye from the powerful stance of the horse to the glowing star, reinforcing a sense of motion and tension.</p><p>Rather than merely depicting a night ride, the work offers a personal interpretation of ambition and hope. It captures the fleeting, magical moment of daring to reach for the impossible and pulling a distant wish into reality.</p></div>
 </article></div>
 </div>
     </section>
@@ -2394,25 +2403,11 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
 </div>
 
 <script>
-  const embeddedArtworks = ["assets/image-053.png","assets/image-054.png","assets/image-055.png","assets/image-056.png","assets/image-057.png","assets/image-058.png","assets/image-059.png","assets/image-060.png","assets/image-061.png","assets/image-062.png","assets/image-063.png","assets/image-064.png","assets/ستاره.jpg"];
+  const embeddedArtworks = ["assets/image-053.png","assets/image-054.png","assets/image-055.png","assets/image-056.png","assets/image-057.png","assets/image-058.png","assets/ستاره.jpg","assets/image-059.png","assets/image-060.png","assets/image-061.png","assets/image-062.png","assets/image-063.png","assets/image-064.png"];
 
-  const collectionHoverPhotos = ["assets/image-065.png","assets/image-066.png","assets/image-067.png","assets/image-068.png","assets/image-069.png","assets/image-070.png","assets/image-071.png","assets/image-072.png","assets/image-073.png","assets/image-074.png","assets/image-075.png","assets/image-076.png","assets/IMG_9687%202.JPG"];
+  const collectionHoverPhotos = ["assets/image-065.png","assets/image-066.png","assets/image-067.png","assets/image-068.png","assets/image-069.png","assets/image-070.png","assets/IMG_9687%202.JPG","assets/image-071.png","assets/image-072.png","assets/image-073.png","assets/image-074.png","assets/image-075.png","assets/image-076.png"];
 
-  const collectionDetails = [
-    { title: "The Silhouette Of Authority", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Modern Figurative Art / Conceptual Fashion Art" },
-    { title: "Portrait Of Heritage", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Cultural-Inspired Art" },
-    { title: "Shared Silence", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Art Deco" },
-    { title: "A Quiet Moment", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration" },
-    { title: "Quiet Strength", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Cultural-Inspired Art" },
-    { title: "Golden Silence", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Modern Figurative Art / Conceptual Fashion Art" },
-    { title: "Echoes Of Identity", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Conceptual Art" },
-    { title: "A Line Of Stories", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Illustration / Cubist-Inspired" },
-    { title: "Embrace Of Earth And White Silence", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Art Deco" },
-    { title: "The Emerald Secret", technique: "Digital Painting And Illustration, With Thick, Painterly Brush Textures", style: "Contemporary Geometric Figurative Illustration / Art Deco" },
-    { title: "Hidden Dignity", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Art Deco" },
-    { title: "A Quiet Moment", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Illustration / Architectural Landscape" },
-    { title: "A Wish", technique: "Digital Painting And Illustration, With Geometric Textures And Expressive Forms", style: "Contemporary Figurative Expressionism / Geometric Abstraction" }
-  ];
+  const collectionDetails = [{ title: "The Silhouette Of Authority", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Modern Figurative Art / Conceptual Fashion Art" },{ title: "Portrait Of Heritage", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Cultural-Inspired Art" },{ title: "Shared Silence", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Art Deco" },{ title: "A Quiet Moment", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration" },{ title: "Quiet Strength", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Cultural-Inspired Art" },{ title: "Golden Silence", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Modern Figurative Art / Conceptual Fashion Art" },{ title: "A Wish", technique: "Digital Painting And Illustration, With Geometric Textures And Expressive Forms", style: "Contemporary Figurative Expressionism / Geometric Abstraction" },{ title: "Echoes Of Identity", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Conceptual Art" },{ title: "A Line Of Stories", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Illustration / Cubist-Inspired" },{ title: "Embrace Of Earth And White Silence", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Art Deco" },{ title: "The Emerald Secret", technique: "Digital Painting And Illustration, With Thick, Painterly Brush Textures", style: "Contemporary Geometric Figurative Illustration / Art Deco" },{ title: "Hidden Dignity", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Figurative Illustration / Art Deco" },{ title: "A Quiet Moment", technique: "Digital Painting And Illustration, With Expressive Textures And Visible Brushwork", style: "Contemporary Geometric Illustration / Architectural Landscape" }];
 
   function createArtworkGroup(hiddenCopy) {
     const group = document.createElement('div');
@@ -2445,6 +2440,7 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
 
     const image = document.createElement('img');
     image.className = 'collection-image';
+    if (index === 6) image.classList.add('collection-image-full');
     image.src = source;
     image.alt = 'Bahareh Yazdani artwork ' + (index + 1);
     image.loading = index < 4 ? 'eager' : 'lazy';
@@ -2741,8 +2737,8 @@ const escapeText = value => value.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&l
 persianCards.forEach((card,i) => {
  bind(document.querySelector('[data-copy-for="'+(i+1)+'"]'), '<h3>'+escapeText(card.title)+'</h3>'+card.paragraphs.map(p=>'<p>'+escapeText(p)+'</p>').join(''), true);
 });
-const collectionOrder = [8,12,9,3,2,4,5,7,6,11,10,1,13];
-const styles = ['هنر فیگوراتیو مدرن / فشن‌آرت مفهومی','تصویرسازی فیگوراتیو هندسی معاصر / الهام‌گرفته از فرهنگ','تصویرسازی فیگوراتیو هندسی معاصر / آرت دکو','تصویرسازی فیگوراتیو هندسی معاصر','تصویرسازی فیگوراتیو هندسی معاصر / الهام‌گرفته از فرهنگ','هنر فیگوراتیو مدرن / فشن‌آرت مفهومی','تصویرسازی فیگوراتیو هندسی معاصر / هنر مفهومی','تصویرسازی هندسی معاصر / الهام‌گرفته از کوبیسم','تصویرسازی فیگوراتیو هندسی معاصر / آرت دکو','تصویرسازی فیگوراتیو هندسی معاصر / آرت دکو','تصویرسازی فیگوراتیو هندسی معاصر / آرت دکو','تصویرسازی هندسی معاصر / منظره معماری','اکسپرسیونیسم فیگوراتیو معاصر / انتزاع هندسی'];
+const collectionOrder = [8,12,9,3,2,4,13,5,7,6,11,10,1];
+const styles = ['هنر فیگوراتیو مدرن / فشن‌آرت مفهومی','تصویرسازی فیگوراتیو هندسی معاصر / الهام‌گرفته از فرهنگ','تصویرسازی فیگوراتیو هندسی معاصر / آرت دکو','تصویرسازی فیگوراتیو هندسی معاصر','تصویرسازی فیگوراتیو هندسی معاصر / الهام‌گرفته از فرهنگ','هنر فیگوراتیو مدرن / فشن‌آرت مفهومی','اکسپرسیونیسم فیگوراتیو معاصر / انتزاع هندسی','تصویرسازی فیگوراتیو هندسی معاصر / هنر مفهومی','تصویرسازی هندسی معاصر / الهام‌گرفته از کوبیسم','تصویرسازی فیگوراتیو هندسی معاصر / آرت دکو','تصویرسازی فیگوراتیو هندسی معاصر / آرت دکو','تصویرسازی فیگوراتیو هندسی معاصر / آرت دکو','تصویرسازی هندسی معاصر / منظره معماری'];
 document.querySelectorAll('.collection-card').forEach((el,i) => {
  bind(el.querySelector('.collection-card-title'),persianCards[collectionOrder[i]-1].title);
  const lines=el.querySelectorAll('.collection-card-line');
