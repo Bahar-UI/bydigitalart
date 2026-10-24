@@ -2484,7 +2484,7 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
 
     const hoverImage = document.createElement('img');
     hoverImage.className = 'collection-hover-image';
-    if (collectionHoverPhotos[index] === 'assets/IMG_9687%202.JPG' || collectionHoverPhotos[index] === 'assets/CC8A5D7C-2AF3-4AEF-AFA5-D70EAAE1FB8A.PNG') hoverImage.classList.add('collection-hover-image-full');
+    if (index === 6 || index === 13) hoverImage.classList.add('collection-hover-image-full');
     hoverImage.src = collectionHoverPhotos[index];
     hoverImage.alt = 'Artwork ' + (index + 1) + ' shown in an interior setting';
     hoverImage.loading = 'lazy';
