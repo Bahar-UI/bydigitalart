@@ -2057,26 +2057,27 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
     background:transparent;
   }
 
-  /* Keep both interior hover photos complete and maximize their natural-size fit. */
+  /* Keep the two interior hover photos complete inside the artwork image area. */
   .collection-card .collection-hover-image-full,
   .collection-card:hover .collection-hover-image-full,
   .collection-card:focus-within .collection-hover-image-full{
-    top:50%;
-    left:50%;
-    width:92%;
-    height:auto;
-    max-height:86%;
+    top:4.5%;
+    left:5.5%;
+    width:89%;
+    height:72%;
     object-fit:contain !important;
     object-position:center;
     background:transparent;
     border-radius:14px;
-    transform:translate(-50%,-50%);
-    transition:width 380ms ease,max-height 380ms ease,opacity 400ms ease;
+    transform:none;
+    transition:top 380ms ease,left 380ms ease,width 380ms ease,height 380ms ease,opacity 400ms ease;
   }
   .collection-card:hover .collection-hover-image-full,
   .collection-card:focus-within .collection-hover-image-full{
+    top:3.5%;
+    left:2%;
     width:96%;
-    max-height:92%;
+    height:74%;
   }
 </style>
 </head>
