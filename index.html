@@ -2048,6 +2048,14 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
     object-position:center;
     background:#151b39;
   }
+
+  .collection-hover-image-full,
+  .collection-card:hover .collection-hover-image-full,
+  .collection-card:focus-within .collection-hover-image-full{
+    object-fit:contain !important;
+    object-position:center;
+    background:transparent;
+  }
 </style>
 </head>
 <body>
@@ -2453,6 +2461,7 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
 
     const hoverImage = document.createElement('img');
     hoverImage.className = 'collection-hover-image';
+    if (collectionHoverPhotos[index] === 'assets/IMG_9687%202.JPG' || collectionHoverPhotos[index] === 'assets/CC8A5D7C-2AF3-4AEF-AFA5-D70EAAE1FB8A.PNG') hoverImage.classList.add('collection-hover-image-full');
     hoverImage.src = collectionHoverPhotos[index];
     hoverImage.alt = 'Artwork ' + (index + 1) + ' shown in an interior setting';
     hoverImage.loading = 'lazy';
