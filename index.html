@@ -2446,7 +2446,7 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
 
     const image = document.createElement('img');
     image.className = 'collection-image';
-    if (index === 6) image.classList.add('collection-image-full');
+    if (index === 6 || source === 'assets/Untitled-1.jpg') image.classList.add('collection-image-full');
     image.src = source;
     image.alt = 'Bahareh Yazdani artwork ' + (index + 1);
     image.loading = index < 4 ? 'eager' : 'lazy';
