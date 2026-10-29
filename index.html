@@ -2073,6 +2073,50 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
     transform:none;
     transition:opacity 400ms ease;
   }
+
+/* Mobile-only selectable process gallery for A Line of Stories. */
+.mobile-stage-gallery,.mobile-finished-art{display:none;}
+@media(max-width:600px){
+  .process-card-slot.mobile-gallery-card{display:block;position:relative;flex:0 0 100%;width:100%;height:auto;min-width:0;aspect-ratio:auto;}
+  .process-card-slot.mobile-gallery-card .process-story[data-artwork-group="10"]{
+    position:relative;inset:auto;transform:none;transform-origin:initial;
+    display:flex;flex-direction:column;gap:12px;
+    width:100%;height:auto;min-height:0;padding:14px;
+    overflow:visible;
+  }
+  .process-story[data-artwork-group="10"]>img{display:none;}
+  .process-story[data-artwork-group="10"] .mobile-stage-gallery{display:flex;flex-direction:column;gap:10px;width:100%;}
+  .process-story[data-artwork-group="10"] .mobile-stage-main{width:100%;overflow:hidden;border-radius:12px;}
+  .process-story[data-artwork-group="10"] .mobile-stage-image{
+    display:block;width:100%;height:auto;aspect-ratio:293/211;object-fit:contain;border-radius:12px;
+  }
+  .process-story[data-artwork-group="10"] .mobile-stage-thumbnails{display:flex;justify-content:center;gap:10px;}
+  .process-story[data-artwork-group="10"] .mobile-stage-thumb{
+    display:block;flex:0 1 26%;width:26%;padding:3px;border:2px solid transparent;
+    border-radius:9px;background:transparent;cursor:pointer;
+  }
+  .process-story[data-artwork-group="10"] .mobile-stage-thumb.is-selected,
+  .process-story[data-artwork-group="10"] .mobile-stage-thumb[aria-pressed="true"]{border-color:var(--gold);}
+  .process-story[data-artwork-group="10"] .mobile-stage-thumb img{
+    display:block;width:100%;height:auto;aspect-ratio:293/211;object-fit:contain;border-radius:6px;
+  }
+  .process-story[data-artwork-group="10"] .mobile-finished-art{
+    display:flex;justify-content:center;width:100%;
+  }
+  .process-story[data-artwork-group="10"] .mobile-finished-art-image{
+    display:block;width:100%;max-width:320px;height:auto;max-height:280px;aspect-ratio:293/211;
+    object-fit:contain;border-radius:14px;
+  }
+  .process-story[data-artwork-group="10"] .process-story-copy{
+    grid-column:auto;grid-row:auto;align-self:stretch;width:100%;height:auto;
+    max-height:320px;overflow-y:auto;padding:4px 6px 10px;
+    font-size:clamp(14px,4vw,16px);line-height:1.75;
+    overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  }
+  .process-story[data-artwork-group="10"] .process-story-copy h3{font-size:20px;line-height:1.4;margin:0 0 12px;}
+  .process-story[data-artwork-group="10"] .process-story-copy p{font-size:inherit;line-height:inherit;margin:0 0 12px;}
+}
+
 </style>
 </head>
 <body>
@@ -2362,10 +2406,14 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
 <img src="assets/image-044.png" alt="Finished artwork, artwork 9" loading="lazy" decoding="async" width="293" height="211">
 <div class="process-story-copy" data-copy-for="9"><h3>Shared Silence</h3><p>This contemporary portrait explores a silent dialogue between two women. With their eyes closed and faces brought close together, the figures exist in a quiet, contemplative space, suggesting both duality and connection—a moment of mutual understanding beyond the noise of the outside world.</p><p>Modern figurative expressionism merges with Cubist-inspired geometric structures and bold, minimalist lines. Angular, architectural forms contrast with the soft curves of the closed eyes, while rich, visible brushwork brings depth and an organic quality to the geometric surfaces.</p><p>The contrast between earthy olive-green tones in one figure and the striking black-and-white palette of the other represents two distinct identities coming together in harmony. A deep, dark background further isolates the figures and places the focus on their intimate connection and shared presence.</p></div>
 </article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="10" aria-label="Artwork 10 creation process">
-<img src="assets/image-045.png" alt="Preliminary sketch, artwork 10" loading="lazy" decoding="async" width="293" height="211">
-<img src="assets/image-046.png" alt="Painting in progress, artwork 10" loading="lazy" decoding="async" width="293" height="211">
-<img src="assets/image-047.png" alt="Finished artwork, artwork 10" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-card-slot mobile-gallery-card"><article class="process-story" data-artwork-group="10" aria-label="Artwork 10 creation process">
+<div class="mobile-stage-gallery">
+<div class="mobile-stage-main"><img class="mobile-stage-image" src="assets/image-045.png" alt="Preliminary sketch, artwork 10" loading="lazy" decoding="async" width="293" height="211"></div>
+<div class="mobile-stage-thumbnails" role="group" aria-label="Select a process stage"><button type="button" class="mobile-stage-thumb is-selected" aria-label="Select process stage 1" aria-pressed="true" data-stage-src="assets/image-045.png" data-stage-alt="Preliminary sketch, artwork 10"><img src="assets/image-045.png" alt="" loading="lazy" decoding="async" width="293" height="211"></button>
+<button type="button" class="mobile-stage-thumb" aria-label="Select process stage 2" aria-pressed="false" data-stage-src="assets/image-046.png" data-stage-alt="Painting in progress, artwork 10"><img src="assets/image-046.png" alt="" loading="lazy" decoding="async" width="293" height="211"></button>
+<button type="button" class="mobile-stage-thumb" aria-label="Select process stage 3" aria-pressed="false" data-stage-src="assets/image-047.png" data-stage-alt="Finished artwork, artwork 10"><img src="assets/image-047.png" alt="" loading="lazy" decoding="async" width="293" height="211"></button></div>
+</div>
+<div class="mobile-finished-art"><img class="mobile-finished-art-image" src="assets/image-047.png" alt="Finished artwork, artwork 10" loading="lazy" decoding="async" width="293" height="211"></div>
 <div class="process-story-copy" data-copy-for="10"><h3>Hidden Dignity</h3><p>This work is an expression of modern figurative expressionism, inspired by the geometric structures of Cubism and the elongated, delicate lines of Art Deco.</p><p>In this digital painting, the contrast between the striped and circular patterns on the clothing and the elongated, minimalist forms of the figures creates a balanced and harmonious visual rhythm. Four women are depicted seated together, conveying a quiet yet powerful presence that reflects dignity, solidarity, and individual strength.</p><p>The green background and earthy tones evoke freshness, nature, and a sense of being deeply rooted—qualities that are reflected in the calm and dignified presence of the figures.</p></div>
 </article></div>
 <div class="process-card-slot"><article class="process-story" data-artwork-group="11" aria-label="Artwork 11 creation process">
@@ -2560,6 +2608,22 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
   }
 
   enableDragScroll(document.getElementById('collection-viewport'));
+
+  // Mobile selectable stage gallery for the A Line of Stories process card.
+  document.querySelectorAll('.mobile-stage-gallery').forEach(gallery => {
+    const main = gallery.querySelector('.mobile-stage-image');
+    gallery.querySelectorAll('.mobile-stage-thumb').forEach(button => {
+      button.addEventListener('click', () => {
+        main.src = button.dataset.stageSrc;
+        main.alt = button.dataset.stageAlt;
+        gallery.querySelectorAll('.mobile-stage-thumb').forEach(item => {
+          const selected = item === button;
+          item.classList.toggle('is-selected', selected);
+          item.setAttribute('aria-pressed', String(selected));
+        });
+      });
+    });
+  });
 
   // Native touch scrolling; mouse dragging and keyboard access for the process row.
   const processRow = document.getElementById('process-cards');
