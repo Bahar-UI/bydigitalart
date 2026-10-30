@@ -1707,42 +1707,6 @@ html[lang="fa"] .collection-card .cc-label{font-weight:500;}
   }
 }
 
-
-/* Artwork Process cards match the supplied Figma dimensions and keep all interaction inside the carousel. */
-.process-section{overflow:hidden;}
-.process-cards{box-sizing:border-box;width:100%;max-width:none;margin:48px 0 0;padding:0 24px;display:flex;align-items:stretch;gap:24px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;scroll-snap-type:x mandatory;touch-action:pan-x pan-y;}
-.process-cards::-webkit-scrollbar{display:none;}
-.process-card-slot{display:block;flex:0 0 625px;width:625px;min-width:0;height:494px;scroll-snap-align:start;}
-.process-story,.process-card-slot .process-story{position:relative;display:block;box-sizing:border-box;flex:none;width:625px;height:494px;min-width:0;min-height:0;padding:0;overflow:hidden;transform:none;isolation:isolate;}
-.process-story::before{content:"";position:absolute;inset:0;z-index:-1;background:url("assets/image-005.png") center/100% 100% no-repeat;}
-.process-stage-thumbs{position:absolute;z-index:1;top:30px;left:49px;width:136.45px;height:229px;display:flex;flex-direction:column;gap:8.99px;}
-.process-stage-thumb{display:block;flex:0 0 70.01px;width:136.45px;height:70.01px;min-height:44px;padding:0;border:2px solid transparent;border-radius:10px;overflow:hidden;background:transparent;cursor:pointer;}
-.process-stage-thumb.is-selected,.process-stage-thumb[aria-pressed="true"]{border-color:var(--gold);}
-.process-stage-thumb:focus-visible{outline:2px solid var(--gold-light);outline-offset:2px;}
-.process-stage-thumb img{display:block;width:100%;height:100%;object-fit:contain;border-radius:8px;}
-.process-stage-main{position:absolute;top:30px;left:209.45px;width:366px;height:229px;display:block;object-fit:contain;border-radius:12px;}
-.process-finished-art{position:absolute;left:29px;bottom:30px;width:262px;height:175px;display:block;object-fit:contain;border-radius:12px;}
-.process-story-copy{position:absolute;right:29px;bottom:30px;box-sizing:border-box;width:287px;height:174px;padding:10px;border:3px solid #255E57;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--gold) transparent;text-align:center;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Arial,sans-serif;font-size:14px;line-height:1.45;font-weight:300;}
-.process-story-copy h3{font-family:inherit;font-size:14px;line-height:1.35;font-weight:600;margin:0 0 8px;}
-.process-story-copy p{font-family:inherit;font-size:inherit;line-height:inherit;margin:0 0 8px;}
-.process-story-copy p:last-child{margin-bottom:0;}
-@media(max-width:600px){
- .process-cards{width:100%;margin:32px 0 0;padding:0 0 0 20px;gap:26px;scroll-padding-left:20px;}
- .process-card-slot{flex:0 0 min(316px,calc(100vw - 74px));width:min(316px,calc(100vw - 74px));height:454px;scroll-snap-align:start;}
- .process-story,.process-card-slot .process-story{width:100%;height:454px;min-height:454px;}
- .process-stage-thumbs{top:20px;left:8.89px;width:84.61px;height:142.17px;gap:5.89px;}
- .process-stage-thumb{flex-basis:43.46px;width:84.61px;height:43.46px;border-radius:7px;}
- .process-stage-thumb img{border-radius:5px;}
- .process-stage-main{top:20px;left:calc(8.89px + 84.61px + 8px);width:calc(100% - 8.89px - 9px - 84.61px - 8px);height:142.17px;border-radius:8px;}
- .process-finished-art{left:50%;bottom:165.09px;transform:translateX(-50%);width:152px;height:107.91px;border-radius:10px;}
- .process-story-copy{left:50%;right:auto;bottom:20px;transform:translateX(-50%);width:calc(100% - 30px);height:137px;padding:10px 13px;border-width:3px;font-size:12px;line-height:1.4;}
- .process-story-copy h3{font-size:12px;line-height:1.35;margin:0 0 6px;}
- .process-story-copy p{font-size:inherit;line-height:inherit;margin:0 0 7px;}
-}
-@media(min-width:601px) and (max-width:900px){
- .process-cards{padding-left:24px;}
-}
-
 </style>
 <style>
 /* Hero reference: preserve the supplied torn edges and their transparent glow. */
@@ -2110,6 +2074,84 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
     transition:opacity 400ms ease;
   }
 
+/* Mobile-only selectable process gallery for A Line of Stories. */
+.mobile-stage-gallery,.mobile-finished-art{display:none;}
+@media(max-width:600px){
+  .process-card-slot.mobile-gallery-card{display:block;position:relative;flex:0 0 100%;width:100%;height:auto;min-width:0;aspect-ratio:auto;}
+  .process-card-slot.mobile-gallery-card .process-story[data-artwork-group="10"]{
+    position:relative;inset:auto;transform:none;transform-origin:initial;
+    display:flex;flex-direction:column;gap:12px;
+    width:100%;height:auto;min-height:0;padding:14px;
+    overflow:visible;
+  }
+  .process-story[data-artwork-group="10"]>img{display:none;}
+  .process-story[data-artwork-group="10"] .mobile-stage-gallery{display:flex;flex-direction:column;gap:10px;width:100%;}
+  .process-story[data-artwork-group="10"] .mobile-stage-main{width:100%;overflow:hidden;border-radius:12px;}
+  .process-story[data-artwork-group="10"] .mobile-stage-image{
+    display:block;width:100%;height:auto;aspect-ratio:293/211;object-fit:contain;border-radius:12px;
+  }
+  .process-story[data-artwork-group="10"] .mobile-stage-thumbnails{display:flex;justify-content:center;gap:10px;}
+  .process-story[data-artwork-group="10"] .mobile-stage-thumb{
+    display:block;flex:0 1 26%;width:26%;padding:3px;border:2px solid transparent;
+    border-radius:9px;background:transparent;cursor:pointer;
+  }
+  .process-story[data-artwork-group="10"] .mobile-stage-thumb.is-selected,
+  .process-story[data-artwork-group="10"] .mobile-stage-thumb[aria-pressed="true"]{border-color:var(--gold);}
+  .process-story[data-artwork-group="10"] .mobile-stage-thumb img{
+    display:block;width:100%;height:auto;aspect-ratio:293/211;object-fit:contain;border-radius:6px;
+  }
+  .process-story[data-artwork-group="10"] .mobile-finished-art{
+    display:flex;justify-content:center;width:100%;
+  }
+  .process-story[data-artwork-group="10"] .mobile-finished-art-image{
+    display:block;width:100%;max-width:320px;height:auto;max-height:280px;aspect-ratio:293/211;
+    object-fit:contain;border-radius:14px;
+  }
+  .process-story[data-artwork-group="10"] .process-story-copy{
+    grid-column:auto;grid-row:auto;align-self:stretch;width:100%;height:auto;
+    max-height:320px;overflow-y:auto;padding:4px 6px 10px;
+    font-size:clamp(14px,4vw,16px);line-height:1.75;
+    overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  }
+  .process-story[data-artwork-group="10"] .process-story-copy h3{font-size:20px;line-height:1.4;margin:0 0 12px;}
+  .process-story[data-artwork-group="10"] .process-story-copy p{font-size:inherit;line-height:inherit;margin:0 0 12px;}
+}
+
+</style>
+<style id="approved-process-gallery-design">
+/* Approved Figma layout for the Artwork Process cards only. */
+#process-cards{box-sizing:border-box!important;display:flex!important;align-items:flex-start!important;width:100%!important;max-width:none!important;margin:48px 0 0!important;padding:0 24px 4px!important;gap:24px!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;scroll-padding-left:24px;overscroll-behavior-x:contain;}
+#process-cards .process-card-slot{display:block!important;position:relative!important;flex:0 0 625px!important;width:625px!important;min-width:0!important;height:494px!important;min-height:0!important;aspect-ratio:auto!important;scroll-snap-align:start!important;}
+#process-cards .process-story{position:relative!important;inset:auto!important;display:block!important;box-sizing:border-box!important;flex:none!important;width:625px!important;height:494px!important;min-width:0!important;min-height:0!important;max-height:none!important;padding:0!important;overflow:hidden!important;transform:none!important;background:transparent!important;}
+#process-cards .process-story::before{content:""!important;position:absolute!important;inset:0!important;z-index:-1!important;background:url("assets/image-005.png") center/100% 100% no-repeat!important;}
+#process-cards .process-gallery{position:absolute;left:49px;top:30px;width:526.45px;height:229px;display:flex;gap:24px;}
+#process-cards .process-stage-thumbnails{width:136.45px;height:229px;flex:none;display:flex;flex-direction:column;gap:8.99px;}
+#process-cards .process-stage-thumb{position:relative;display:block;flex:0 0 70.01px;width:136.45px;height:70.01px;padding:0;border:0;border-radius:8px;overflow:hidden;background:#fff;cursor:pointer;appearance:none;}
+#process-cards .process-stage-thumb img{display:block!important;width:100%!important;height:100%!important;max-width:none!important;aspect-ratio:auto!important;object-fit:contain!important;border-radius:inherit!important;transform:none!important;}
+#process-cards .process-stage-thumb[aria-pressed="true"]{box-shadow:inset 0 0 0 2px #bc9449;}
+#process-cards .process-stage-main{display:block!important;position:absolute!important;left:160.45px!important;top:0!important;width:366px!important;height:229px!important;max-width:none!important;aspect-ratio:auto!important;object-fit:contain!important;border-radius:12px!important;transform:none!important;}
+#process-cards .process-finished-art{display:block!important;position:absolute!important;left:29px!important;top:289px!important;width:262px!important;height:175px!important;max-width:none!important;aspect-ratio:auto!important;object-fit:contain!important;border-radius:12px!important;transform:none!important;}
+#process-cards .process-story-copy{display:block!important;position:absolute!important;left:309px!important;top:290px!important;right:auto!important;bottom:auto!important;box-sizing:border-box!important;width:287px!important;height:174px!important;min-width:0!important;max-width:none!important;margin:0!important;padding:10px!important;border:3px solid #255e57!important;border-radius:8px!important;overflow-x:hidden!important;overflow-y:auto!important;overscroll-behavior:contain!important;touch-action:pan-y!important;-webkit-overflow-scrolling:touch!important;scrollbar-width:thin!important;scrollbar-color:#bc9449 rgba(188,148,73,.16)!important;font-family:"SF Pro Text","SF Pro Display",-apple-system,BlinkMacSystemFont,sans-serif!important;font-size:14px!important;line-height:1.45!important;font-weight:300!important;text-align:center!important;}
+#process-cards .process-story-copy::after{content:"";position:absolute;top:8px;right:5px;width:4px;height:26px;border-radius:8px;background:#bc9449;opacity:.9;pointer-events:none;}
+#process-cards .process-story-copy h3{display:block!important;margin:0 0 8px!important;font:600 14px/1.35 "SF Pro Text","SF Pro Display",-apple-system,BlinkMacSystemFont,sans-serif!important;}
+#process-cards .process-story-copy p{display:block!important;margin:0 0 10px!important;font:300 14px/1.45 "SF Pro Text","SF Pro Display",-apple-system,BlinkMacSystemFont,sans-serif!important;overflow:visible!important;}
+#process-cards .process-story-copy p:last-child{margin-bottom:0!important;}
+#process-cards .process-story-copy::-webkit-scrollbar{width:6px;}
+#process-cards .process-story-copy::-webkit-scrollbar-track{background:rgba(188,148,73,.14);border-radius:8px;}
+#process-cards .process-story-copy::-webkit-scrollbar-thumb{background:#bc9449;border-radius:8px;}
+@media(max-width:600px){
+#process-cards{width:100vw!important;max-width:100vw!important;margin:32px 0 0!important;padding:0 20px 4px!important;gap:26px!important;scroll-padding-left:20px!important;}
+#process-cards .process-card-slot{flex:0 0 316px!important;width:316px!important;height:454px!important;}
+#process-cards .process-story{width:316px!important;height:454px!important;}
+#process-cards .process-gallery{left:8.89px;top:20px;width:298.11px;height:142.17px;gap:8px;}
+#process-cards .process-stage-thumbnails{width:84.61px;height:142.01px;gap:5.89px;}
+#process-cards .process-stage-thumb{flex:0 0 43.41px;width:84.61px;height:43.41px;border-radius:8px;}
+#process-cards .process-stage-main{left:92.61px!important;top:0!important;width:205.5px!important;height:142.17px!important;border-radius:8px!important;}
+#process-cards .process-finished-art{left:82px!important;top:181px!important;width:152px!important;height:107.91px!important;border-radius:10px!important;}
+#process-cards .process-story-copy{left:15px!important;top:297px!important;right:auto!important;bottom:auto!important;width:286px!important;height:137px!important;padding:10px 13px!important;font-size:12px!important;line-height:1.4!important;}
+#process-cards .process-story-copy h3{font-size:12px!important;line-height:1.4!important;margin-bottom:8px!important;}
+#process-cards .process-story-copy p{font-size:12px!important;line-height:1.4!important;margin-bottom:8px!important;}
+}
 </style>
 </head>
 <body>
@@ -2339,120 +2381,96 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
       </div>
 
 <div class="process-cards" id="process-cards" role="region" aria-label="Artwork process cards. Swipe or use left and right arrow keys to browse." tabindex="0">
-<div class="process-card-slot"><article class="process-story" data-artwork-group="1" aria-label="Under the Crimson Moon process">
-<div class="process-stage-thumbs" role="group" aria-label="Process stages for Under the Crimson Moon"><button class="process-stage-thumb is-selected" type="button" data-stage-src="assets/image-018.png" data-stage-alt="Preliminary sketch, artwork 1" aria-label="Show stage 1 for Under the Crimson Moon" aria-pressed="true"><img src="assets/image-018.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-019.png" data-stage-alt="Painting in progress, artwork 1" aria-label="Show stage 2 for Under the Crimson Moon" aria-pressed="false"><img src="assets/image-019.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-020.png" data-stage-alt="Finished artwork, artwork 1" aria-label="Show stage 3 for Under the Crimson Moon" aria-pressed="false"><img src="assets/image-020.png" alt="" loading="lazy" decoding="async"></button></div>
-<img class="process-stage-main" src="assets/image-018.png" alt="Preliminary sketch, artwork 1" loading="lazy" decoding="async">
-<img class="process-finished-art" src="assets/image-064.png" alt="Finished artwork: Under the Crimson Moon" loading="lazy" decoding="async">
+<div class="process-card-slot"><article class="process-story" data-artwork-group="1" aria-label="Artwork 1 creation process">
+<img src="assets/image-018.png" alt="Preliminary sketch, artwork 1" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-019.png" alt="Painting in progress, artwork 1" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-020.png" alt="Finished artwork, artwork 1" loading="lazy" decoding="async" width="293" height="211">
 <div class="process-story-copy" data-copy-for="1"><h3>Under the Crimson Moon</h3><p>This contemporary coastal scene brings together geometric houses and the natural landscape in a simple and harmonious composition. The angular architectural forms contrast with the softer lines of the shore and the calm expanse of the sea, creating a dialogue between structured architecture and the fluidity of nature.</p><p>Simplified surfaces and solid colors, combined with subtle painterly textures, give the work a minimalist yet tactile quality. The repetition of architectural forms and rhythmic lines guides the eye along the shoreline, reinforcing a sense of stillness and calm.</p><p>Rather than depicting a specific place, the work offers a personal interpretation of living in harmony with nature, simplicity, and tranquility.</p></div>
 </article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="2" aria-label="Quiet Strength process">
-<div class="process-stage-thumbs" role="group" aria-label="Process stages for Quiet Strength"><button class="process-stage-thumb is-selected" type="button" data-stage-src="assets/image-021.png" data-stage-alt="Preliminary sketch, artwork 2" aria-label="Show stage 1 for Quiet Strength" aria-pressed="true"><img src="assets/image-021.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-022.png" data-stage-alt="Painting in progress, artwork 2" aria-label="Show stage 2 for Quiet Strength" aria-pressed="false"><img src="assets/image-022.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-023.png?v=3ae064e43abc7c3c30343113cf82d55c37a8d681" data-stage-alt="Finished artwork, artwork 2" aria-label="Show stage 3 for Quiet Strength" aria-pressed="false"><img src="assets/image-023.png?v=3ae064e43abc7c3c30343113cf82d55c37a8d681" alt="" loading="lazy" decoding="async"></button></div>
-<img class="process-stage-main" src="assets/image-021.png" alt="Preliminary sketch, artwork 2" loading="lazy" decoding="async">
-<img class="process-finished-art" src="assets/image-057.png" alt="Finished artwork: Quiet Strength" loading="lazy" decoding="async">
+<div class="process-card-slot"><article class="process-story" data-artwork-group="2" aria-label="Artwork 2 creation process">
+<img src="assets/image-021.png" alt="Preliminary sketch, artwork 2" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-022.png" alt="Painting in progress, artwork 2" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-image-zoom"><img src="assets/image-023.png?v=3ae064e43abc7c3c30343113cf82d55c37a8d681" alt="Finished artwork, artwork 2" loading="lazy" decoding="async" width="293" height="211"></div>
 <div class="process-story-copy" data-copy-for="2"><h3>Quiet Strength</h3><p>This contemporary portrait explores masculine identity, strength, and quiet dignity through a geometric and decorative visual language. The figure’s traditional-inspired attire, layered patterns, and strong silhouette create a distinctive sense of character and presence.</p><p>Angular forms and elongated lines interact with expressive brush textures, combining structured geometry with an organic painterly quality. The patterns of the clothing become an essential part of the composition, framing the figure and creating a rhythmic relationship between color, form, and texture.</p><p>The restrained yet earthy palette reinforces the figure’s grounded presence, while the simplified facial treatment places greater emphasis on silhouette, ornament, and character.</p></div>
 </article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="3" aria-label="A Quiet Moment process">
-<div class="process-stage-thumbs" role="group" aria-label="Process stages for A Quiet Moment"><button class="process-stage-thumb is-selected" type="button" data-stage-src="assets/image-024.png" data-stage-alt="Preliminary sketch, artwork 3" aria-label="Show stage 1 for A Quiet Moment" aria-pressed="true"><img src="assets/image-024.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-025.png" data-stage-alt="Painting in progress, artwork 3" aria-label="Show stage 2 for A Quiet Moment" aria-pressed="false"><img src="assets/image-025.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-026.png" data-stage-alt="Finished artwork, artwork 3" aria-label="Show stage 3 for A Quiet Moment" aria-pressed="false"><img src="assets/image-026.png" alt="" loading="lazy" decoding="async"></button></div>
-<img class="process-stage-main" src="assets/image-024.png" alt="Preliminary sketch, artwork 3" loading="lazy" decoding="async">
-<img class="process-finished-art" src="assets/image-056.png" alt="Finished artwork: A Quiet Moment" loading="lazy" decoding="async">
+<div class="process-card-slot"><article class="process-story" data-artwork-group="3" aria-label="Artwork 3 creation process">
+<img src="assets/image-024.png" alt="Preliminary sketch, artwork 3" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-025.png" alt="Painting in progress, artwork 3" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-026.png" alt="Finished artwork, artwork 3" loading="lazy" decoding="async" width="293" height="211">
 <div class="process-story-copy" data-copy-for="3"><h3>A Quiet Moment</h3><p>This contemporary portrait captures a quiet moment of reflection, centered around the simple ritual of holding a cup of tea. The figure’s calm posture and thoughtful presence create an intimate atmosphere, inviting the viewer to pause and step away from the noise of everyday life.</p><p>The elongated forms, simplified features, and geometric elements reflect a contemporary figurative language, while expressive brush textures add warmth and painterly depth to the composition. The contrast between structured forms and softer organic details creates a balanced visual rhythm.</p><p>The warm, earthy palette reinforces the sense of comfort and tranquility, turning an ordinary moment into a quiet study of stillness, presence, and inner reflection.</p></div>
 </article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="4" aria-label="golden silence process">
-<div class="process-stage-thumbs" role="group" aria-label="Process stages for golden silence"><button class="process-stage-thumb is-selected" type="button" data-stage-src="assets/image-027.png" data-stage-alt="Preliminary sketch, artwork 4" aria-label="Show stage 1 for golden silence" aria-pressed="true"><img src="assets/image-027.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-028.png" data-stage-alt="Painting in progress, artwork 4" aria-label="Show stage 2 for golden silence" aria-pressed="false"><img src="assets/image-028.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-029.png" data-stage-alt="Finished artwork, artwork 4" aria-label="Show stage 3 for golden silence" aria-pressed="false"><img src="assets/image-029.png" alt="" loading="lazy" decoding="async"></button></div>
-<img class="process-stage-main" src="assets/image-027.png" alt="Preliminary sketch, artwork 4" loading="lazy" decoding="async">
-<img class="process-finished-art" src="assets/image-058.png" alt="Finished artwork: golden silence" loading="lazy" decoding="async">
+<div class="process-card-slot"><article class="process-story" data-artwork-group="4" aria-label="Artwork 4 creation process">
+<img src="assets/image-027.png" alt="Preliminary sketch, artwork 4" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-028.png" alt="Painting in progress, artwork 4" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-029.png" alt="Finished artwork, artwork 4" loading="lazy" decoding="async" width="293" height="211">
 <div class="process-story-copy" data-copy-for="4"><h3>golden silence</h3><p>This contemporary portrait explores feminine power through an avant-garde fusion of modern figurative art and conceptual fashion art. The exaggerated, architectural forms give the figure a commanding and self-assured presence.</p><p>The soft, flowing curves of the black hat contrast with the sharp, geometric shoulders of the golden coat. With the eyes concealed in shadow, the figure takes on an air of mystery and quiet authority, while the elongated neck and vivid red lips draw attention to her confident presence.</p><p>The warm gold and deep black create a bold, luxurious contrast, balanced by a neutral, earthy background that allows the figure to remain the central focus.</p></div>
 </article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="5" aria-label="Echoes of Identity process">
-<div class="process-stage-thumbs" role="group" aria-label="Process stages for Echoes of Identity"><button class="process-stage-thumb is-selected" type="button" data-stage-src="assets/image-030.png" data-stage-alt="Preliminary sketch, artwork 5" aria-label="Show stage 1 for Echoes of Identity" aria-pressed="true"><img src="assets/image-030.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-031.png" data-stage-alt="Painting in progress, artwork 5" aria-label="Show stage 2 for Echoes of Identity" aria-pressed="false"><img src="assets/image-031.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-032.png" data-stage-alt="Finished artwork, artwork 5" aria-label="Show stage 3 for Echoes of Identity" aria-pressed="false"><img src="assets/image-032.png" alt="" loading="lazy" decoding="async"></button></div>
-<img class="process-stage-main" src="assets/image-030.png" alt="Preliminary sketch, artwork 5" loading="lazy" decoding="async">
-<img class="process-finished-art" src="assets/image-059.png" alt="Finished artwork: Echoes of Identity" loading="lazy" decoding="async">
+<div class="process-card-slot"><article class="process-story" data-artwork-group="5" aria-label="Artwork 5 creation process">
+<img src="assets/image-030.png" alt="Preliminary sketch, artwork 5" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-031.png" alt="Painting in progress, artwork 5" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-032.png" alt="Finished artwork, artwork 5" loading="lazy" decoding="async" width="293" height="211">
 <div class="process-story-copy" data-copy-for="5"><h3>Echoes of Identity</h3><p>This work explores identity, repetition, and subtle individuality through the repeated arrangement of a single face. At first glance, the figures appear identical, yet small variations in color, form, and expression give each one an independent presence.</p><p>Geometric structures, elongated lines, and simplified forms create a rhythmic yet dynamic composition. The repetition functions as a visual echo, suggesting a single identity reflected through multiple forms.</p><p>The contrast between solid color surfaces and expressive brush textures adds depth and painterly quality to the geometric composition, highlighting the tension between repetition and individuality.</p></div>
 </article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="6" aria-label="Embrace of Earth and White Silence process">
-<div class="process-stage-thumbs" role="group" aria-label="Process stages for Embrace of Earth and White Silence"><button class="process-stage-thumb is-selected" type="button" data-stage-src="assets/image-033.png" data-stage-alt="Preliminary sketch, artwork 6" aria-label="Show stage 1 for Embrace of Earth and White Silence" aria-pressed="true"><img src="assets/image-033.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-034.png" data-stage-alt="Painting in progress, artwork 6" aria-label="Show stage 2 for Embrace of Earth and White Silence" aria-pressed="false"><img src="assets/image-034.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-035.png" data-stage-alt="Finished artwork, artwork 6" aria-label="Show stage 3 for Embrace of Earth and White Silence" aria-pressed="false"><img src="assets/image-035.png" alt="" loading="lazy" decoding="async"></button></div>
-<img class="process-stage-main" src="assets/image-033.png" alt="Preliminary sketch, artwork 6" loading="lazy" decoding="async">
-<img class="process-finished-art" src="assets/image-061.png" alt="Finished artwork: Embrace of Earth and White Silence" loading="lazy" decoding="async">
+<div class="process-card-slot"><article class="process-story" data-artwork-group="6" aria-label="Artwork 6 creation process">
+<img src="assets/image-033.png" alt="Preliminary sketch, artwork 6" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-034.png" alt="Painting in progress, artwork 6" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-035.png" alt="Finished artwork, artwork 6" loading="lazy" decoding="async" width="293" height="211">
 <div class="process-story-copy" data-copy-for="6"><h3>Embrace of Earth and White Silence</h3><p>This evocative portrait explores inner peace, introspection, and a woman’s deep connection with nature. With her eyes closed, the figure embraces a terracotta pot, suggesting a protective connection to her roots and sense of belonging. White cosmos flowers partially conceal her face, symbolizing purity, growth, and thoughts quietly coming into bloom.</p><p>The work combines modern figurative expressionism with elongated, delicate lines inspired by Art Deco. The exaggerated hands and fingers create a sense of elegance and calm, while the soft, organic forms of the flowers contrast with the structured, geometric stripes of the clothing.</p><p>The earthy terracotta and brick tones are balanced by the luminous white flowers and the deep navy and cream of the clothing. A warm background and symbolic circular form behind the figure create a sense of protection, warmth, and rootedness.</p></div>
 </article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="13" aria-label="A Wish process">
-<div class="process-stage-thumbs" role="group" aria-label="Process stages for A Wish"><button class="process-stage-thumb is-selected" type="button" data-stage-src="assets/Screenshot%201405-07-29%20at%2019.34.28.png" data-stage-alt="Initial sketch for A Wish" aria-label="Show stage 1 for A Wish" aria-pressed="true"><img src="assets/Screenshot%201405-07-29%20at%2019.34.28.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/Screenshot%201405-07-30%20at%2000.11.22.png" data-stage-alt="Color and composition in progress for A Wish" aria-label="Show stage 2 for A Wish" aria-pressed="false"><img src="assets/Screenshot%201405-07-30%20at%2000.11.22.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/ستاره.jpg" data-stage-alt="Finished artwork A Wish, a rider reaching for a falling star" aria-label="Show stage 3 for A Wish" aria-pressed="false"><img src="assets/ستاره.jpg" alt="" loading="lazy" decoding="async"></button></div>
-<img class="process-stage-main" src="assets/Screenshot%201405-07-29%20at%2019.34.28.png" alt="Initial sketch for A Wish" loading="lazy" decoding="async">
-<img class="process-finished-art" src="assets/ستاره.jpg" alt="Finished artwork: A Wish" loading="lazy" decoding="async">
+<div class="process-card-slot"><article class="process-story" data-artwork-group="13" aria-label="Artwork 13 creation process">
+<img src="assets/Screenshot%201405-07-29%20at%2019.34.28.png" alt="Initial sketch for A Wish" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/Screenshot%201405-07-30%20at%2000.11.22.png" alt="Color and composition in progress for A Wish" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/ستاره.jpg" alt="Finished artwork A Wish, a rider reaching for a falling star" loading="lazy" decoding="async" width="293" height="211">
 <div class="process-story-copy" data-copy-for="13"><h3>A Wish</h3><p>This dynamic nocturnal scene brings together the raw energy of an equestrian figure and the ethereal beauty of a falling star in a striking composition. The sharp, angular forms of the rider and horse contrast with the sweeping curve of the lasso, creating a dialogue between grounded strength and celestial wonder.</p><p>Simplified geometric surfaces and solid colors, combined with a palette of deep indigo and warm terracotta, give the work a bold, contemporary quality. The rhythmic, cubist-inspired lines guide the eye from the powerful stance of the horse to the glowing star, reinforcing a sense of motion and tension.</p><p>Rather than merely depicting a night ride, the work offers a personal interpretation of ambition and hope. It captures the fleeting, magical moment of daring to reach for the impossible and pulling a distant wish into reality.</p></div>
 </article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="7" aria-label="A Line of Stories process">
-<div class="process-stage-thumbs" role="group" aria-label="Process stages for A Line of Stories"><button class="process-stage-thumb is-selected" type="button" data-stage-src="assets/image-036.png" data-stage-alt="Preliminary sketch, artwork 7" aria-label="Show stage 1 for A Line of Stories" aria-pressed="true"><img src="assets/image-036.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-037.png" data-stage-alt="Painting in progress, artwork 7" aria-label="Show stage 2 for A Line of Stories" aria-pressed="false"><img src="assets/image-037.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-038.png" data-stage-alt="Finished artwork, artwork 7" aria-label="Show stage 3 for A Line of Stories" aria-pressed="false"><img src="assets/image-038.png" alt="" loading="lazy" decoding="async"></button></div>
-<img class="process-stage-main" src="assets/image-036.png" alt="Preliminary sketch, artwork 7" loading="lazy" decoding="async">
-<img class="process-finished-art" src="assets/image-060.png" alt="Finished artwork: A Line of Stories" loading="lazy" decoding="async">
+<div class="process-card-slot"><article class="process-story" data-artwork-group="7" aria-label="Artwork 7 creation process">
+<img src="assets/image-036.png" alt="Preliminary sketch, artwork 7" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-037.png" alt="Painting in progress, artwork 7" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-038.png" alt="Finished artwork, artwork 7" loading="lazy" decoding="async" width="293" height="211">
 <div class="process-story-copy" data-copy-for="7"><h3>A Line of Stories</h3><p>This playful work explores diversity, individuality, and coexistence through five distinct birds, each with its own character—from a mysterious wide-brimmed hat to an expressive fan of feathers. Human-inspired details bring personality and narrative to the birds, while falling blue paint drops celebrate the freedom and spontaneity of the artistic process.</p><p>The composition combines Cubist-inspired geometric structures with the aesthetics of origami. Sharp angles, bold lines, and folded, block-like forms create a sense of volume and dimension, while the geometric paper flowers complete the structured composition.</p><p>A warm, textured cream background provides a neutral setting for the vivid palette of ochre, deep blue, green, red, and yellow. Together, these colors create a lively rhythm and convey a sense of joy, energy, and movement.</p></div>
 </article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="8" aria-label="The Silhouette of Authority process">
-<div class="process-stage-thumbs" role="group" aria-label="Process stages for The Silhouette of Authority"><button class="process-stage-thumb is-selected" type="button" data-stage-src="assets/image-039.png" data-stage-alt="Preliminary sketch, artwork 8" aria-label="Show stage 1 for The Silhouette of Authority" aria-pressed="true"><img src="assets/image-039.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-040.png" data-stage-alt="Painting in progress, artwork 8" aria-label="Show stage 2 for The Silhouette of Authority" aria-pressed="false"><img src="assets/image-040.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-041.png" data-stage-alt="Finished artwork, artwork 8" aria-label="Show stage 3 for The Silhouette of Authority" aria-pressed="false"><img src="assets/image-041.png" alt="" loading="lazy" decoding="async"></button></div>
-<img class="process-stage-main" src="assets/image-039.png" alt="Preliminary sketch, artwork 8" loading="lazy" decoding="async">
-<img class="process-finished-art" src="assets/image-053.png" alt="Finished artwork: The Silhouette of Authority" loading="lazy" decoding="async">
+<div class="process-card-slot"><article class="process-story" data-artwork-group="8" aria-label="Artwork 8 creation process">
+<img src="assets/image-039.png" alt="Preliminary sketch, artwork 8" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-040.png" alt="Painting in progress, artwork 8" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-041.png" alt="Finished artwork, artwork 8" loading="lazy" decoding="async" width="293" height="211">
 <div class="process-story-copy" data-copy-for="8"><h3>The Silhouette of Authority</h3><p>This contemporary portrait explores masculine authority and restraint through an avant-garde fusion of modern figurative art and conceptual fashion art. The architectural, angular forms give the figure a strong and commanding presence.</p><p>The oversized black hat casts the upper face and eyes entirely in shadow, creating an atmosphere of mystery, coolness, and quiet authority. His crossed arms convey a firm and self-contained posture, while the gold-and-black striped coat, with its broad angular shoulders, emphasizes his powerful silhouette. The carefully groomed beard and mustache add a balance between ruggedness and refinement.</p><p>The warm gold and deep black of the coat create a bold and luxurious contrast, while the softly textured beige background keeps the figure at the center of attention.</p></div>
 </article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="9" aria-label="Shared Silence process">
-<div class="process-stage-thumbs" role="group" aria-label="Process stages for Shared Silence"><button class="process-stage-thumb is-selected" type="button" data-stage-src="assets/image-042.png" data-stage-alt="Preliminary sketch, artwork 9" aria-label="Show stage 1 for Shared Silence" aria-pressed="true"><img src="assets/image-042.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-043.png" data-stage-alt="Painting in progress, artwork 9" aria-label="Show stage 2 for Shared Silence" aria-pressed="false"><img src="assets/image-043.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-044.png" data-stage-alt="Finished artwork, artwork 9" aria-label="Show stage 3 for Shared Silence" aria-pressed="false"><img src="assets/image-044.png" alt="" loading="lazy" decoding="async"></button></div>
-<img class="process-stage-main" src="assets/image-042.png" alt="Preliminary sketch, artwork 9" loading="lazy" decoding="async">
-<img class="process-finished-art" src="assets/image-055.png" alt="Finished artwork: Shared Silence" loading="lazy" decoding="async">
+<div class="process-card-slot"><article class="process-story" data-artwork-group="9" aria-label="Artwork 9 creation process">
+<img src="assets/image-042.png" alt="Preliminary sketch, artwork 9" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-043.png" alt="Painting in progress, artwork 9" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-044.png" alt="Finished artwork, artwork 9" loading="lazy" decoding="async" width="293" height="211">
 <div class="process-story-copy" data-copy-for="9"><h3>Shared Silence</h3><p>This contemporary portrait explores a silent dialogue between two women. With their eyes closed and faces brought close together, the figures exist in a quiet, contemplative space, suggesting both duality and connection—a moment of mutual understanding beyond the noise of the outside world.</p><p>Modern figurative expressionism merges with Cubist-inspired geometric structures and bold, minimalist lines. Angular, architectural forms contrast with the soft curves of the closed eyes, while rich, visible brushwork brings depth and an organic quality to the geometric surfaces.</p><p>The contrast between earthy olive-green tones in one figure and the striking black-and-white palette of the other represents two distinct identities coming together in harmony. A deep, dark background further isolates the figures and places the focus on their intimate connection and shared presence.</p></div>
 </article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="10" aria-label="Hidden Dignity process">
-<div class="process-stage-thumbs" role="group" aria-label="Process stages for Hidden Dignity"><button class="process-stage-thumb is-selected" type="button" data-stage-src="assets/image-045.png" data-stage-alt="Preliminary sketch, artwork 10" aria-label="Show stage 1 for Hidden Dignity" aria-pressed="true"><img src="assets/image-045.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-046.png" data-stage-alt="Process image for Hidden Dignity" aria-label="Show stage 2 for Hidden Dignity" aria-pressed="false"><img src="assets/image-046.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-047.png" data-stage-alt="Process image for Hidden Dignity" aria-label="Show stage 3 for Hidden Dignity" aria-pressed="false"><img src="assets/image-047.png" alt="" loading="lazy" decoding="async"></button></div>
-<img class="process-stage-main" src="assets/image-045.png" alt="Preliminary sketch, artwork 10" loading="lazy" decoding="async">
-<img class="process-finished-art" src="assets/image-063.png" alt="Finished artwork: Hidden Dignity" loading="lazy" decoding="async">
+<div class="process-card-slot mobile-gallery-card"><article class="process-story" data-artwork-group="10" aria-label="Artwork 10 creation process">
+<div class="mobile-stage-gallery">
+<div class="mobile-stage-main"><img class="mobile-stage-image" src="assets/image-045.png" alt="Preliminary sketch, artwork 10" loading="lazy" decoding="async" width="293" height="211"></div>
+<div class="mobile-stage-thumbnails" role="group" aria-label="Select a process stage"><button type="button" class="mobile-stage-thumb is-selected" aria-label="Select process stage 1" aria-pressed="true" data-stage-src="assets/image-045.png" data-stage-alt="Preliminary sketch, artwork 10"><img src="assets/image-045.png" alt="" loading="lazy" decoding="async" width="293" height="211"></button>
+<button type="button" class="mobile-stage-thumb" aria-label="Select process stage 2" aria-pressed="false" data-stage-src="assets/image-046.png" data-stage-alt="Painting in progress, artwork 10"><img src="assets/image-046.png" alt="" loading="lazy" decoding="async" width="293" height="211"></button>
+<button type="button" class="mobile-stage-thumb" aria-label="Select process stage 3" aria-pressed="false" data-stage-src="assets/image-047.png" data-stage-alt="Finished artwork, artwork 10"><img src="assets/image-047.png" alt="" loading="lazy" decoding="async" width="293" height="211"></button></div>
+</div>
+<div class="mobile-finished-art"><img class="mobile-finished-art-image" src="assets/image-047.png" alt="Finished artwork, artwork 10" loading="lazy" decoding="async" width="293" height="211"></div>
 <div class="process-story-copy" data-copy-for="10"><h3>Hidden Dignity</h3><p>This work is an expression of modern figurative expressionism, inspired by the geometric structures of Cubism and the elongated, delicate lines of Art Deco.</p><p>In this digital painting, the contrast between the striped and circular patterns on the clothing and the elongated, minimalist forms of the figures creates a balanced and harmonious visual rhythm. Four women are depicted seated together, conveying a quiet yet powerful presence that reflects dignity, solidarity, and individual strength.</p><p>The green background and earthy tones evoke freshness, nature, and a sense of being deeply rooted—qualities that are reflected in the calm and dignified presence of the figures.</p></div>
 </article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="11" aria-label="The Emerald Secret process">
-<div class="process-stage-thumbs" role="group" aria-label="Process stages for The Emerald Secret"><button class="process-stage-thumb is-selected" type="button" data-stage-src="assets/image-048.png" data-stage-alt="Preliminary sketch, artwork 11" aria-label="Show stage 1 for The Emerald Secret" aria-pressed="true"><img src="assets/image-048.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-049.png" data-stage-alt="Painting in progress, artwork 11" aria-label="Show stage 2 for The Emerald Secret" aria-pressed="false"><img src="assets/image-049.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-050.png" data-stage-alt="Finished artwork, artwork 11" aria-label="Show stage 3 for The Emerald Secret" aria-pressed="false"><img src="assets/image-050.png" alt="" loading="lazy" decoding="async"></button></div>
-<img class="process-stage-main" src="assets/image-048.png" alt="Preliminary sketch, artwork 11" loading="lazy" decoding="async">
-<img class="process-finished-art" src="assets/image-062.png" alt="Finished artwork: The Emerald Secret" loading="lazy" decoding="async">
+<div class="process-card-slot"><article class="process-story" data-artwork-group="11" aria-label="Artwork 11 creation process">
+<img src="assets/image-048.png" alt="Preliminary sketch, artwork 11" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-049.png" alt="Painting in progress, artwork 11" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-050.png" alt="Finished artwork, artwork 11" loading="lazy" decoding="async" width="293" height="211">
 <div class="process-story-copy" data-copy-for="11"><h3>The Emerald Secret</h3><p>This contemporary portrait depicts a woman in profile, inspired by the geometric structures of Cubism and the elegant, elongated lines of Art Deco.</p><p>Her emerald-green geometric hat partially conceals her eyes, creating an atmosphere of mystery, confidence, and quiet strength. The vivid red lips and delicate hand gesture contrast with the angular hat and collar, emphasizing femininity and inner calm.</p><p>The bold contrast between emerald green, warm terracotta, and a textured golden-yellow background creates a vibrant visual rhythm. Through form, color, and presence, the figure conveys a sense of self-possession and quiet power.</p></div>
 </article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="12" aria-label="Portrait of Heritage process">
-<div class="process-stage-thumbs" role="group" aria-label="Process stages for Portrait of Heritage"><button class="process-stage-thumb is-selected" type="button" data-stage-src="assets/image-021.png" data-stage-alt="Preliminary sketch, artwork 12" aria-label="Show stage 1 for Portrait of Heritage" aria-pressed="true"><img src="assets/image-021.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-051.png" data-stage-alt="Painting in progress, artwork 12" aria-label="Show stage 2 for Portrait of Heritage" aria-pressed="false"><img src="assets/image-051.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/image-052.png?v=3ae064e43abc7c3c30343113cf82d55c37a8d681" data-stage-alt="Finished artwork, artwork 12" aria-label="Show stage 3 for Portrait of Heritage" aria-pressed="false"><img src="assets/image-052.png?v=3ae064e43abc7c3c30343113cf82d55c37a8d681" alt="" loading="lazy" decoding="async"></button></div>
-<img class="process-stage-main" src="assets/image-021.png" alt="Preliminary sketch, artwork 12" loading="lazy" decoding="async">
-<img class="process-finished-art" src="assets/image-054.png" alt="Finished artwork: Portrait of Heritage" loading="lazy" decoding="async">
+<div class="process-card-slot"><article class="process-story" data-artwork-group="12" aria-label="Artwork 12 creation process">
+<img src="assets/image-021.png" alt="Preliminary sketch, artwork 12" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/image-051.png" alt="Painting in progress, artwork 12" loading="lazy" decoding="async" width="293" height="211">
+<div class="process-image-zoom"><img src="assets/image-052.png?v=3ae064e43abc7c3c30343113cf82d55c37a8d681" alt="Finished artwork, artwork 12" loading="lazy" decoding="async" width="293" height="211"></div>
 <div class="process-story-copy" data-copy-for="12"><h3>Portrait of Heritage</h3><p>This contemporary portrait explores identity, presence, and cultural-inspired adornment through a bold geometric composition. The figure is presented with a calm yet powerful presence, surrounded by layered patterns and decorative forms inspired by traditional visual motifs.</p><p>Geometric shapes, elongated lines, and expressive brush textures create a balance between structure and organic movement. The carefully arranged patterns and contrasting tones emphasize the figure’s individuality while giving the composition a rhythmic, decorative quality.</p><p>The earthy palette and tactile textures create a sense of warmth and connection, while the simplified facial features allow the overall form, patterns, and presence of the figure to take center stage.</p></div>
 </article></div>
-<div class="process-card-slot"><article class="process-story" data-artwork-group="14" aria-label="Echoes of Milan process">
-<div class="process-stage-thumbs" role="group" aria-label="Process stages for Echoes of Milan"><button class="process-stage-thumb is-selected" type="button" data-stage-src="assets/Screenshot%201405-08-02%20at%2017.33.50.png" data-stage-alt="Initial line drawing of Milan Cathedral" aria-label="Show stage 1 for Echoes of Milan" aria-pressed="true"><img src="assets/Screenshot%201405-08-02%20at%2017.33.50.png" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/IMG_9800.PNG" data-stage-alt="Digital painting of the cathedral in progress" aria-label="Show stage 2 for Echoes of Milan" aria-pressed="false"><img src="assets/IMG_9800.PNG" alt="" loading="lazy" decoding="async"></button>
-<button class="process-stage-thumb" type="button" data-stage-src="assets/Untitled-1.jpg" data-stage-alt="Finished artwork Echoes of Milan" aria-label="Show stage 3 for Echoes of Milan" aria-pressed="false"><img src="assets/Untitled-1.jpg" alt="" loading="lazy" decoding="async"></button></div>
-<img class="process-stage-main" src="assets/Screenshot%201405-08-02%20at%2017.33.50.png" alt="Initial line drawing of Milan Cathedral" loading="lazy" decoding="async">
-<img class="process-finished-art" src="assets/Untitled-1.jpg" alt="Finished artwork: Echoes of Milan" loading="lazy" decoding="async">
+<div class="process-card-slot"><article class="process-story" data-artwork-group="14" aria-label="Artwork 14 creation process">
+<img src="assets/Screenshot%201405-08-02%20at%2017.33.50.png" alt="Initial line drawing of Milan Cathedral" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/IMG_9800.PNG" alt="Digital painting of the cathedral in progress" loading="lazy" decoding="async" width="293" height="211">
+<img src="assets/Untitled-1.jpg" alt="Finished artwork Echoes of Milan" loading="lazy" decoding="async" width="293" height="211">
 <div class="process-story-copy" data-copy-for="14"><h3>Echoes of Milan</h3><p>"Echoes of Milan" is, for me, a visual narrative of the contrast between silence and chaos, and the confrontation of geometry with emotion. In this piece, I sought to place the steadfast, elongated, and fragmented lines of the Duomo against a swirling, energetic, and expressionistic sky.</p><p>I chose the color palette for this work with meticulous care: earthy tones, matte grays, and ochres for the architecture of the building, alongside a fiery harmony of mustard, gold, and deep indigo for the sky.</p><p>It was important to me to intentionally keep the lower part of the frame (the adjacent buildings and the piazza's cobblestones) dark and neutral so it could act as a calm, natural passe-partout. This silence allowed me to portray the grandeur and details of this historic monument like an echo resonating within a modern atmosphere. I created this artwork—marked with my usual signature (BY)—with its bold contrasts so it can shine as a focal point in modern spaces.</p></div>
 </article></div>
 </div>
-</section>
+    </section>
   </main>
 
   <section class="contact" id="artworks-contact">
@@ -2626,16 +2644,14 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
 
   enableDragScroll(document.getElementById('collection-viewport'));
 
-  // Each process card has its own independently selected stage image.
-  document.querySelectorAll('.process-story').forEach(card => {
-    const thumbs = card.querySelector('.process-stage-thumbs');
-    const main = card.querySelector('.process-stage-main');
-    if (!thumbs || !main) return;
-    thumbs.querySelectorAll('.process-stage-thumb').forEach(button => {
+  // Mobile selectable stage gallery for the A Line of Stories process card.
+  document.querySelectorAll('.mobile-stage-gallery').forEach(gallery => {
+    const main = gallery.querySelector('.mobile-stage-image');
+    gallery.querySelectorAll('.mobile-stage-thumb').forEach(button => {
       button.addEventListener('click', () => {
         main.src = button.dataset.stageSrc;
         main.alt = button.dataset.stageAlt;
-        thumbs.querySelectorAll('.process-stage-thumb').forEach(item => {
+        gallery.querySelectorAll('.mobile-stage-thumb').forEach(item => {
           const selected = item === button;
           item.classList.toggle('is-selected', selected);
           item.setAttribute('aria-pressed', String(selected));
@@ -2644,12 +2660,71 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
     });
   });
 
-  // Native touch scrolling; mouse dragging and keyboard access for the process row.
+  // Build the approved selectable stage gallery for every Artwork Process card.
   const processRow = document.getElementById('process-cards');
+  const emptyProcessStage = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22white%22/%3E%3C/svg%3E';
+  processRow.querySelectorAll('.process-story').forEach((card, cardIndex) => {
+    const copy = card.querySelector('.process-story-copy');
+    const sourceImages = [...card.querySelectorAll(':scope > img, :scope > .process-image-zoom img')];
+    if (!copy || sourceImages.length < 3) return;
+
+    const stageImages = sourceImages.slice(0, 2);
+    const finishedSource = card.querySelector(':scope > .process-image-zoom img') || sourceImages[2];
+    const gallery = document.createElement('div');
+    gallery.className = 'process-gallery';
+    const thumbs = document.createElement('div');
+    thumbs.className = 'process-stage-thumbnails';
+    const stages = [
+      ...stageImages.map((img, index) => ({src:img.getAttribute('src'), alt:img.alt || `Artwork ${cardIndex + 1}, process stage ${index + 1}`})),
+      {src:emptyProcessStage, alt:`Artwork ${cardIndex + 1}, third stage photo pending`}
+    ];
+    stages.forEach((stage, index) => {
+      const button = document.createElement('button');
+      button.className = 'process-stage-thumb';
+      button.type = 'button';
+      button.setAttribute('aria-label', `Show process stage ${index + 1}`);
+      button.setAttribute('aria-pressed', String(index === 0));
+      const thumbImage = document.createElement('img');
+      thumbImage.src = stage.src;
+      thumbImage.alt = '';
+      thumbImage.loading = 'lazy';
+      button.appendChild(thumbImage);
+      button.addEventListener('click', () => {
+        const main = card.querySelector('.process-stage-main');
+        main.src = stage.src;
+        main.alt = stage.alt;
+        thumbs.querySelectorAll('.process-stage-thumb').forEach((item, itemIndex) => item.setAttribute('aria-pressed', String(itemIndex === index)));
+      });
+      thumbs.appendChild(button);
+    });
+
+    const mainImage = document.createElement('img');
+    mainImage.className = 'process-stage-main';
+    mainImage.src = stages[0].src;
+    mainImage.alt = stages[0].alt;
+    mainImage.loading = 'lazy';
+    gallery.append(thumbs, mainImage);
+
+    const finished = finishedSource.cloneNode(true);
+    finished.className = 'process-finished-art';
+    finished.alt = finishedSource.alt;
+    finished.loading = 'lazy';
+    card.querySelectorAll(':scope > img, :scope > .process-image-zoom').forEach(image => image.remove());
+    card.insertBefore(gallery, copy);
+    card.insertBefore(finished, copy);
+  });
+
+  const sizeMobileProcessCards = () => {
+    const scale = Math.max(0, (processRow.clientWidth - 16) / 1.5 / 700);
+    processRow.style.setProperty('--mobile-card-scale', String(scale));
+  };
+  new ResizeObserver(sizeMobileProcessCards).observe(processRow);
+  sizeMobileProcessCards();
+
   let processDrag = null;
   processRow.addEventListener('pointerdown', event => {
     if (event.pointerType !== 'mouse' || event.button !== 0) return;
-    if (event.target.closest('.process-stage-thumb')) return;
+    if (event.target.closest('.process-story-copy, .process-stage-thumb')) return;
     processDrag = {x:event.clientX, scroll:processRow.scrollLeft};
     processRow.setPointerCapture(event.pointerId);
     processRow.classList.add('is-dragging');
