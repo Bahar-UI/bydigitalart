@@ -2671,9 +2671,30 @@ html{--site-header-height:92px;scroll-padding-top:calc(var(--site-header-height)
     gallery.className = 'process-gallery';
     const thumbs = document.createElement('div');
     thumbs.className = 'process-stage-thumbnails';
+    const stage3ByArtwork = {
+      "1":"زیر ماه سرخ عکس ۳.png",
+      "2":"قدرت ارام عکس شماره ۳.png",
+      "3":"لحظه ارام عکس ۳.png",
+      "4":"سکوت طلایی عکس ۳.png",
+      "5":"پژواک های هویت عکس ۳.png",
+      "6":"اغوش زمین و سکوت سفید عکس شماره ۳.png",
+      "7":"یک خط داستان عکس ۳.png",
+      "8":"نیمرخ اقتدار عکس ۳.png",
+      "9":"سکوت مشترک عکس ۳.png",
+      "10":"کرامت پنهان عکس ۳.png",
+      "11":"راز زمرد عکس ۳.png",
+      "12":"پرتره میراث عکس ۳.png",
+      "13":"یک ارزو عکس ۳.png",
+      "14":"پژواک های میلان عکس ۳.png"
+    };
+    const stage2ByArtwork = {"7":"یک خط داستان عکس شماره ۲.png"};
+    const artworkId = card.dataset.artworkGroup;
+    const stage2Src = stage2ByArtwork[artworkId];
+    const stage3Src = stage3ByArtwork[artworkId];
     const stages = [
-      ...stageImages.map((img, index) => ({src:img.getAttribute('src'), alt:img.alt || `Artwork ${cardIndex + 1}, process stage ${index + 1}`})),
-      {src:emptyProcessStage, alt:`Artwork ${cardIndex + 1}, third stage photo pending`}
+      {src:stageImages[0].getAttribute('src'), alt:stageImages[0].alt || `Artwork ${cardIndex + 1}, process stage 1`},
+      {src:stage2Src ? `assets/${stage2Src}` : stageImages[1].getAttribute('src'), alt:stageImages[1].alt || `Artwork ${cardIndex + 1}, process stage 2`},
+      {src:stage3Src ? `assets/${stage3Src}` : emptyProcessStage, alt:stage3Src ? `Artwork ${cardIndex + 1}, process stage 3` : `Artwork ${cardIndex + 1}, third stage photo pending`}
     ];
     stages.forEach((stage, index) => {
       const button = document.createElement('button');
