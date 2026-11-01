@@ -1030,8 +1030,8 @@
   }
 
   .collection-viewport{
-    width:min(calc(100vw - 77px),1532px);
-    margin:35px 0 0 77px;
+    width:min(calc(100vw - 154px),1532px);
+    margin:35px auto 0;
     overflow-x:auto;
     overflow-y:hidden;
     overscroll-behavior-x:contain;
@@ -1049,7 +1049,7 @@
     display:flex;
     width:max-content;
     gap:24px;
-    padding-right:77px;
+    padding:0 77px;
   }
 
   .process-section{
@@ -1240,8 +1240,8 @@
   @media (max-width:900px){
     .artworks-breadcrumb{ margin-left:32px; margin-right:32px; }
     .collection-title{ margin-right:32px; margin-left:32px; }
-    .collection-viewport{ width:calc(100vw - 32px); margin-left:32px; }
-    .collection-track{ padding-right:32px; }
+    .collection-viewport{ width:calc(100vw - 64px); margin-left:32px; }
+    .collection-track{ padding:0 32px; }
   }
 
   @media (max-width:700px){
@@ -1251,8 +1251,8 @@
     .artworks-card{ width:147px; height:147px; border-radius:50%; }
     .artworks-track,.artworks-group{ gap:18px; }
     .collection-title{ margin-right:20px; margin-left:20px; }
-    .collection-viewport{ width:calc(100vw - 20px); margin-left:20px; }
-    .collection-track{ padding-right:20px; }
+    .collection-viewport{ width:calc(100vw - 40px); margin-left:20px; }
+    .collection-track{ padding:0 20px; }
     @keyframes artworks-glide-right{
       from{ transform:translateX(calc(-50% - 9px)); }
       to{ transform:translateX(0); }
